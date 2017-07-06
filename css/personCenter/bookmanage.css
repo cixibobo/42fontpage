@@ -1,0 +1,415 @@
+body {
+	background: #F3F3F3;
+}
+
+.rootDiv{
+	height: 1000px;
+}
+.report_state{
+    margin-top: 60px;
+    font-family: 微软雅黑;
+    font-size: 12px;
+    padding-left: 5px;
+    color: #bbb;
+}
+
+
+/**
+ * 用来解决angular CSS 渲染加载时间，ng-show,ng-hide,ng-cloak问题
+ */
+
+@charset "UTF-8";
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+	display: none !important;
+}
+
+ng\:form {
+	display: block;
+}
+
+
+/*公用*/
+
+.book_pub {
+	border-radius: 10px;
+	background: #fff;
+	padding: 20px;
+	margin:5px 5px 20px 5px ;
+}
+
+.cover_wrap {
+	width: 128px;
+	height: 176px;
+	border-radius: 10px;
+	display: block;
+	position: relative;
+}
+
+.book_pub .book_cover {
+	width: 128px;
+	height: 176px;
+	border-radius: 10px;
+}
+
+.shelf_title {
+	text-align: center;
+	width: 1.0em;
+	font-size: 28px;
+	font-weight: bold;
+	margin-left: 50px;
+}
+
+.book_show .book_info {
+	display: inline-block;
+	width: 128px;
+	margin: 0 10px 10px 0;
+}
+
+.book_pub .book_info .book_title {
+	display: block;
+	text-align: center;
+	width: 120px;
+	font-size: 15px;
+	color: #222;
+	line-height: 24px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.book_pub .book_info .book_title:hover {
+	color: #f90;
+}
+
+
+/*遮罩部分*/
+
+.mask_cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+	width: 128px;
+	height: 176px;
+	border-radius: 10px;
+	background: rgba(255, 153, 0, 0.4);
+	display: none;
+}
+
+.mask_cover .writer_pic {
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin: 14px auto 0;
+}
+
+.mask_cover p {
+	font-size: 12px;
+	color: #fff;
+	line-height: 22px;
+}
+
+.book_pub .cover_wrap:hover .mask_cover {
+	display: block;
+}
+
+.writer_name {
+	background: url(../img/mybookshelf/writer.png) no-repeat 30px center;
+	text-indent: 20px;
+}
+
+
+/*共有结束*/
+
+.book_tags {
+	width: 812px;
+	height: 176px;
+	position: relative;
+}
+
+
+.book_tags .tag {
+	height: 14px;
+	font-size: 14px;
+	background: #fff;
+	border: 1px solid #f90;
+	padding: 0 10px 0 10px;
+	line-height: 14px;
+	border-radius: 10px;
+	color: #f90;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+.book_tags .edit {
+	display: block;
+	width: 64px;
+	height: 26px;
+	line-height: 26px;
+	border-radius: 10px;
+
+	background-color: #f90;
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	text-indent: 2px;
+}
+
+.book_tags .edit>img{
+	width: 25px;
+	height: 25px;
+}
+
+.edit_tag {
+	display: block;
+	width: 31px;
+	height: 24px;
+	line-height: 18px;
+	border-radius: 10px;
+	text-align: center;
+	border: 1px solid #f90;
+	position: absolute;
+	bottom: 0;
+	left: 69px;
+	color: #f90;
+}
+
+.book_tags .book_name {
+	height: 24px;
+	line-height: 18px;
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+	position: absolute;
+	top: 5px;
+	left: 70px;
+	/*float: left;*/
+}
+
+.book_tags .date {
+	color: #aaa;
+	font-size: 12px;
+	position: absolute;
+	top: 30px;
+	left: 0px;
+}
+
+.book_tags span {
+	display: block;
+	background: #fff;
+	border: 1px solid #f90;
+	text-align: center;
+	border-radius: 10px;
+	color: #f90;
+	position: absolute;
+}
+
+.book_tags .collect_tag {
+	height: 24px;
+	width: 113px;
+	line-height: 26px;
+	right: 25px;
+	top: 5px;
+}
+
+.book_tags .click_tag {
+	height: 24px;
+	width: 113px;
+	line-height: 26px;
+	right: 152px;
+	top: 5px;
+}
+.book_tags .jing_tag{
+	height: 24px;
+	width: 160px;
+	line-height: 26px;
+	right: 40px;
+	top: 80px;
+}
+.book_tags .silver_tag {
+	width: 135px;
+	height: 24px;
+	line-height: 26px;
+	right: 25px;
+	top: 42px;
+}
+
+.book_tags .copper_tag {
+	width: 135px;
+	height: 24px;
+	line-height: 26px;
+	right: 171px;
+	top: 42px;
+}
+
+.book_price_tag {
+	height: 18px;
+	width: 300px;
+	line-height: 19px;
+	right: 25px;
+	top: 77px;
+	font-size: 12px;
+}
+
+.dingSold {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 434px;
+	height: 52px;
+	border-radius: 10px;
+	background: #e4dddd;
+	line-height: 52px;
+	font-size: 16px;
+	font-weight: 500;
+	box-sizing: border-box;
+	padding: 0 10px;
+}
+
+.dingSold a {
+	font-size: 300;
+	padding: 0 5px;
+}
+
+.dingSold a.active {
+	color: #F39800;
+}
+
+.dingSolders {
+	display: inline-block;
+}
+
+.dingSolders img {
+	border-radius: 50%;
+	height: 35px;
+	width: 35px;
+	margin-top: 8px;
+	position: relative;
+	z-index: 100;
+	cursor: pointer;
+}
+
+.otherSolders {
+	/*width: 33px;*/
+	padding-top: 35px;
+	background: #FFFFFF;
+	position: absolute;
+	right: 9px;
+	top: 0;
+	border-radius: 35px;
+	z-index: 99;
+	top: 7px;
+	border: 1px solid #F39800;
+}
+
+.otherSolders img {
+	height: 35px;
+	width: 35px;
+	margin: 10px auto 0;
+	display: block;
+	border-radius: 50%;
+}
+.confirm_popub {
+	position: absolute;
+	margin-left: 50%;
+    left: -164px;
+    margin-top: 25px;
+}
+.shell_text{
+	position: relative;
+	top: -20px;
+	/*color: #F39800;*/
+	padding: 0 10px;
+}
+.purch_btn{
+	position: relative;
+	bottom: 20px;
+}
+
+
+.edit_info {
+	width: 114px;
+	height: 140px;
+	background: url(../img/bookmanage/editinfo.png) no-repeat;
+	position: absolute;
+	right: 0;
+	top: 25px;
+	display: none;
+	z-index: 100;
+}
+
+.edit_info ul {
+	margin-top: 20px;
+}
+
+.edit_info li {
+	line-height: 20px;
+	color: #fff;
+	background: #f90;
+	width: 88px;
+	margin: 0 auto;
+	border-radius: 10px;
+	margin-bottom: 5px;
+}
+
+.edit_info .active {
+	background: #ccc;
+}
+
+.edit_tag:hover .edit_info {
+	display: block;
+}
+
+
+/*分页*/
+
+.discuss_pages {
+	margin-top: 15px;
+	margin-bottom: 70px;
+}
+
+.discuss_pages ul {
+	text-align: center;
+	width: 500px;
+	font-size: 0;
+	margin: 0 auto;
+}
+
+.discuss_pages ul li {
+	display: inline-block;
+	height: 26px;
+	line-height: 28px;
+	padding: 0 12px 0 12px;
+	border: 1px solid #f90;
+	border-radius: 10px;
+	margin-right: 10px;
+	font-size: 16px;
+	color: #f90;
+	background: #fff;
+}
+
+.discuss_pages ul li a {
+	font-size: 16px;
+	color: #f90;
+}
+
+.discuss_pages ul li:hover {
+	color: #fff;
+	cursor: pointer;
+	background: #f90;
+}
+
+.discuss_pages ul .active {
+	background: #f90;
+	color: #fff;
+}

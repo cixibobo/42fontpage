@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="keywords" content="42文库,首页,轻小说,轻小说客户端,42文库官网,原创轻小说" />
+<meta name="description" content="42文库,首页,轻小说,轻小说客户端,42文库官网,原创轻小说" />
+	<body ng-app="ngAnimate">
+		<div class="content home_content" ng-controller="homePageController">
+			<a href="http://webscan.360.cn/index/checkwebsite/url/www.manguo42.com" name="cfa0819e56ee7ae411854d8a792e44b8" style="display: none;">360网站安全检测平台</a>
+			<div class="main_con">
+				<div class="wrap_1200 clear">
+					<!-- 推荐位，轮播图控制器 -->
+					<div>
+						<div class="slides flash_banner fl" id="sliderBar">
+							 <div class="wrap">
+					            <ul class="slidebox">
+					            </ul>
+					            <div class="slide-num">
+					            </div>
+					            <a href="#" class="arrow arrow-prev" id="prev"><i class="iconfont">&#xe779;</i></a>
+					            <a href="#" class="arrow arrow-next" id="next"><i class="iconfont">&#xe775;</i></a>
+	      					  </div>
+						</div>
+						<div class="hot_book fr">
+							<ul id="hotbook">
+								<li class="hot_book_li" ng-repeat="hotbook in hotBook" ng-click="openWin(hotbook.id)" hot-finish>
+									<a>
+										<div class="pic">
+											<img class="first_pic" ng-src="{{hotbook.imageUrl}}" alt="" />
+											<img class="blur_hot" ng-src="{{hotbook.imageUrl}}" alt="" />
+										</div>
+										<div class="hotinfo_list">
+											<a title="{{hotbook.bookName}}"><p class="test1">书名:{{hotbook.bookName}}</p></a>
+											<p class="test2">作者:{{hotbook.nickName}}</p>
+											<p class="test3" ng-if="hotbook.number">字数:{{hotbook.number}}</p>
+											<p class="test3" ng-if="!hotbook.number">字数:0</p>
+											<p class="test4">收藏:{{hotbook.collectionNum}}</p>
+										</div>
+										<div class="hot_book_bookname">
+											<span>{{hotbook.bookName}}</span>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- 	银。铜。更新，控制器 -->
+					<!--推荐模块银图钉-->
+					<div class="recommend_section">
+						<div class="wrap_1200">
+							<!--风云榜-->
+							<div class="book_cover fl">
+								<!--标题-->
+								<div class="section_title">
+									<svg class="icon icon-left5" aria-hidden="true">
+										<use xlink:href="#icon-yintudinggaoyang-copy"></use>
+									</svg>
+									<span class="main_title">银图钉高扬</span>
+									<svg class="icon icon-help" aria-hidden="true">
+										<use xlink:href="#icon-help"></use>
+									</svg>
+									<span class="fr more-title" ng-click="returnMore(0)">更多>> </span>
+								</div>
+
+								<!--<div style="background-color:#000000;height: 430px;width: 1px; right: 210px;"></div>-->
+
+								<!--书封面-->
+								<div class="recommend_book">
+									<ul>
+										<li class="recommend_book_li" ng-repeat="silverpin in silverPin " ng-click="openWin(silverpin.id)" silver-finish>
+											<div class="pic">
+												<img class="first_pic" ng-src="{{silverpin.imageUrl}}" alt="" on-finish-render />
+												<img class="blur" ng-src="{{silverpin.imageUrl}}" alt="" on-finish-render />
+											</div>
+											<div class="silverinfo_list">
+												<p class="silverinfo_writer">
+													<img class="recommend_book_writer" ng-src="{{silverpin.headUrl}}">
+													<a title="{{silverpin.nickName}}"><span class="silverinfo_writer_name">{{silverpin.nickName}}</span></a>
+												</p>
+												<p class="test1">铜螺钉:{{silverpin.copperMoney}}</p>
+												<p class="test2">银图钉:{{silverpin.silverMoney}}</p>
+												<p class="test3">点赞量:{{silverpin.praiseNum}}</p>
+												<p class="test4">点击量:{{silverpin.checkNub}}</p>
+												<p class="test5">收藏:{{silverpin.collectionNum}}</p>
+											</div>
+											<p class="book_title">{{silverpin.bookName}}</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!--书列表-->
+							<div class="book_list fr clear">
+								<div class="section_title fl" id="silverpin_quarter">
+									<span class="main_title">银图钉高扬榜</span>
+								</div>
+								<div class="s_r_r_info_home_right fr">
+									<span class="s_r_t_top" ng-click="silver_pinshow=!silver_pinshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+									<span ng-show="!silver_pinshow" class="s_r_t_top_current" ng-init="silver_pinshow_time='周榜'">{{silver_pinshow_time}}</span>
+									<span class='s_r_t_top_list' ng-show="silver_pinshow">
+										<span ng-click="silverTimeClick('week',1)">周榜</span>
+									<span ng-click="silverTimeClick('month',2)">月榜</span>
+									<span ng-click="silverTimeClick('quarter',3)">季榜</span>
+									</span>
+								</div>
+								<div class="list">
+									<ul class="list_info marginleft-8">
+										<li class="hot clear" ng-repeat="(_silverIndex,silvermq) in silverMq | limitTo:3" >
+											<div class="cover fl">
+												<a href="" ng-click="openWin(silvermq.id)">
+													<img ng-src="{{silvermq.imageUrl}}" alt="" />
+												</a>
+												<span class="list_btn">
+													<span class="list_btn_number">{{_silverIndex+1}}</span>
+												</span>
+											</div>
+											<div class="book_info fl">
+												<p class="book_title" ng-click="openWin(silvermq.id)">{{silvermq.bookName}}</p>
+												<p class="book_writer"><i class="iconfont">&#xe606;</i>{{silvermq.nickName}}</p>
+												<p class="book_silverMoney"> {{silvermq.silverMoney}}银图钉</p>
+											</div>
+										</li>
+										<li class="normal_list_btn" ng-repeat="(silverindex,silvermq) in silverMq " ng-click="openWin(silvermq.id)">
+											<div ng-if="silverindex>2" class="normal">
+												<span class="list_btn_next">
+													<span class="list_btn_number_next">{{silverindex+1}}</span>
+												</span>
+												<a class="text " href="#">{{silvermq.bookName}}</a>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--推荐模块综合图钉-->
+					<div class="recommend_section">
+						<div class="wrap_1200 ">
+							<!--风云榜-->
+							<div class="book_cover fl ">
+								<!--标题-->
+								<div class="section_title ">
+									<!--<img src="././img/icon/graphical3.png " />-->
+									<svg class="icon icon-left5" aria-hidden="true">
+										<use xlink:href="#icon-bianpingkongjian"></use>
+									</svg>
+									<span class="main_title ">扁平空间</span>
+									<svg class="icon icon-help" aria-hidden="true">
+										<use xlink:href="#icon-help"></use>
+									</svg>
+									<span class="fr more-title" ng-click="returnMore(1)">更多>> </span>
+								</div>
+								<!--书封面-->
+								<div class="recommend_book">
+									<ul id="complex">
+										<li ng-repeat="complex in complexAll " ng-click="openWin(complex.id)" class="recommend_book_li" complex-finish>
+											<a>
+												<div class="pic ">
+													<img class="first_pic" ng-src="{{complex.imageUrl}} " alt=" " />
+													<img class="blur" ng-src="{{complex.imageUrl}} " alt="" />
+												</div>
+												<p class="book_title">{{complex.bookName}}</p>
+												<div class="silverinfo_list">
+													<p class="silverinfo_writer">
+														<img class="recommend_book_writer" ng-src="{{complex.headUrl}}">
+														<a title="{{complex.nickName}}"><span class="silverinfo_writer_name">{{complex.nickName}}</span></a>
+													</p>
+													<p class="test1">铜螺钉:{{complex.copperMoney}}</p>
+													<p class="test2">银图钉:{{complex.silverMoney}}</p>
+													<p class="test3">点赞量:{{complex.praiseNum}}</p>
+													<p class="test4">点击量:{{complex.checkNub}}</p>
+													<p class="test5">收藏:{{complex.collectionNum}}</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!--书列表-->
+							<div class="book_list fr clear">
+								<div class="section_title fl " id="silverpin_quarter ">
+									<span class="main_title ">综合人气榜</span>
+								</div>
+								<div class="s_r_r_info_home_right fr">
+									<span class="s_r_t_top" ng-click="complex_listshow=!complex_listshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+									<span ng-show="!complex_listshow" class="s_r_t_top_current" ng-init="complex_list_time='周榜'">{{complex_list_time}}</span>
+									<span class='s_r_t_top_list' ng-show="complex_listshow">
+										<span  ng-click="ComplexTimeClick('week',1)">周榜</span>
+									<span ng-click="ComplexTimeClick('month',2)">月榜</span>
+									<span ng-click="ComplexTimeClick('quarter',3)">季榜</span>
+									</span>
+								</div>
+								<div class="list ">
+									<ul class="list_info marginleft-8 ">
+										<li class="hot clear " ng-repeat="(_compleIndex,complexbar) in complexBar | limitTo:3 " >
+											<div class="cover fl ">
+												<a href="# " ng-click="openWin(complexbar.id)">
+													<img ng-src="{{complexbar.imageUrl}}" alt=" " />
+												</a>
+												<span class="list_btn ">
+													<span class="list_btn_number">{{_compleIndex+1}}</span>
+												</span>
+											</div>
+											<div class="book_info fl ">
+												<p class="book_title " ng-click="openWin(complexbar.id)">{{complexbar.bookName}}</p>
+												<p class="book_writer "><i class="iconfont">&#xe606;</i>{{complexbar.nickName}}</p>
+												<p class="book_silverMoney "> {{complexbar.silverMoney}}银图钉</p>
+											</div>
+										</li>
+										<li class="normal_list_btn" ng-repeat="(complexindex,complexbar) in complexBar " ng-click="openWin(complexbar.id)">
+											<div ng-if="complexindex>2" class="normal">
+												<span class="list_btn_next">
+													<span class="list_btn_number_next">{{complexindex+1}}</span>
+												</span>
+												<a class="text" href="#">{{complexbar.bookName}}</a>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 实时更新高扬 -->
+					<div class="recommend_section">
+						<div class="wrap_1200">
+							<!--风云榜-->
+							<div class="book_cover fl">
+								<!--标题-->
+								<div class="section_title">
+									<svg class="icon icon-left5" aria-hidden="true">
+										<use xlink:href="#icon-shishigengxin"></use>
+									</svg>
+									<span class="main_title">实时高扬</span>
+									<svg class="icon icon-help" aria-hidden="true">
+										<use xlink:href="#icon-help"></use>
+									</svg>
+									<span class="fr more-title" ng-click="returnMore(2)">更多>> </span>
+								</div>
+								<!--书封面-->
+								<div class="recommend_book">
+									<ul id="chapterupdate">
+										<li class="recommend_book_li" ng-repeat="chapterupdate in chapterUpdate " ng-click="openWin(chapterupdate.id)" chapterupdate-finish>
+											<a>
+												<div class="pic">
+													<img class="first_pic" ng-src="{{chapterupdate.imageUrl}}" alt="" />
+													<img class="blur" ng-src="{{chapterupdate.imageUrl}}" alt="" />
+												</div>
+												<p class="book_title">{{chapterupdate.bookName}}</p>
+												<div class="silverinfo_list">
+													<p class="silverinfo_writer">
+														<img class="recommend_book_writer" ng-src="{{chapterupdate.headUrl}}">
+														<a title="{{chapterupdate.nickName}}"><span class="silverinfo_writer_name">{{chapterupdate.nickName}}</span></a>
+													</p>
+													<p class="test1">铜螺钉:{{chapterupdate.copperMoney}}</p>
+													<p class="test2">银图钉:{{chapterupdate.silverMoney}}</p>
+													<p class="test3">点赞量:{{chapterupdate.praiseNum}}</p>
+													<p class="test4">点击量:{{chapterupdate.checkNub}}</p>
+													<p class="test5">收藏:{{chapterupdate.collectionNum}}</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!--书列表-->
+							<div class="book_list fr clear">
+								<div class="section_title fl" id="silverpin_quarter">
+									<span class="main_title">人气新书榜</span>
+								</div>
+								<div class="s_r_r_info_home_right fr">
+									<span class="s_r_t_top" ng-click="chapterupdate_listshow=!chapterupdate_listshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+									<span ng-show="!chapterupdate_listshow" class="s_r_t_top_current" ng-init="chapterupdate_list_time='周榜'">{{chapterupdate_list_time}}</span>
+									<span class='s_r_t_top_list' ng-show="chapterupdate_listshow">
+										<span  ng-click="chapterUpdateTimeClick('week',1)">周榜</span>
+									<span ng-click="chapterUpdateTimeClick('month',2)">月榜</span>
+									<span ng-click="chapterUpdateTimeClick('quarter',3)">季榜</span>
+									</span>
+								</div>
+								<div class="list">
+									<ul class="list_info marginleft-8">
+										<li class="hot clear" ng-repeat="(_chapterindex,chapterupdatebar) in chapterUpdateBar | limitTo:3" >
+											<div class="cover fl">
+												<a href="" ng-click="openWin(chapterupdatebar.id)">
+													<img ng-src="{{chapterupdatebar.imageUrl}}" alt="" />
+												</a>
+												<span class="list_btn">
+													<span class="list_btn_number">
+														{{_chapterindex+1}}
+													</span>
+												</span>
+											</div>
+											<div class="book_info fl">
+												<p class="book_title" ng-click="openWin(chapterupdatebar.id)">{{chapterupdatebar.bookName}}</p>
+												<p class="book_writer"><i class="iconfont">&#xe606;</i>{{chapterupdatebar.nickName}}</p>
+												<p class="book_silverMoney"> {{chapterupdatebar.silverMoney}}银图钉</p>
+											</div>
+										</li>
+										<li class="normal_list_btn" ng-repeat="(chapterupdateindex,chapterupdatebar) in chapterUpdateBar " ng-click="openWin(chapterupdatebar.id)">
+											<div ng-if="chapterupdateindex>2" class="normal">
+												<span class="list_btn_next">
+													<span class="list_btn_number_next">{{chapterupdateindex+1}}</span>
+												</span>
+												<a class="text " href="#">{{chapterupdatebar.bookName}}</a>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--榜单，榜单控制器-->
+					<div class="list_section middle_bang">
+						<div class="wrap_1200">
+							<div class="section_title">
+								<svg class="icon icon-left5" aria-hidden="true">
+									<use xlink:href="#icon-shudingbangzhongbang"></use>
+								</svg>
+								<span class="main_title">书钉榜中榜</span>
+								<svg class="icon icon-help" aria-hidden="true">
+									<use xlink:href="#icon-help"></use>
+								</svg>
+							</div>
+				
+
+							<div class="book_list1 fl clear">
+								<div class="section_title_bang list_title">
+									<span class="main_title fl">点击榜</span>
+									<div class="s_r_r_info fr ">
+										<span class="s_r_t_top" ng-click="check_bar_listshow=!check_bar_listshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+										<span ng-show="!check_bar_listshow" class="s_r_t_top_current" ng-init="check_bar_list_time='周榜'">{{check_bar_list_time}}</span>
+										<span class='s_r_t_top_list' ng-show="check_bar_listshow">
+										<span  ng-click="checkBarTimeClick('week',1)">周榜</span>
+										<span ng-click="checkBarTimeClick('month',2)">月榜</span>
+										<span ng-click="checkBarTimeClick('quarter',3)">季榜</span>
+										</span>
+									</div>
+								</div>
+								<div class="list">
+									<ul class="list_info">
+										<li class="hot clear" ng-repeat="(_checkbarCoon,checkbarlist) in checkBarList | limitTo:3" ng-click="openWin(checkbarlist.id)">
+											<div class="cover fl">
+												<a href="#">
+													<img ng-src="{{checkbarlist.imageUrl}}" alt="" />
+												</a>
+												<span class="list_btn">
+												<span class="list_btn_number">
+													{{_checkbarCoon+1}}
+												</span>
+												</span>
+											</div>
+											<div class="book_info fl">
+												<a class="book_title">{{checkbarlist.bookName}}</a>
+												<p class="book_writer"><i class="iconfont">&#xe606;</i>{{checkbarlist.nickName}}</p>
+												<p class="book_silverMoney"> 点击量:{{checkbarlist.checkNub}}</p>
+											</div>
+										</li>
+										<li class="normal_list_btn" ng-repeat="(index,checkbarlist) in checkBarList" ng-click="openWin(checkbarlist.id)">
+											<div ng-if="index>2" class="normal">
+												<span class="list_btn_next">
+												<span class="list_btn_number_next">{{index+1}}</span>
+												</span>
+												<a class="text width140">{{checkbarlist.bookName}}</a>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+										
+							<div class="book_list1 fl clear">
+								<div class="section_title_bang list_title">
+									<span class="main_title fl">收藏榜</span>
+									<div class="s_r_r_info fr">
+										<span class="s_r_t_top" ng-click="collection_listshow=!collection_listshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+										<span ng-show="!collection_listshow" class="s_r_t_top_current" ng-init="collection_list_time='周榜'">{{collection_list_time}}</span>
+										<span class='s_r_t_top_list' ng-show="collection_listshow">
+										<span  ng-click="collectionTimeClick('week',1)">周榜</span>
+										<span ng-click="collectionTimeClick('month',2)">月榜</span>
+										<span ng-click="collectionTimeClick('quarter',3)">季榜</span>
+										</span>
+									</div>
+								</div>
+								<div class="list">
+									<ul class="list_info">
+										<li class="hot clear" ng-repeat="(_collectionCoon, collectionlist) in collectionList | limitTo:3" ng-click="openWin(collectionlist.id)">
+											<div class="cover fl">
+												<a href="">
+													<img ng-src="{{collectionlist.imageUrl}}" alt="" />
+												</a>
+												<span class="list_btn ">
+												<span class="list_btn_number">
+													{{_collectionCoon+1}}
+												</span>
+												</span>
+											</div>
+											<div class="book_info fl">
+												<p class="book_title">{{collectionlist.bookName}}</p>
+												<p class="book_writer"><i class="iconfont">&#xe606;</i>{{collectionlist.nickName}}</p>
+												<p class="book_silverMoney">收藏量:{{collectionlist.collectionNum}}</p>
+											</div>
+										</li>
+										<li class="normal_list_btn" ng-repeat="(index,collectionlist) in collectionList" ng-click="openWin(collectionlist.id)">
+											<div ng-if="index>2" class="normal">
+												<span class="list_btn_next">
+												<span class="list_btn_number_next">{{index+1}}</span>
+												</span>
+												<a class="text width140">{{collectionlist.bookName}}</a>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="book_list1 fl clear">
+								<div class="section_title_bang list_title">
+									<span class="main_title fl">点赞榜</span>
+									<div class="s_r_r_info fr ">
+										<span class="s_r_t_top" ng-click="like_listshow=!like_listshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+										<span ng-show="!like_listshow" class="s_r_t_top_current" ng-init="like_list_time='周榜'">{{like_list_time}}</span>
+										<span class='s_r_t_top_list' ng-show="like_listshow">
+										<span ng-click="likeListTimeClick('week',1)">周榜</span>
+										<span ng-click="likeListTimeClick('month',2)">月榜</span>
+										<span ng-click="likeListTimeClick('quarter',3)">季榜</span>
+										</span>
+									</div>
+								</div>
+								<div class="list">
+									<ul class="list_info">
+										<li class="hot clear" ng-repeat="(_likeCoon ,likelist) in likeList | limitTo:3" ng-click="openWin(likelist.id)">
+											<div class="cover fl">
+												<a href="">
+													<img ng-src="{{likelist.imageUrl}}" alt="" />
+												</a>
+												<span class="list_btn ">
+												<span class="list_btn_number">
+													{{_likeCoon+1}}
+												</span>
+												</span>
+											</div>
+											<div class="book_info fl">
+												<p class="book_title">{{likelist.bookName}}</p>
+												<p class="book_writer"><i class="iconfont">&#xe606;</i>{{likelist.nickName}}</p>
+												<p class="book_silverMoney"> 点赞量:{{likelist.praiseNum}}</p>
+											</div>
+										</li>
+										<li class="normal_list_btn" ng-repeat="(index,likelist) in likeList" ng-click="openWin(likelist.id)">
+											<div ng-if="index>2" class="normal">
+												<span class="list_btn_next">
+												<span class="list_btn_number_next">{{index+1}}</span>
+												</span>
+												<a class="text width140">{{likelist.bookName}}</a>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="book_list1 fl" id="listOfList">
+								<div class="section_title_bang list_title"  style="width: 233px;">
+									<span class="main_title fl">大亨榜</span>
+									<div class="s_r_r_info  fr">
+										<span class="s_r_t_top" ng-click="tycoon_listshow=!tycoon_listshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+										<span ng-show="!tycoon_listshow" class="s_r_t_top_current" ng-init="tycoon_list_time='周榜'">{{tycoon_list_time}}</span>
+										<span class='s_r_t_top_list' ng-show="tycoon_listshow">
+										<span ng-click="tycoonTimeClick('week',1)">周榜</span>
+										<span ng-click="tycoonTimeClick('month',2)">月榜</span>
+										<span ng-click="tycoonTimeClick('quarter',3)">季榜</span>
+										</span>
+									</div>
+								</div>
+								<div class="list">
+									<ul class="list_info">
+										<li class="hot clear" ng-repeat="(_tycoon,tycoonlist) in tycoonList | limitTo:3">
+											<div class="cover fl" >
+												<a href="" id="userImg" ng-mouseleave='mouseLeaveTy(_tycoon)' >
+													<img class="first-img" ng-src="{{tycoonlist.headUrl}}" alt="" ng-mouseover="followTyShow(tycoonlist.authorId,_tycoon,tycoonlist)" />
+													<!--大亨关注帖子作者弹窗-->
+													<div id="tyWindow{{_tycoon}}">
+
+													</div>
+												</a>
+												<span class="list_btn ">
+												<span class="list_btn_number">
+													{{_tycoon+1}}
+												</span>
+												</span>
+											</div>
+											<div class="book_info fl">
+												<p class="book_writer"><a title="{{tycoonlist.nickName}}"><i class="iconfont">&#xe606;</i>{{tycoonlist.nickName}}</a></p>
+												<p class="book_writer">{{tycoonlist.signature}}</p>
+												<p class="book_silverMoney" ng-if="!tycoonlist.sunIncome"> 0银图钉</p>
+												<p class="book_silverMoney" ng-if="tycoonlist.sunIncome"> {{tycoonlist.sunIncome}}银图钉</p>
+											</div>
+										</li>
+										<li class="writer_list_btn" ng-repeat="(index,tycoonlist) in tycoonList">
+											<div ng-if="index>2" class="normal" ng-mouseleave='mouseLeaveTy(index)'>
+												<span class="list_btn_next">
+												<span class="list_btn_number_next">{{index+1}}</span>
+												</span>
+												<a class="text " href="" ng-mouseover="followTyShow(tycoonlist.authorId,index,tycoonlist)" >{{tycoonlist.nickName}}</a>
+												<!--大亨关注帖子作者弹窗-->
+												<div id="tyWindow{{index}}">
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="book_list1 fl clear" id="listOfList">
+								<div class="section_title_bang list_title">
+									<span class="main_title fl">解囊榜</span>
+									<div class="s_r_r_info fr ">
+										<span class="s_r_t_top" ng-click="user_consumptionshow=!user_consumptionshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+										<span ng-show="!user_consumptionshow" class="s_r_t_top_current" ng-init="user_consumption_time='周榜'">{{user_consumption_time}}</span>
+										<span class='s_r_t_top_list' ng-show="user_consumptionshow">
+										<span  ng-click="consumptionTimeClick('week',1)">周榜</span>
+										<span ng-click="consumptionTimeClick('month',2)">月榜</span>
+										<span ng-click="consumptionTimeClick('quarter',3)">季榜</span>
+										</span>
+									</div>
+								</div>
+								<div class="list">
+									<ul class="list_info">
+										<li class="hot clear" ng-repeat="(_consumCoon ,consumptionlist) in consumptionList | limitTo:3">
+											<div class="cover fl" >
+												<a href="" id="userImg" ng-mouseleave='mouseLeaveCo(_consumCoon)'>
+													<img class="first-img" ng-src="{{consumptionlist.headUrl}}" alt="" ng-mouseover="followCoShow(consumptionlist.authorId,_consumCoon,consumptionlist)"   />
+													<!--解囊帖子作者弹窗-->
+													<div id="CoWindow{{_consumCoon}}">
+													</div>
+											
+												</a>
+												<span class="list_btn ">
+												<span class="list_btn_number">
+													{{_consumCoon+1}}
+												</span>
+												</span>
+											</div>
+											<div class="book_info fl">
+												<p class="book_writer"><a title="{{consumptionlist.nickName}}"><i class="iconfont">&#xe606;</i>{{consumptionlist.nickName}}</a></p>
+												<p class="book_brief_info">{{consumptionlist.signature}}</p>
+												<p class="book_silverMoney" ng-if="!consumptionlist.sunIncome"> 0银图钉</p>
+												<p class="book_silverMoney"  ng-if="consumptionlist.sunIncome"> {{consumptionlist.sunIncome}}银图钉</p>
+											</div>
+										</li>
+										<li class="writer_list_btn" ng-repeat="(index,consumptionlist) in consumptionList">
+											<div ng-if="index>2" class="normal" ng-mouseleave='mouseLeaveCo(index)'>
+												<span class="list_btn_next">
+												<span class="list_btn_number_next">{{index+1}}</span>
+												</span>
+												<a class="text " href="" ng-mouseover="followCoShow(consumptionlist.authorId,index,consumptionlist)" >{{consumptionlist.nickName}}</a>
+												<!--解囊帖子作者弹窗-->
+													<div id="CoWindow{{index}}">
+													</div>
+											</div>
+										</li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 新书推荐控制器 -->
+					<div class="recommend_section new_book_list">
+						<div class="wrap_1200">
+							<!--标题-->
+							<div class="section_title">
+								<svg class="icon icon-left5" aria-hidden="true">
+									<use xlink:href="#icon-1"></use>
+								</svg>
+								<span class="main_title">新书推荐</span>
+								<svg class="icon icon-help" aria-hidden="true">
+									<use xlink:href="#icon-help"></use>
+								</svg>
+								<span class="fr more-title-new" ng-click="returnMore(3)">更多>> </span>
+							</div>
+							<div class="recommend_book new_book">
+								<ul id="newbook">
+									<li ng-repeat="newbook in newBook " class="recommend_book_li" ng-click="openWin(newbook.id)" new-finish>
+										<a>
+											<div class="pic">
+												<img class="first_pic" ng-src="{{newbook.imageUrl}}" alt="" />
+												<img class="blur" ng-src="{{newbook.imageUrl}}" alt="" />
+											</div>
+											<p class="book_title">{{newbook.bookName}}</p>
+											<div class="silverinfo_list">
+												<p class="silverinfo_writer">
+													<img class="recommend_book_writer" ng-src="{{newbook.headUrl}}">
+													<a title="{{newbook.nickName}}"><span class="silverinfo_writer_name">{{newbook.nickName}}</span></a>
+												</p>
+												<p class="test1">铜螺钉:{{newbook.copperMoney}}</p>
+												<p class="test2">银图钉:{{newbook.silverMoney}}</p>
+												<p class="test3">点赞量:{{newbook.praiseNum}}</p>
+												<p class="test4">点击量:{{newbook.checkNub}}</p>
+												<p class="test5">收藏:{{newbook.collectionNum}}</p>
+											</div>
+										</a>
+									</li>
+									<span class="home-new-img" ng-click="lastPic()">
+										<img ng-src="{{newLastPic}}" />
+									</span>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+					<back-to-top class="back_to_top">
+						<div class="back_to-font" >
+							
+						</div>
+						<i class="iconfont _top_font">&#xe636;</i>
+					</back-to-top>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	
+</html>

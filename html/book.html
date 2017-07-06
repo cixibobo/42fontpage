@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html ng-app="bookApp" id="bookApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title id="title"></title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/book.css" />
+		<link rel="stylesheet" type="text/css" href="../css/tab_page.css" />
+		<link rel="stylesheet" type="text/css" href="../css/home_page_head.css" />
+		<link rel="stylesheet" type="text/css" href="../umeditor/themes/default/_css/umeditor.css" />
+		<link rel="stylesheet" type="text/css" href="../css/popup.css" />
+		<link rel="stylesheet" href="../css/homeNav.css" />
+		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<link rel="stylesheet" href="../css/daohang.css" />
+	</head>
+	<body>
+		<div>
+			<header ng-controller="header" ng-cloak>
+				<div class="banner" ng-style='backgroudImg'>
+					<div class="nav_bg">
+						<img src="../img/nav.png" class="nav_bg_img" />
+						<div class="wrap_1200">
+							<nav>
+								<div class="logo fl">
+									<a href="../index.html">
+										<svg class="icon logo" aria-hidden="true">
+											<use xlink:href="#icon-logo"></use>
+										</svg>
+									</a>
+								</div>
+								<div class="person_nav fr">
+									<ul class="nav_wrap">
+										<li class="person nav_tag" ng-show="person_info">
+											<a href="./personCenter/sildebar.html" class="nav_title">
+												<img ng-src="{{personCenter.headUrl}}" class="my_pic" />
+												<!--个人信息弹窗-->
+												<div class="person_info">
+													<p class="my_name">
+														<a href="">{{personCenter.nickName}}</a>
+													</p>
+													<div class="short_info">
+														<p>{{personCenter.signature}}</p>
+													</div>
+													<ul class="my_lib" ng-init="tenPer=100">
+														<li class="my_money clear">
+															<a class="fl money_num" href="./personCenter/sildebar.html?needUrl=mywallet" target="_blank" style="width:100px;"><i class="iconfont">&#xe625;</i>{{personCenter.silverThumbTack}}银图钉</a>
+															<div class="fr contact">
+																<a class="phone" href="./personCenter/sildebar.html"><i class="iconfont">&#xe629;</i></a>
+																<a class="email" href="./personCenter/sildebar.html"><i class="iconfont">&#xe627;</i></a>
+															</div>
+														</li>
+														<li class="my_books clear">
+															<a href="./personCenter/sildebar.html?needUrl=bookmanage" target="_blank" class="fl"><i class="iconfont">&#xe626;</i>{{personCenter.bookNum}}本书</a>
+															<a href="./personCenter/sildebar.html?needUrl=myfriend" target="_blank" class="fr" style="padding-top: 3px;">{{personCenter.followNum}}粉丝</a>
+														</li>
+														<li class="my_bag">
+															<a class="fl" href="./personCenter/sildebar.html" target="_blank"><i class="iconfont">&#xe77b;</i>我的账户</a>
+															<a class="fr" href="./personCenter/sildebar.html?needUrl=mywallet" target="_blank"><i class="iconfont">&#xe625;</i>我的钱包</a>
+														</li>
+
+													</ul>
+													<div class="person_more">
+														<a href="" class="nav_title_signout" ng-click="signOut()">退出</a>
+													</div>
+												</div>
+											</a>
+										</li>
+										<span ng-show="loginShow">
+										<li class="nav_tag">
+											<a class="nav_title" href="./LoginRegister/login.html">登陆</a>
+										</li>
+										<li class="nav_tag">
+											<a class="nav_title" href="./LoginRegister/register.html">注册</a>
+										</li>
+									</span>
+										<span ng-show="!loginShow">
+											<li class="nav_tag" ng-mouseleave="messageListShow=false" ng-mouseover="messageListShow=true">
+											<span class="list_btn list_btn-pos" ng-show="message_zero">
+												<span class="list-btn-number">{{message_total}}</span>
+										</span>
+										<a class="nav_title " ng-click="returnToWin('messageCenter/center')" href="">消息</a>
+										<!--消息信息弹窗-->
+										<div class="message_info" ng-show="messageListShow">
+											<p class="message_p" ng-click="returnToWin('messageCenter/reply')">
+												<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[0]}}</span>
+												</span>
+												<span class="main_span">回复我的</span>
+												</span>
+											</p>
+											<p class="message_p" ng-click="returnToWin('messageCenter/center')">
+												<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[1]}}</span>
+												</span>
+												<span class="main_span">@我的</span>
+												</span>
+											</p>
+											<p class="message_p" ng-click="returnToWin('messageCenter/getpraise')">
+												<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[2]}}</span>
+												</span>
+												<span class="main_span">收到的赞</span>
+												</span>
+											</p>
+											<p class="message_p" ng-click="returnToWin('messageCenter/system')">
+												<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[3]}}</span>
+												</span>
+												<span class="main_span">系统通知</span>
+												</span>
+											</p>
+											<p class="message_p" ng-click="returnToWin('messageCenter/personal')">
+												<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[4]}}</span>
+												</span>
+												<span class="main_span">我的私信</span>
+												</span>
+											</p>
+											<div class="message-person_more">
+												<a href="" class="message-nav_title_signout" ng-click="returnToWin('messageCenter/center')">查看更多</a>
+											</div>
+										</div>
+										</li>
+										<li class="nav_tag" ng-mouseleave="dynamicListShow=false">
+											<a class="nav_title" href="#" ng-mouseover="searchDynamic()">动态</a>
+											<!--动态信息弹窗-->
+											<div class="dynamic_info" ng-show="dynamicListShow">
+												<p class="dynamic_p" ng-repeat="dymessage in dyMessage">
+													<span class="dy-img">
+														<a ng-href="./book.html?book_id={{dymessage.bookId}}" target="_blank"><img ng-src="{{dymessage.imageUrl}}" /></a>
+													</span>
+													<span class="dy-content">
+													<span class="dy-r-num"></span>
+													<a style="color: #000000;" ng-href="./book.html?book_id={{dymessage.bookId}}" target="_blank"><span class="dy-content1">{{dymessage.bookName}}  </span></a>
+													<span style="display: inline-block;margin-left: 9px; width: 55px; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">{{dymessage.chapterName}}</span>
+													<span style="    display: inline-block;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">更新啦</span>
+													</span>
+												</p>
+												<div class="dynamic-person_more">
+													<a href="" ng-show="moreDongtai1" class="dynamic-nav_title_signout">查看更多</a>
+													<a href="" ng-show="moreDongtai2" class="dynamic-nav_title_signout">暂无动态</a>
+													<a href="" ng-show="moreDongtai3" class="dynamic-nav_title_signout">没有更多了</a>
+												</div>
+											</div>
+										</li>
+										<li class="nav_tag" ng-mouseleave="collectListShow=false" ng-click="returnToWin('personCenter/sildebar')">
+											<a class="nav_title" href="#" ng-mouseover="searchCollection()">收藏</a>
+											<!--收藏信息弹窗-->
+											<div class="message_info" ng-show="collectListShow">
+												<div class="message_p" ng-repeat="collectlist in collectMesList">
+													<div class="col_re-b point">
+														<div class="col-main ">
+															<span class="col-r-num">
+															</span>
+															<span class="col-book-name">
+																{{collectlist.bookName}}
+															</span>
+														</div>
+														<div class="col-main" style="margin-left: 12px;">{{collectlist.nickName}}</div>
+													</div>
+												</div>
+												<div class="message-person_more" ng-click="returnToWin1('./personCenter/sildebar.html?needUrl=mybookshelf')">
+													<a href="" class="message-nav_title_signout">查看更多</a>
+												</div>
+											</div>
+										</li>
+										<li class="nav_tag" ng-mouseleave="historyListShow=false">
+											<a class="nav_title" href="#" ng-mouseover="searchHistory()">历史</a>
+											<!-- 历史信息弹窗-->
+											<div class="message_info" ng-show="historyListShow">
+												<div class="message_p" ng-repeat="historylist in historyList">
+													<div class="col_re-b">
+														<div class="col-main">
+															<span class="col-r-num">
+															</span>
+															<span class="col-book-name">
+																{{historylist.bookName}}
+															</span>
+
+														</div>
+														<div class="col-main" style="margin-left: 12px;">{{historylist.chapterName}}</div>
+													</div>
+												</div>
+												<div class="message-person_more">
+													<a href="" class="message-nav_title_signout">查看更多</a>
+												</div>
+											</div>
+										</li>
+										</span>
+										<li class="submission nav_tag_end point">
+											<a class="nav_title" ng-click="returnToWin('personCenter/sildebar')" href="">投稿</a>
+										</li>
+									</ul>
+								</div>
+							</nav>
+							<div class="search">
+								<form action="" method="post">
+									<input type="text" name="" id="search" placeholder="请输入书名、作者名" ng-model="searchContent" />
+									<i class="iconfont search_btn" ng-click="searchClass()">&#xe622;</i>
+									<div class="search_mask"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="wrap_1200 clear" ng-cloak>
+				<div>
+					<div class="content">
+						<div class="con_nav " id="con_nav">
+							<ul>
+								<li class=" nav_bar ">
+									<a href="../index.html#/homePage">主页</a>
+
+								</li>
+								<li class=" nav_bar">
+									<a href="../index.html#/classify/''">分类</a>
+								</li>
+								<li class=" nav_bar">
+									<a href="../index.html#/stapleHall">打书钉大厅</a>
+								</li>
+								<li class="nav_bar">
+									<a href="../index.html#/association">同好会</a>
+								</li>
+								<li onclick="zh_tran('t')" id="complexFont"><span style="font-size: 16px;margin-left: 370px;" class="point">繁</span></li>
+								<li onclick="zh_tran('s')" id="simpStyle" ><span style="font-size: 16px;margin-left: 370px;" class="point">简</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div ng-controller="bookInfoC">
+					<back-to-top class="back_to_top">
+						<i class="iconfont _top_font">&#xe636;</i>
+					</back-to-top>
+					<!--主要内容-->
+					<div class="book_content fl">
+						<!--书的信息-->
+						<div class="book_info clear">
+							<!--封面-->
+							<div class="book_cover fl">
+								<img ng-src="{{bookInfo.imageUrl}}" />
+								<span class="book_price">{{bookInfo.bookType[0].name}}</span>
+							</div>
+							<!--介绍-->
+							<div class="book_intro fr" ng-init="tenPer=100">
+
+								<h2 class="book_title">{{bookInfo.bookName}}</h2>
+								<div class="book_keyinfo">
+									<!--四角背景-->
+									<div class="radius_bg">
+										<i class="iconfont left_top">&#xe610;</i>
+										<i class="iconfont right_top">&#xe60e;</i>
+										<i class="iconfont left_bottom">&#xe611;</i>
+										<i class="iconfont right_bottom">&#xe60f;</i>
+									</div>
+									<ul>
+										<li>
+											<strong>作者：</strong>
+											<a>{{bookInfo.nickName}}</a>
+										</li>
+										<li>
+											<strong>点击：</strong>
+											<a>{{bookInfo.checkNub}}</a>
+										</li>
+										<li>
+											<strong>收藏：</strong>
+											<a>{{bookInfo.collectionNum}}</a>
+										</li>
+										<li>
+											<strong>点赞：</strong>
+											<a>{{bookInfo.praiseNum}}</a>
+										</li>
+										<li>
+											<strong>字数：</strong>
+											<a>{{bookInfo.number}}</a>
+										</li>
+										<li>
+											<strong>更新时间：</strong>
+											<a>{{bookInfo.lastUpdateTime}}</a>
+										</li>
+										<li>
+											<strong>银书钉：</strong>
+											<a>{{bookInfo.income}}</a>
+										</li>
+										<li>
+											<strong>铜书钉：</strong>
+											<a>{{bookInfo.copperIncome}}</a>
+										</li>
+										<!--<li class="page_price">
+										<strong>读书卷价格：</strong>
+										<a>单章 {{bookInfo.chapterPrice}}银图钉/{{bookInfo.chapterPrice*tenPer}}铜螺钉</a>
+									</li>-->
+									</ul>
+								</div>
+								<div class="book_brief">
+									<span class="brief_btn">简介</span>
+									<a title="{{bookInfo.bookIntroduction}}">
+										<div class="brief_info">
+											<p>{{bookInfo.bookIntroduction}}
+											</p>
+										</div>
+									</a>
+								</div>
+								<div class="books_btn clear">
+									<a class="read_btn fl" ng-click="readBook(firstList.id,firstList.isFreeRead,0,firstList.chapterPrice,0)">阅读</a>
+									<div class="book_score fl">
+										<dl>
+											<dd><span class="set_sole">评分:</span></dd>
+											<dd class="score_false" ng-click="setScore(1.0)"><i class="iconfont">&#xe62e;</i></dd>
+											<dd class="score_false" ng-click="setScore(2.0)"><i class="iconfont">&#xe62e;</i></dd>
+											<dd class="score_false" ng-click="setScore(3.0)"><i class="iconfont">&#xe62e;</i></dd>
+											<dd class="score_false" ng-click="setScore(4.0)"><i class="iconfont">&#xe62e;</i></dd>
+											<dd class="score_false" ng-click="setScore(5.0)"><i class="iconfont">&#xe62e;</i></dd>
+										</dl>
+									</div>
+									<ul class="fun_btn fr" ng-model="operat">
+										<li ng-class="{'praise':isPraise,'inPraise':inPraise}">
+											<a href="" ng-class="{'normalA':isNormalAP,'inNormalA':inNormalAP}" ng-click="praiseForBook()"><i class="iconfont">&#xe656;</i>{{operat.praise}}</a>
+										</li>
+										<li ng-class="{'collect':isCollection,'inCollect':inCollection}" id="inCollection">
+											<a id="inCollection" href="" ng-class="{'normalA':isNormalAC,'inNormalA':inNormalAC}" ng-click="collectionForBook()"><i class="iconfont">&#xe631;</i>{{operat.collection}}</a>
+										</li>
+										<li ng-class="{'reward':true}">
+											<a href="" ng-class="{'normalA':true}" ng-click="gavemoneyForBook()"><i class="iconfont">&#xe632;</i>{{operat.gavemoney}}</a>
+
+										</li>
+										<li ng-class="{'share':true}" ng-mouseover="shareForBook()" ng-mouseleave="shareLeave()">
+											<body>
+												<div id="qrcode" class="qrcode"></div>
+											</body>
+											<a href=""  ng-class="{'normalA':true}" ><i class="iconfont" >&#xe64d;</i>{{operat.share}}</a>
+											<div class="share_con">
+											</div>
+											<map name="sharemap">
+											<area shape="rect" coords="75,10,105,45" alt="xinlang" target="_blank" href="shareXinlang.html">
+									  		<area shape="rect" coords="110,10,140,45" alt="tieba"  target="_blank" href="sharTieba.html">
+									 	 	<area shape="rect" coords="145,10,175,45" alt="qq"  target="_blank" href="shareQq.html">
+										  	<area shape="rect" coords="180,10,210,45" alt="weixin"  target="_blank" href="shareWeixin.html">
+										</map>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!--目录-->
+						<div class="book_catalog">
+							<!--四角背景-->
+							<div class="radius_bg">
+								<i class="iconfont left_top">&#xe610;</i>
+								<i class="iconfont right_top">&#xe60e;</i>
+								<i class="iconfont left_bottom">&#xe611;</i>
+								<i class="iconfont right_bottom">&#xe60f;</i>
+							</div>
+							<div class="chapter" ng-repeat="(index,v_c) in vclist">
+								<h4 class="chapter_title"><strong>第{{index+1}}卷</strong>{{v_c.volumeName}}</h4>
+								<ul class="chapter_part">
+									<li ng-repeat="(_indexC,c) in v_c.list">
+										<a href="" ng-click="readBook(c.id,c.isFreeRead,_indexC,c.chapterPrice,index)">
+											<i class="iconfont dingbook">&#xe786;</i>
+											<span class="chapterIndex" style="display: none;">第{{_indexC+1}}章 </span><span class="chapterName">{{c.chapterName}}</span><span class="price_btn">{{c.isFreeRead==1 ? '' : c.chapterPrice+'银/'+c.chapterPrice*10+'铜'}}</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<!--确认购买弹窗-->
+							<div class="confirm_popub" style="display: block;" ng-show="con_pur">
+								<p>是否确认购买？</p>
+								<div class="purch_btn confirm_btns clear">
+									<a class="confirm_btn fl" href="javascript:;">确认</a>
+									<a class="cancel_btn fr" href="javascript:;" ng-click="cancelP()">取消</a>
+								</div>
+								<a href="javascript:;" ng-click="cancelP()" class="cancle_pic">
+									<svg class="icon logo" aria-hidden="true">
+										<use xlink:href="#icon-guanbi"></use>
+									</svg>
+								</a>
+							</div>
+							<!--确认评分弹窗-->
+							<div class="confirm_popub" style="display: block;" ng-show="sureScoreShow">
+								<p>是否确认评分？(评分一旦完成不可修改哦~)</p>
+								<div class="purch_btn confirm_btns clear">
+									<a class="confirm_btn fl" href="javascript:;" ng-click="suerScoreClick()">确认</a>
+									<a class="cancel_btn fr" href="javascript:;" ng-click="sureScoreShow=false">取消</a>
+								</div>
+								<a href="javascript:;" ng-click="sureScoreShow=false" class="cancle_pic"><img src="../img/stapleHall/close.png" /></a>
+							</div>
+						</div>
+						<!--评论区-->
+						<div class="book_discuss">
+							<div class="clear discuss_title_wrap">
+								<span class="discuss_title fl">{{bookComment}}条评论</span>
+								<a href="" id="bookCommentTop" ng-click="goToComment()"><span class="discuss_write fr">发表评论</span></a>
+							</div>
+							<div class="book_discuss_sub" ng-init="bookCommentShow=true">
+								<!--四角背景-->
+								<div class="radius_bg" ng-show="bookCommentShow">
+									<i class="iconfont left_top">&#xe610;</i>
+									<i class="iconfont right_top">&#xe60e;</i>
+									<i class="iconfont left_bottom">&#xe611;</i>
+									<i class="iconfont right_bottom">&#xe60f;</i>
+								</div>
+								<!--!!!帖子评论列表-->
+								<div class="post_card_list clear " ng-repeat="(co_index,co) in coList" repeat-finished>
+									<div class="post_card_dis_pic fl" name="{{co.id}}" id="{{co.id}}" ng-mouseleave='mouseLeave(co_index)'>
+										<img ng-src="{{co.userImage}}" ng-mouseover="followMeReply(co.commentUserId,co_index,co)" />
+										<div id="CoWindow{{co_index}}">
+										</div>
+										<!--关注帖子作者弹窗<--</-->
+									</div>
+									<div class="post_card_dis_info fl ">
+										<p class="dis_post_info clear">
+											<a href="" class="fl">{{co.nickName}}</a>
+											<a href="" class="fl">{{co.commentTime}}</a>
+											<a href="" class="fr point" ng-click="fnReportShow(co.id)">举报>></a>
+										</p>
+										<div class="dis_post_content">
+											{{co.commentContent}}
+										</div>
+										<div class="post_footer fr" id="iconfontParse">
+											<span class="floor_post fl ">{{paginationConf.totalItems-co_index-paginationConf.currentPage*10+10}}楼</span>
+											<span class="reply_post fr replayclass">
+											<span ng-click="replayShow(co_index)" class="point"><i  class="iconfont" >&#xe600;</i>回复</span>
+											<!--评论的回复框-->
+											<div class="reply_box_t" id="A{{co_index}}" ng-mouseleave="replayShow(co_index)">
+												<textarea maxlength="120" id="saytext" ng-model="$parent.conf[$index]" rows="" cols="" name="saytext" oninput="textReplayChange(this.value)"></textarea>
+												<span class="reply_btn_t" ng-click="replayComment(co_index,co.id,co.commentUserId)">回复</span>
+												<!--<i class="iconfont smile_face">&#xe619;</i>-->
+												<div class="replay_input_number"><span id="replayInputNum">0</span>/260</div>
+											</div>
+											</span>
+											<span class="praise_post fr" ng-click="insertCommentPraise(co.id,co.commentUserId,co.isPraise)">
+												<i   class="iconfont point">&#xe656;</i>
+												<!--<i ng-if="co.isPraise>0" class="iconfont" style="color: #F39800;"><i style="font-size: 2px;">已赞</i>&#xe656;</i>-->
+												{{co.bookCommentPraiseNum}}</span>
+										</div>
+										<!--评论回复-->
+										<div class="reply_post_content fr" id="pagination{{co_index}}">
+											<div class="reply_user_post clear" ng-repeat="(_replyIndex,reply) in co.commentReplyList | limitTo:3">
+												<div class="reply_user_name fl"><img ng-src="{{reply.userImage}}" />
+													<p>{{reply.nickName}}</p>
+												</div>
+												<div class="reply_user_con fl">
+													{{reply.replyContent}}
+													<span>{{reply.replyTime}}</span>
+													<div class="reply_box_wrap">
+														<div class="reply_box_btn" ng-click="replyReplyShow(co_index,_replyIndex)">回复</div>
+														<div class="reply_box_reply" id="A{{co_index}}B{{_replyIndex}}"   ng-mouseleave="cancelReplyKuang(co_index,_replyIndex)">
+															<textarea ng-model="$parent.replyConf[$index]" maxlength="120" name="replay"></textarea>
+															<span class="reply_btn_t" ng-click="replayReplayComment(co_index,_replyIndex,co.id,reply.replyerId)">回复</span>
+														</div>
+													</div>
+												</div>
+
+												<div class="report_user fr point" ng-click="fnReportReplyShow(reply.id)">举报>></div>
+												<div id="more{{co_index}}" class="report_list_more" ng-if="(_replyIndex==2)&&(co.commentReplyTotal>3)" ng-click="replyListMore(co.id,co_index)">查看更多</div>
+											</div>
+											<div id="second{{co_index}}" style="display:none">
+												<div class="reply_user_post clear" ng-repeat="(_replyIndex_second,reply) in co.commentReplyList ">
+													<div ng-if="_replyIndex_second>2">
+														<div class="reply_user_name fl"><img ng-src="{{reply.userImage}}" />
+															<p>{{reply.nickName}}</p>
+														</div>
+														<div class="reply_user_con fl">
+															{{reply.replyContent}}
+															<span>{{reply.replyTime}}</span>
+															<div class="reply_box_wrap">
+																<div class="reply_box_btn" ng-click="replyReplyShow(co_index,_replyIndex_second)">回复</div>
+																<div class="reply_box_reply" id="A{{co_index}}B{{_replyIndex_second}}">
+																	<textarea ng-model="$parent.replyConf[$index]" maxlength="120" name="replay"></textarea>
+																	<span class="reply_btn_t" ng-click="replayReplayComment(co_index,_replyIndex_second,co.id,reply.replyerId)">回复</span>
+																</div>
+															</div>
+														</div>
+														<div class="report_user fr point" ng-click="fnReportReplyShow(reply.id)">举报>></div>
+													</div>
+												</div>
+											</div>
+
+											<!-- 显示分页的信息 -->
+											<!--<div ng-if="showPage">
+											<div class="page-list">
+												<ul class="pagination" style="margin: 0px;">
+													<li ng-class="{true:'disabled'}[p_current==1]" ng-click="p_index()">
+														<a href="javascript:void(0);">首页</a>
+													</li>
+													<li ng-repeat="page in pages" ng-class="{true:'active'}[p_current==page]" ng-click="load_page(page)" ng-click="p_last()">
+														<a href="javascript:void(0);">{{ page }}</a>
+													</li>
+													<li ng-class="{true:'disabled'}[p_current==p_all_page]">
+														<a href="javascript:void(0);">尾页</a>
+													</li>
+													<li style="vertical-align: 12px;"> 共：{{count}} 条</li>
+												</ul>
+											</div>
+										</div>-->
+										</div>
+									</div>
+								</div>
+
+								<!--所有评论的分页-->
+								<tm-pagination conf="paginationConf"></tm-pagination>
+							</div>
+							<!--发表评论-->
+							<a id="bookComment" class="book_comment" style="position: relative;" name="book_comment">
+								<i class="iconfont write_btn_icon">&#xe618;</i><span class="write_btn">发表评论</span>
+								<form style="position: relative; height: 150px;">
+									<div class="input_number"><span id="inputNumber">0</span>/520</div>
+									<textarea ng-show="isLoginReport" ng-readonly="isLoginReport" ng-model="title" id="textArea" maxlength="520" class="input_post_content" oninput="textAreaChange(this.value)" placeholder="请先登录哦~">
+									</textarea>
+									<textarea ng-show="!isLoginReport" ng-model="title" id="textArea" maxlength="520" class="input_post_content" oninput="textAreaChange(this.value)" placeholder="发表评论">
+									</textarea>
+									<!--<form name="ueditor" id="ueditor">
+						<script type="text/plain" id="myEditor" style="width:827px;height:155px;">
+							<p>这里我可以写一些输入提示</p>
+						</script>
+					</form>-->
+									<div id="temp-img-list"></div>
+									<div class="publish_btn" ng-show="!isLoginReport" ng-click="insertPost()">发表</div>
+									<!--<p style="float: right;margin-right:50px;margin-top: 6px ;">你还可以输入 <b>{{textLength}}</b> 个字哦</p>-->
+								</form>
+							</a>
+						</div>
+					</div>
+					<!--右侧信息-->
+					<div class="aside_ranlist fr">
+						<div class="writer_info">
+							<!--四角背景-->
+							<div class="radius_bg">
+								<i class="iconfont left_top">&#xe610;</i>
+								<i class="iconfont right_top">&#xe60e;</i>
+								<i class="iconfont left_bottom">&#xe611;</i>
+								<i class="iconfont right_bottom">&#xe60f;</i>
+							</div>
+							<div class="clear" ng-mouseleave="followMeP=false">
+								<div class="writer_pic fl relative">
+									<img ng-src="{{author.headUrl}}" ng-mouseover="followMeP=true" />
+									<!--作者弹窗-->
+									<div class="post_card_dis_follow  post_card_dis_follow_author" ng-show="followMeP" id="authorfollow">
+										<div class="clear">
+											<img class="dis_follow_pic fl" ng-src="{{author.headUrl}}" />
+											<div class="dis_follow_info fl">
+												<p class="key_writer_name">{{author.nickName}}</p>
+												<p><span class="my_follows">关注:{{author.follows}}</span><span class="follow_funs">粉丝:{{author.fans}}</span></p>
+											</div>
+										</div>
+										<div class="key_writer">
+											{{author.signature}}
+										</div>
+										<div class="follow_btns">
+											<div ng-show="isSelf">
+												<span ng-init="isFans=true" ng-show="isFans" ng-click="addFlows()" class="active position">+关注</span>
+												<span ng-show="!isFans" ng-click="cancelFlows()" class="active position">取消关注</span>
+												<span><a style="text-decoration: none;color: #F39800;" ng-click="toSixin(author.accountId)">私信</a></span>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="writer_intro fl">
+									<p class="writer_name">{{author.nickName}}</p>
+									<p class="fun_info">
+										<span class="writer_fun">粉丝 :<em class="fun_num">{{author.fans}}</em></span>
+										<span class="writer_fun">创作数 :<em class="fun_num">{{author.writeBook}}</em></span>
+										<!--<a href="#" ng-init="isFans=true" class="follow_writer" ng-show="isFans" ng-click="addFlows()">+关注</a>
+									<a href="#" class="follow_writer" ng-show="!isFans" ng-click="cancelFlows()">取消关注</a>-->
+									</p>
+								</div>
+							</div>
+							<div class="writer_brief">
+								<p><strong>签名：</strong>{{author.signature}}</p>
+							</div>
+						</div>
+						<div class="score_info">
+							<!--四角背景-->
+							<div class="radius_bg">
+								<i class="iconfont left_top">&#xe610;</i>
+								<i class="iconfont right_top">&#xe60e;</i>
+								<i class="iconfont left_bottom">&#xe611;</i>
+								<i class="iconfont right_bottom">&#xe60f;</i>
+							</div>
+							<p class="total_dis">总评:<span class="total_score"> {{scoreInfo.avgStar}}分</span></p>
+							<canvas id="scoreBookChart" width="220" height="70"></canvas>
+						</div>
+						<!--列表排行-->
+						<div class="book_list ">
+							<!--四角背景-->
+							<div ng-init="tycoonListShow=true" ng-show="tycoonListShow">
+								<div class="radius_bg">
+									<i class="iconfont left_top">&#xe610;</i>
+									<i class="iconfont right_top">&#xe60e;</i>
+									<i class="iconfont left_bottom">&#xe611;</i>
+									<i class="iconfont right_bottom">&#xe60f;</i>
+								</div>
+								<div class="section_title">
+									<span class="main_title">银图钉粉丝榜</span>
+								</div>
+							</div>
+							<!--书列表-->
+							<div class="list">
+								<ul class="list_info">
+									<li class="hot clear relative" ng-repeat="(_tycoon,tycoonlist) in tycoonList | limitTo:3">
+										<div class="writer_pic fl" name="{{tycoonlist.id}}" id="{{tycoonlist.id}}" ng-mouseleave='mouseLeaveFansBang(_tycoon)'>
+											<img ng-src="{{tycoonlist.headUrl}}" ng-mouseover="followMeReplyFansBang(tycoonlist.accountId,_tycoon,tycoonlist)" />
+											<!--银图钉粉丝榜弹窗-->
+											<div id="tyWindow{{_tycoon}}"></div>
+										</div>
+										<span class="list_btn ">
+											<span class="list_btn_number">
+												{{_tycoon+1}}
+											</span>
+										</span>
+										<!--</div>-->
+										<div class="book_info fl">
+											<p class="book_writer"><i class="iconfont">&#xe606;</i>{{tycoonlist.nickName}}</p>
+											<p class="book_writer">{{tycoonlist.signature}}</p>
+											<p class="book_silverMoney" ng-if="!tycoonlist.sunIncome"> 0银图钉</p>
+											<p class="book_silverMoney" ng-if="tycoonlist.sunIncome"> {{tycoonlist.sunIncome}}银图钉</p>
+										</div>
+									</li>
+									<li class="writer_list_btn" ng-repeat="(index,tycoonlist) in tycoonList">
+										<div ng-if="index>2" class="normal" ng-mouseleave='mouseLeaveFansBang(index)'>
+											<span class="list_btn_next">
+												<span class="list_btn_number_next">{{index+1}}</span>
+											</span>
+											<a class="text point" href="#" ng-mouseover="followMeReplyFansBang(tycoonlist.accountId,index,tycoonlist)">{{tycoonlist.nickName}}</a>
+											<!--银图钉粉丝榜弹窗-->
+											<div id="tyWindow{{index}}"></div>
+												
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!--相关作品-->
+						<div class="rele_works" ng-show="_relativeBook">
+							<!--四角背景-->
+							<div class="radius_bg">
+								<i class="iconfont left_top">&#xe610;</i>
+								<i class="iconfont right_top">&#xe60e;</i>
+								<i class="iconfont left_bottom">&#xe611;</i>
+								<i class="iconfont right_bottom">&#xe60f;</i>
+							</div>
+							<p class="rele_title">相关作品
+								<!--<a class="refresh_btn"><i class="iconfont">&#x3437;</i></a>-->
+							</p>
+							<div class="rele_book">
+								<div class="recom_book fl" ng-repeat="x in relatedBook" ng-click="openBookDetail(x.id)">
+									<a href="#"><img ng-src="{{x.imageUrl}}" alt="" /></a>
+								</div>
+							</div>
+						</div>
+						<!--打赏弹窗-->
+						<div class="reward_popup " ng-show="reward_popub">
+							<div class="reward_title popub_title clear">
+								<i class="iconfont popub_icon">&#xe614;</i>
+								<span class="fl title_btn">打赏</span>
+								<a ng-click="cancelP()" href="javascript:;"><i class="iconfont cancle_pic">&#xe616;</i></a>
+							</div>
+							<div class="screw">
+								<div class="sub_title clear">
+									<span class="screw_title fl">敲击多少颗铜螺钉</span>
+									<span class="fr">铜螺钉余额：<em>{{userMoney.copperThumbTack}}</em></span>
+								</div>
+								<ul class="screw_list" id="screwList">
+									<li ng-click="setRewardT(10)"><i class="iconfont">&#xe62c;</i>X10</li>
+									<li ng-click="setRewardT(50)"><i class="iconfont">&#xe62c;</i>X50</li>
+									<li ng-click="setRewardT(100)"><i class="iconfont">&#xe62c;</i>X100</li>
+									<li ng-click="setRewardT(500)"><i class="iconfont">&#xe62c;</i>X500</li>
+								</ul>
+							</div>
+							<div class="pushpin">
+								<div class="sub_title clear">
+									<span class="pushpin_title fl">敲击多少颗银图钉</span>
+									<a href="#" class="recharge fr" ng-click="returnToRecharge()">点击充值</a>
+									<span class="balance fr">银图钉余额：<em>{{userMoney.silverThumbTack}}</em></span>
+								</div>
+								<ul class="pushpin_list" id="pushpinList">
+									<!--<li ng-click="setRewardY(7)"><i class="iconfont">&#xe62b;</i>X7</li>
+									<li ng-click="setRewardY(42)"><i class="iconfont">&#xe62b;</i>X42</li>-->
+									<li ng-click="setRewardY(106)"><i class="iconfont">&#xe62b;</i>X106</li>
+									<li ng-click="setRewardY(248)"><i class="iconfont">&#xe62b;</i>X248</li>
+									<li ng-click="setRewardY(473)"><i class="iconfont">&#xe62b;</i>X473</li>
+									<li ng-click="setRewardY(613)"><i class="iconfont">&#xe62b;</i>X613</li>
+									<li ng-click="setRewardY(1031)"><i class="iconfont">&#xe62b;</i>X1031</li>
+									<li ng-click="setRewardY(2017)"><i class="iconfont">&#xe62b;</i>X2017</li>
+								</ul>
+							</div>
+							<div class="reward_info" ng-init="rewardTitle=''">
+								<p>{{rewardTitle}}</p>
+							</div>
+							<div class="reward_btn confirm_btns clear">
+								<a class="confirm_btn fl" href="" ng-click="subReward()">敲击</a>
+								<a class="cancel_btn fr" ng-click="cancelP()" href="javascript:;">取消</a>
+							</div>
+						</div>
+						<!--	余额不足充值弹窗-->
+						<div ng-show="balanceDialog">
+							<div class="confirm_popub  ">
+								<p>余额不足，是否前往充值？</p>
+								<div class="purch_btn confirm_btns clear">
+									<a class="confirm_btn fl" href="javascript:;" ng-click="returnToRecharge()">确认</a>
+									<a class="cancel_btn fr" ng-click="balanceDialog=!balanceDialog" href="javascript:;">取消</a>
+								</div>
+								<a href="" class="cancle_pic" ng-click="balanceDialog=!balanceDialog">
+									<svg class="icon logo" aria-hidden="true">
+										<use xlink:href="#icon-guanbi"></use>
+									</svg>
+								</a>
+							</div>
+						</div>
+						<!--是否购买该章节-->
+						<div ng-show="purchaseChapter">
+							<div class="confirm_popub  ">
+								<p>是否购买该章节？</p>
+								<input type="checkbox" id="islongerPrompt" ng-model="islongerPrompt">本次登录不再提醒!</input>
+								<div class="purch_btn confirm_btns clear">
+									<a class="confirm_btn fl" href="javascript:;" ng-click="confirmPurchaseChapter()">确认</a>
+									<a class="cancel_btn fr" ng-click="cancelPurchaseChapter()" href="javascript:;">取消</a>
+								</div>
+								<a href="" class="cancle_pic" ng-click="cancelPurchaseChapter()">
+									<svg class="icon logo" aria-hidden="true">
+										<use xlink:href="#icon-guanbi"></use>
+									</svg>
+								</a>
+								<!--将数据隐藏在弹出框的dialog中-->
+								<input type="hidden" ng-model="_chapterId_show" />
+								<input type="hidden" ng-model="_book_Id_show" />
+								<input type="hidden" ng-model="_index_show" />
+								<input type="hidden" ng-model="chapter_money_show" />
+							</div>
+						</div>
+					</div>
+					<!--举报弹窗 -->
+					<div class="reportDialog confirm_popub" ng-show="reportShow">
+						<textarea name="" rows="" cols="" placeholder="请输入举报理由" ng-model="handleContent"></textarea>
+						<div class="purch_btn confirm_btns clear">
+							<a class="confirm_btn fl" href="javascript:;" ng-click="submitReport()">确认</a>
+							<a class="cancel_btn fr" href="" ng-click="fnReport()">取消</a>
+						</div>
+						<a href="javascript:;" ng-click="fnReport()" class="cancle_pic">
+							<svg class="icon logo" aria-hidden="true">
+								<use xlink:href="#icon-guanbi"></use>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<!--书籍评论弹窗-->
+				<!--<div class="reportDialog confirm_popub" ng-show="reportReplyShow">
+					<textarea name="" rows="" cols="" placeholder="请输入举报理由" ng-model="handleContent"></textarea>
+					<div class="purch_btn confirm_btns clear">
+						<a class="confirm_btn fl" href="javascript:;" ng-click="submitReport()">确认</a>
+						<a class="cancel_btn fr" href="" ng-click="fnReport()">取消</a>
+					</div>
+					<a href="javascript:;" ng-click="fnReport()" class="cancle_pic">
+						<svg class="icon logo" aria-hidden="true">
+							<use xlink:href="#icon-guanbi"></use>
+						</svg>
+					</a>
+				</div>-->
+			</div>
+		</div>
+		</div>
+		<!--返回到顶部-->
+
+		<div ng-controller="footerControll" ng-include="'./footer.html'" onload="footerShow()"></div>
+		<script src="//at.alicdn.com/t/font_ar0exrur5cr0y66r.js"></script>
+		<script type="text/javascript" src="../js/lib/angular.min.js"></script>
+		<script type="text/javascript" src="../js/lib/Chart.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/lib/tm.pagination.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery.qqFace.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/lib/language.js"></script>
+		<script type="text/javascript" src="../js/book.js"></script>
+		<script type="text/javascript" src="../js/commentReplyPagn.js"></script>
+		<script type="text/javascript" src="../js/qrcode.js"></script>
+		
+	</body>
+
+</html>

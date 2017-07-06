@@ -1,0 +1,224 @@
+.wrap_1200 {
+	background: #e6f0e6;
+	position: relative;
+}
+
+.read_content {
+	width: 900px;
+	margin: 0 auto;
+}
+.white-space-inline{
+	white-space: pre-line !important;
+	word-break: break-all;
+}
+.icon-book-totop{
+	
+	/*right: 10%;*/
+	margin-left:1210px !important;
+	bottom: 9%!important;
+}
+.readb_title{
+	font-size: 24px;
+font-weight: 600;
+}
+/*全屏模式*/
+
+.fullScreen_true {
+	width: 100%;
+}
+
+.fullScreen_false {
+	width: 1200px;
+}
+
+
+/*夜间模式*/
+
+.nightmode {
+	color: #a1a0a0;
+	background-color: #323536;
+}
+
+
+/*阅读导航栏*/
+
+.read_nav {
+	height: 50px;
+	margin-left: 25px;
+}
+
+.read_nav dd,
+.read_nav dt {
+	float: left;
+	line-height: 50px;
+	margin-right: 10px;
+}
+
+.read_nav dd a,
+.read_nav dt a {
+	font-size: 18px;
+	color: #666;
+}
+
+
+/*书本名字+信息*/
+
+.readb_info {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.readb_renew {
+	font-size: 14px;
+	color: #666;
+}
+
+.readb_renew span {
+	margin-right: 10px;
+	line-height: 70px;
+}
+
+.read_article {
+	min-height: 880px;
+}
+
+.read_article p {
+	font-size: 16px;
+/*	line-height: 30px;*/
+	text-indent: 2em;
+}
+
+
+/*打赏大按钮*/
+
+.reward_bbtn {
+	height: 58px;
+	width: 182px;
+	/*background: #efeceb;*/
+	border-radius: 20px;
+	margin: 50px auto 40px;
+	padding: 20px;
+	cursor: pointer;
+}
+
+
+/*尾部*/
+
+.reward_bbtn .r_btn {
+	display: block;
+	border: 2px solid #aeabab;
+	border-radius: 20px;
+	height: 54px;
+	line-height: 56px;
+	font-size: 40px;
+	text-align: center;
+	color: #aeabab;
+}
+
+.readb_footer {
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.readb_footer .next_note {
+	font-size: 24px;
+	color: #222222;
+	cursor: pointer;
+}
+
+.readb_footer .mes {
+	color: #666;
+	font-size: 15px;
+	line-height: 50px;
+}
+
+
+/*右侧功能选择*/
+
+.readb_fun {
+	position: fixed;
+	top: 50%;
+	right: 50%;
+	margin-top: -150px;
+	margin-right: -650px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.readb_tag li {
+	text-align: center;
+	width: 40px;
+	height: 48px;
+	border-radius: 10px;
+	border: 1px solid #666666;
+	margin-bottom: 12px;
+	cursor: pointer;
+	line-height: 48px;
+	background-color: #333339;
+}
+
+.readb_tag li i {
+	color:#666666;
+}
+.readb_tag li:hover{
+	border: 1px solid #DDDDDD;
+}
+.readb_tag li:hover i{
+	color: #DDDDDD;
+}
+.reward_popup,
+.r_set_popup {
+	position: fixed;
+	left: 50%;
+	margin-left: -263px;
+	top: 50%;
+	margin-top: -145px;
+	-webkit-box-shadow:  5px 5px 5px rgba(0, 0, 0, .3);
+	box-shadow:  5px 5px 5px rgba(0, 0, 0, .3);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+
+/*夜间模式*/
+
+.nightmode article p {
+	color: #a1a0a0;
+}
+
+.nightmode {
+	background-color: #323536;
+}
+
+.screwActive {
+	background: #F39800;
+	color: #fff;
+}
+
+.screwActive i {
+	color: #fff;
+}
+
+
+.pushpin_list li i{
+	font-size: 24px;
+}
+
+
+.readb_tag li i{
+	font-size: 22px ;
+}
+/**
+ * 打赏
+ */
+.confirm_popub {
+	position: fixed;
+	left: 50%;
+	margin-left: -164px;
+	top: 50%;
+	margin-top: -68px;
+}

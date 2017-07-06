@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html ng-app="writeApp">
+	<head>
+		<meta charset="UTF-8">
+		<title>写作</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/popup.css" />
+		<link rel="stylesheet" type="text/css" href="../css/editor.css" />
+		<link rel="stylesheet" type="text/css" href="../css/newwrite.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/cropper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../umeditor/themes/default/_css/umeditor.css" />
+	</head>
+	<body>
+			<form method='post' enctype="multipart/form-data">
+			</form>
+		<div class="wrap_all" ng-controller="writeControl" ng-cloak>
+			<!--编辑书的信息-->
+			<div class="hold_book fl">
+				<div >
+				<a href="#" class="recycle_bin">回收站</a>
+				<div class="book_wrap">
+					<div class="book_logo pub_logo">
+						<i class="iconfont">&#xe637;</i>
+					</div>
+					<p class="pub_title"> 已保存的书籍</p>
+					<ul class="hold_books">
+						<li ng-repeat="booklist in bookList" id="bookListClick" repeat-finish>
+							<a><img  ng-dblclick="query()" ng-click="queryJuan1(booklist)" ng-src="{{booklist.imageUrl}}" /></a>
+						</li>
+					</ul>
+					<p class="fr look_more" ng-show="book_more" ng-init="book_more=false">
+						<a href="#" ng-click="queryBookMore()">查看更多></a>
+					</p>
+					<p class="new_note clear_all" ng-click="newBookRe()">在下方新建书籍+</p>
+					<div  ng-show="addBook"  ng-cloak style="margin: 0px 10px 0px 10px ;">
+						<div class="cre-book">
+						<input class="new_notename" type="text" id="" value="" placeholder="请输入书名" required ng-model="bookName" />
+						<textarea class="book_brief" name="" rows="" cols="" placeholder="请输入书籍简介" required ng-model="bookIntroduction"></textarea>
+						<div class="add_info " ng-app="newWriteApp">
+							<div ng-mouseover="mouseOver()" ng-mouseleave="mouseLeave()" class="add_cover">
+								<div class="show_cover">
+									<img id="bigImg" class="big_img" />
+								</div>
+								<svg class="icon big_icon" aria-hidden="true" ng-show="bigCross" ng-click="deleteBigPic()"> 
+									<use xlink:href="#icon-guanbi" ></use>
+								</svg>
+							</div>
+							<div class=" add_cover ">
+								<div class="inputimg">
+									<form method='post' enctype="multipart/form-data"  id="bigForm">
+										<input id="fileInput" type="file" class="bigpagefile" file-model="myFile" name="uploadFile" />
+										<a href="#">选择大封面</a>
+									</form>
+								</div>
+								<div ng-mouseover="mouseOver()" ng-mouseleave="mouseLeave()">
+									<div class="show_cover_small">
+										<img id="smallImg" class="small_img" />
+									</div>
+									<svg class="icon small_icon" aria-hidden="true" ng-show="smallCross" ng-click="deleteSmallPic()">
+										<use xlink:href="#icon-guanbi"></use>
+									</svg>
+								</div>
+								<!--<p class="size">尺寸300X888</p>-->
+								<div class="inputimg">
+									<form method='post' enctype="multipart/form-data" id="smallForm">
+										<input type="file" id="fileInput2" class="bigpagefile" file-model="myFile" name="uploadFile1"  />
+										<a href="#">选择小封面</a>
+									</form>
+								</div>
+								<!--<p class="size">尺寸200X200</p>-->
+								<div style="position: relative;">
+								<a href="#" ng-init="classifyType='选择分类'" ng-click="setClass =!setClass">{{classifyType}}</a>
+									<div class="book_classify" ng-show="setClass" ng-cloak>
+										<ul class="set_classify" id="classifylist">
+											<li repeat-finish ng-repeat="(classifyIndex,classifylist) in classifyList" ng-click="setClassify(classifylist.code,classifylist.name)">{{classifylist.name}}</li>
+											<div class="classify_btn">
+												<a class="confirm_btn_classify fl" ng-click="setClass =!setClass">确定</a>
+												<a class="cancel_btn_classify fr" ng-click="setClass =!setClass">取消</a>
+											</div>
+										</ul>
+									</div>
+								</div>
+								<!--<a href="#" ng-click="setPri =!setPri">设置定价</a>
+								<!--设置定价-->
+								<!--<div class="setPrice_popup " ng-show="setPri">
+									<div class="setPrice" ng-init="tenTimes=10;chapterPrice=0">
+										<p>设置章定价:<input class="text" type="number" ng-model="chapterPrice" placeholder="" onchange="setPrice()" />银图钉/章</p>
+										<p class="screw_price"><span>{{chapterPrice*tenTimes}}</span>铜锣钉/章</p>
+									</div>
+									<div class="setPrice_btn confirm_btns clear">
+										<a class="confirm_btn fl" ng-click="setPri =!setPri">确定</a>
+										<a class="cancel_btn fr" ng-click="setPri =!setPri">取消</a>
+									</div>
+								</div>-->
+								<input ng-init="btn_submit=true" ng-show="btn_submit" value="提交" class="submit_btn" ng-click="newBook()" readonly="">
+								<input ng-show="btn_upDataBook" value="修改" class="submit_btn" ng-click="upDataBook()" readonly="">
+								<input value="取消" class="submit_btn" ng-click="addBook = !addBook" readonly="">
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			<!--截屏区大图片----------->
+			<div class="screenshot-area" ng-show="show_screenshot" >
+				<svg class="icon big_icon screenshot-icon" aria-hidden="true" style="z-index: 1000;" ng-click="show_screenshot=false" >
+					<use xlink:href="#icon-guanbi" ></use>
+				</svg>
+			 	 <div class="container">
+			        <div class="img-container" id="localImag">
+			          <img id="image" src="" alt="Picture">
+			        </div>
+			        <div class="docs-preview clearfix">
+			          <div class="img-preview preview-lg"></div>
+			        </div>
+			    </div>
+			    <div class="row">
+			      <div class=" docs-buttons">
+			        <div class="btn-group btn-group-crop" style="text-align: center;" ng-click="show_screenshot=false">
+			         <p style="font-size: 12px; color: #F39800;">请上传小于2M的图片哟</p>
+			         <button type="button" class="btn btn-primary" data-method="getCroppedCanvas" style="cursor: pointer;" ng-click="show_screenshot=false">
+			          <!--  <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCroppedCanvas&quot;)" ng-click="show_screenshot=false">-->
+			          	 <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCroppedCanvas&quot;)" >
+			              		提交
+			            </span>
+			          </button>
+			        </div>
+			      </div>
+			    </div>
+			</div>
+			<!--截屏区小图片----------->
+			<div class="screenshot-area" ng-show="show_screenshot2" >
+				<svg class="icon big_icon screenshot-icon" aria-hidden="true" style="z-index: 1000;" ng-click="show_screenshot2=false" >
+					<use xlink:href="#icon-guanbi" ></use>
+				</svg>
+			 	 <div class="container">
+			        <div class="img-container" id="localImag">
+			          <img id="image2" src="" alt="Picture">
+			        </div>
+			        <div class="docs-preview clearfix">
+			          <div class="img-preview2 preview-ls"></div>
+			        </div>
+			    </div>
+			    <div class="row">
+			      <div class=" docs-buttons">
+			        <div class="btn-group btn-group-crop" style="text-align: center;">
+			        	 <p style="font-size: 12px; color: #F39800;">请上传小于2M的图片哟</p>
+			          <button type="button" class="btn btn-primary" data-method="getCroppedCanvas" style="cursor: pointer;" ng-click="show_screenshot2=false">
+			            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCroppedCanvas&quot;)" ng-click="show_screenshot2=false">
+			              提交
+			            </span>
+			          </button>
+			        </div>
+			      </div>
+			    </div>
+			</div>
+			<!--  end of 截屏区-->
+			<!--编辑卷的信息-->
+			<div class="hold_volume fl ">
+				<div class="vol_logo pub_logo">
+					<i class="iconfont">&#xe637;</i>
+				</div>
+				<p class="pub_title"> 已保存的卷</p>
+				<ul class="pub_name" id="juanListCheck">
+					<li   repeat-finish ng-repeat="(_juanindex, juanlist) in juanList" ng-mouseover="modifyJuanShow(_juanindex)" ng-mouseleave="modifyJuanhide(_juanindex)" >
+						<span  class="point juanid" style="width:78%; display: inline-block;" ng-click="queryZhangClick(juanlist.bookId,juanlist.id,12,'juan')">{{juanlist.volumeName}}</span>
+						<i class="iconfont icon-xiugai point" ng-show="modifyJuan{{_juanindex}}" ng-click="modifyJuanInput(_juanindex)">&#xe63c;</i>
+						<i class="iconfont icon-delete point" ng-show="deleteJuan{{_juanindex}}" ng-click="deleteJuanId(juanlist.id)">&#xe65f;</i>
+						<form name="new_book" ng-cloak  ng-show="modifyJuanInput{{_juanindex}}" style="text-align: center;">
+							<input class="new_notename" type="text" placeholder="{{juanlist.volumeName}}" required ng-model="$parent.conf[$index]" />
+							<input value="取消" class="submit_btn_half" ng-click="modifyJuanInput(_juanindex)" readonly="">
+							<input value="修改" class="submit_btn_half" ng-click="upDateJuan(juanlist.bookId,juanlist.id,_juanindex,juanlist.volumeName)" readonly="">
+						</form>
+					</li>
+				</ul>
+				<p class="fr look_more" ng-show="juan_more" ng-init="juan_more=false">
+					<a href="#" ng-click="queryJuanMore()">查看更多></a>
+				</p>
+				<p class="new_note" ng-click="checkJuan()"><i>在下方新建卷+</i></p>
+				<form name="new_book" ng-show="addJuan" ng-cloak>
+					<input class="new_notename" type="text" placeholder="请输入卷名" required ng-model="juanName" />
+					<input value="提交" class="submit_btn" ng-click="newJuan()" readonly="">
+				</form>
+			</div>
+			<!--编辑章节的信息-->
+			<div class="hold_chapter fl">
+				<div class="cha_logo pub_logo">
+					<i class="iconfont">&#xe637;</i>
+				</div>
+				<p class="pub_title"> 已保存的章节</p>
+				<ul class="pub_name" id="zhanglistCheck">
+					<li repeat-finish ng-repeat="(_zhangindex,zhanglist) in zhangList" ng-mouseover="modifyZhangShow(_zhangindex)" ng-mouseleave="modifyZhanghide(_zhangindex)">
+						<span  class="point zhangid" style="width:78%; display: inline-block;" ng-click="setZhangID(zhanglist.id,zhanglist.chapterName)">{{zhanglist.chapterName}}</span>
+						<i class="iconfont icon-xiugai point" ng-show="modifyZhang{{_zhangindex}}" ng-click="modifyZhangInput(_zhangindex)">&#xe63c;</i>
+						<i class="iconfont icon-delete point" ng-show="deleteZhang{{_zhangindex}}" ng-click="deleteZhangId(zhanglist.id)">&#xe65f;</i>
+						<form name="new_book"  ng-cloak ng-show="modifyZhangInput{{_zhangindex}}" style="text-align: center;">
+							<input class="new_notename" type="text" placeholder="{{zhanglist.chapterName}}" required ng-model="$parent.confzhang[$index]" />
+							<input value="取消" class="submit_btn_half" ng-click="modifyZhangInput(_zhangindex)" readonly="">
+							<input value="修改" class="submit_btn_half" ng-click="upDateZhang(zhanglist.id,_zhangindex,zhanglist.chapterName)" readonly="">
+						</form>
+					</li>
+				</ul>
+				<p class="fr look_more" ng-show="zhang_more" ng-init="zhang_more_more=false">
+					<a href="#" ng-click="queryZhangMore()">查看更多></a>
+				</p>
+				<p class="new_note" ng-click="checkZhang()"><i>在下方新建章节+</i></p>
+				<form name="zhang_from" ng-show="addZhang" ng-cloak>
+					<input class="new_notename" type="text" placeholder="请输入章节名" required ng-model="zhangName" />
+					<input value="提交" class="submit_btn" ng-click="newZhang()" />
+				</form>
+			</div>
+			<!--写作区域-->
+			<div class="write_edit ">
+				
+				<div class="note-form rich-text">
+					<div class="title fr point" ng-click="returnToWin()">
+						<svg class="icon icon-logo" aria-hidden="true" >
+							<use xlink:href="#icon-logogai"></use>
+						</svg>
+					</div>
+					<div class=" mousetrap" name="note_title" id="note_title">{{chapterName}}</div>
+					<!--	<input class="title mousetrap" name="note_title" id="note_title" type="text">-->
+					<div class="main"  id="mainArea" ng-init="tenP=100" >
+					
+						<div class="save_btns" style="width: 320px;right:140px;overflow: hidden;z-index: 99990;" >
+							<div style="display: inline-block;width: 336px;overflow: hidden;">
+								<input  type="checkbox"  class="isFree" ng-model="isFree"  ng-change="setIsFreeC()"  />免费&nbsp;&nbsp; 章定价(银)：
+								<input onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" ng-focus="isFree=false" min="0" ng-init="preChapterPrice=1" ng-class="{'chapterPrice':!chapterPriceReadOnly,'chapterPriceReadOnly':chapterPriceReadOnly}" ng-model="preChapterPrice" type="number" ng-readonly="chapterPriceReadOnly" />
+								<span>={{preChapterPrice*tenP}}铜</span>
+							</div>
+						</div>
+						<div class="save_btns" style="z-index: 99990; ">
+								
+								<span class="save_arcticle_btn" ng-click="saveToRecycle(1)">
+									<i class="iconfont">&#xe6b1;</i><span style="font-size: 18px;padding-left: 4px;">保存</span>
+									
+								</span>
+								<span class="publish_btn" ng-click="saveToRecycle(0)">
+									<i class="iconfont">&#xe63b;</i>
+									{{pubAndFix}}
+								</span>
+							
+						</div>	
+						<form name="ueditor" id="ueditor">
+							<script type="text/plain" id="myEditor">
+							<p>欢迎参加42文库</p>
+							</script>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!--写作区-->
+			<!--确认修改信息弹窗-->
+				<!--删除卷确认弹窗-->
+				<div ng-show="deleteJuanDialog" >
+					<div class="confirm_popub" style="z-index: 100000!important; position: absolute; left: 40%;top:30%;" >
+						<p>确认删除该卷？</p>
+						<div class="purch_btn confirm_btns clear">
+							<a class="confirm_btn fl" href="javascript:;" ng-click="deleteJuan()">确认</a>
+							<a class="cancel_btn fr" href="javascript:;" ng-click="deleteJuanDialog=!deleteJuanDialog">取消</a>
+						</div>
+						<a href="" class="cancle_pic" ng-click="deleteJuanDialog=!deleteJuanDialog">
+							<svg class="icon logo" aria-hidden="true">
+									<use xlink:href="#icon-guanbi"></use>
+							</svg>
+						</a>
+					</div>
+				</div>
+				<!--删除章确认弹窗-->
+				<div ng-show="deleteZhangDialog" >
+					<div class="confirm_popub" style="z-index: 100000!important; position: absolute; left: 40%;top:30%;" >
+						<p>确认删除该章节？</p>
+						<div class="purch_btn confirm_btns clear">
+							<a class="confirm_btn fl" href="javascript:;" ng-click="deleteZhang()">确认</a>
+							<a class="cancel_btn fr" href="javascript:;" ng-click="deleteZhangDialog=!deleteZhangDialog">取消</a>
+						</div>
+						<a href="" class="cancle_pic" ng-click="deleteZhangDialog=!deleteZhangDialog">
+							<svg class="icon logo" aria-hidden="true">
+									<use xlink:href="#icon-guanbi"></use>
+							</svg>
+						</a>
+					</div>
+				</div>
+			<!--end确认修改信息弹窗-->
+				<div class="aside-list">
+					<div class="icon-fix point" ng-click="saveToRecycle(0)"><i class="iconfont">&#xe650;</i></div>
+					<div class="icon-fix point" ng-click="saveToRecycle(1)"><i class="iconfont">&#xe63d;</i></div>
+				</div>
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+	<script src="//at.alicdn.com/t/font_b4qy0wr19tuzncdi.js"></script>
+	<script type="text/javascript" src="../js/lib/prefixfree.min.js"></script>
+	<script type="text/javascript" src="../js/lib/jquery-form.js"></script>
+	<script type="text/javascript" src="../js/lib/cropper.js" ></script>
+	<script type="text/javascript" src="../js/newwrite.js"></script>
+	<script type="text/javascript" src="../umeditor/umeditor.config.js"></script>
+	<script type="text/javascript" src="../html/editor_api.js"></script>
+	<script type="text/javascript" src="../js/newwriteConfig.js"></script>
+	<script type="text/javascript" src="../umeditor/lang/zh-cn/zh-cn.js"></script>
+	<!--<script type="text/javascript" src="../js/lib/addCustomButton.js"></script>-->
+
+</html>

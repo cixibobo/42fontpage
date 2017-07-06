@@ -1,0 +1,245 @@
+/*可删*/
+
+.wrap_1000 {
+	/*	margin-top: 50px;*/
+	margin-bottom: 100px;
+}
+
+
+/**
+ * 用来解决angular CSS 渲染加载时间，ng-show,ng-hide,ng-cloak问题
+ */
+
+@charset "UTF-8";
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+	display: none !important;
+}
+
+ng\:form {
+	display: block;
+}
+
+
+/*end可删*/
+
+body {
+	background: #f3f3f3;
+}
+
+
+/*公用*/
+
+.book_pub {
+	width: 992px;
+	border-radius: 10px;
+	background: #fff;
+	margin: 5px ;
+	padding: 24px 0 24px 0;
+	
+}
+
+.book_pub .book_show {
+	width: 850px;
+}
+
+.cover_wrap {
+	width: 128px;
+	height: 176px;
+	border-radius: 10px;
+	display: block;
+	position: relative;
+}
+
+.book_pub .book_cover {
+	width: 128px;
+	height: 176px;
+	border-radius: 10px;
+}
+
+.shelf_title {
+	text-align: center;
+	width: 1.0em;
+	font-size: 28px;
+	font-weight: bold;
+	margin-left: 50px;
+}
+
+.book_show ul {
+	font-size: 0;
+}
+
+.book_show ul .book_info {
+	display: inline-block;
+	width: 128px;
+	margin: 0 10px 10px 0;
+}
+
+.book_pub .book_info .book_title {
+	display: block;
+	text-align: center;
+	width: 120px;
+	font-size: 15px;
+	color: #222;
+	line-height: 24px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	margin-top: 5px;
+}
+
+.book_pub .book_info .book_title:hover {
+	color: #F39800;
+}
+
+
+/*遮罩部分*/
+
+.mask_cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+	width: 128px;
+	height: 176px;
+	border-radius: 10px;
+	background: rgba(255, 153, 0, 0.7);
+	display: none;
+}
+
+.mask_cover .writer_pic {
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin: 14px auto 0;
+}
+
+.mask_cover p {
+	font-size: 12px;
+	color: #fff;
+	line-height: 22px;
+}
+
+.book_pub .cover_wrap:hover .mask_cover {
+	display: block;
+}
+
+.writer_name {
+	background: url(../img/mybookshelf/writer.png) no-repeat 30px center;
+	/*text-indent: 20px;*/
+}
+
+.own_book {
+	margin-top: 20px;
+}
+
+.assign_btn {
+	font-size: 14px;
+	display: block;
+	width: 52px;
+	border: 1px solid #F39800;
+	color: #F39800;
+	line-height: 24px;
+	height: 24px;
+	border-radius: 10px;
+	text-align: center;
+	margin: 10px auto 0;
+	position: relative;
+}
+
+.assign_win {
+	width: 262px;
+	height: 120px;
+	border: 1px solid #F39800;
+	background: #FFFFFF;
+	border-radius: 10px;
+	position: absolute;
+	/*top: 35px;
+	left: -121px;*/
+	display: none;
+	z-index: 1000;
+	left: -150px;
+}
+
+.assign_win form {
+	margin-top: 15px;
+	text-align: left;
+}
+
+.assign_win form label {
+	margin-left: 10px;
+}
+
+.assign_win form input {
+	border: 1px solid #C0C0C0;
+	height: 25px;
+	line-height: 25px;
+	border-radius: 10px;
+	width: 150px;
+	padding: 0 5px;
+}
+
+.assign_win form .btn_block {
+	text-align: center;
+}
+
+.assign_win form input {
+	margin: 2px 0;
+}
+
+.assign_win form .btn_block span {
+	height: 22px;
+	line-height: 22px;
+}
+
+.assign_win form .confirm,
+.assign_win form .cancel {
+	text-align: center;
+	height: 10px;
+	line-height: 20px;
+}
+
+.select_m {
+	height: 20px;
+	color: #aaa;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	background: #fff;
+	padding-left: 10px;
+}
+
+.user_text {
+	width: 129px;
+}
+
+.select_m {
+	width: 139px;
+	/*在选择框的最右侧中间显示小箭头图片*/
+	background: url(../img/personal/san.png) no-repeat scroll 110px center transparent;
+	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+	padding-right: 14px;
+}
+
+.assign_win span {
+	display: inline-block;
+	width: 54px;
+	height: 16px;
+	border: 1px solid #F39800;
+	line-height: 18px;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+.assign_win .confirm {
+	margin: 0 20px 20px;
+}
+
+.assign_btn:hover .assign_win {
+	display: block;
+}

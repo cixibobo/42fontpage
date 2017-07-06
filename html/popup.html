@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>各类弹窗</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/popup.css" />
+	</head>
+
+	<body>
+		<div class="wrap_1200">
+			<!--打赏弹窗-->
+			<h2>打赏弹窗</h2>
+			<div class="reward_popup ">
+				<div class="reward_title popub_title clear">
+					<img class="popub_icon fl" src="img/rewardicon.png" />
+					<span class="fl">打赏</span>
+					<img class="fr" src="img/cancel.png" />
+				</div>
+				<div class="screw">
+					<div class="sub_title clear">
+						<span class="screw_title fl">敲击多少颗螺钉</span>
+						<span class="fr">铜螺钉余额：<em>400</em></span>
+					</div>
+					<ul class="screw_list">
+						<li>X10</li>
+						<li>X50</li>
+						<li>X100</li>
+						<li>X500</li>
+					</ul>
+				</div>
+				<div class="pushpin">
+					<div class="sub_title clear">
+						<span class="pushpin_title fl">敲击多少颗图钉</span>
+						<a href="#" class="recharge fr">点击充值</a>
+						<span class="balance fr">银书钉余额：<em>400</em></span>
+					</div>
+					<ul class="pushpin_list">
+						<li>X7</li>
+						<li class="active">X42</li>
+						<li>X106</li>
+						<li>X248</li>
+						<li>X470</li>
+						<li>X50</li>
+						<li>X100</li>
+						<li>X1087</li>
+					</ul>
+				</div>
+				<div class="reward_info">
+					<p>宇宙、生命以及一起问题的终极答案!</p>
+				</div>
+				<div class="reward_btn confirm_btns clear">
+					<a class="confirm_btn fl" href="javascript:;">敲击</a>
+					<a class="cancel_btn fr" href="javascript:;">取消</a>
+				</div>
+			</div>
+			<!--end 打赏弹窗-->
+			<br />
+
+			<!--是否确认购买-->
+			<h2>是否确认购买</h2>
+			<div class="confirm_popub ">
+				<p>是否确认购买？</p>
+				<div class="purch_btn confirm_btns clear">
+					<a class="confirm_btn fl" href="javascript:;">确认</a>
+					<a class="cancel_btn fr" href="javascript:;">取消</a>
+				</div>
+				<a href="#" class="cancle_pic"><img src="img/cancel.png" /></a>
+			</div>
+			<br />
+			<!--余额不足-->
+			<h2>余额不足</h2>
+			<div class="confirm_popub  ">
+				<p>余额不足，是否前往充值？</p>
+				<div class="purch_btn confirm_btns clear">
+					<a class="confirm_btn fl" href="javascript:;">确认</a>
+					<a class="cancel_btn fr" href="javascript:;">取消</a>
+				</div>
+				<a href="#" class="cancle_pic"><img src="img/cancel.png" /></a>
+			</div>
+			<br />
+			<!--阅读设置弹窗-->
+			<h2>阅读设置弹窗</h2>
+			<div class="r_set_popup ">
+				<div class="popub_title clear">
+					<img class="popub_icon fl" src="img/read/f90set.png" />
+					<span class="fl">设置</span>
+					<img class="fr" src="img/cancel.png" />
+				</div>
+				<dl class="set_list read_theme">
+					<dt>阅读主题:</dt>
+					<dd class="white"></dd>
+					<dd class="naturals"></dd>
+					<dd class="green"></dd>
+					<dd class="skyblue"></dd>
+					<dd class="grey"></dd>
+					<dd class="pink"></dd>
+					<dd class="dark"></dd>
+				</dl>
+				<dl class="set_list  font_fam">
+					<dt>正文字体:</dt>
+					<dd class="active">雅黑</dd>
+					<dd>宋体</dd>
+					<dd>楷体</dd>
+				</dl>
+				<dl class="set_list font font_size">
+					<dt>字体大小:</dt>
+					<dd><span class="fl">+</span>16<span class="fr">-</span></dd>
+				</dl>
+				<dl class="set_list font font_line">
+					<dt>行间距:</dt>
+					<dd><span class="fl">+</span>16<span class="fr">-</span></dd>
+				</dl>
+				<div class="setcon_wrap">
+					<div class="readset_btn confirm_btns clear">
+						<a class="confirm_btn fl" href="javascript:;">确认</a>
+						<a class="cancel_btn fr" href="javascript:;">取消</a>
+					</div>
+				</div>
+			</div>
+
+			<!--出售打书钉代码-->
+			<h2>出售打书钉</h2>
+			<div class="sold_d ">
+				<ul>
+					<form action="" method="post">
+						<li>
+							<label for="">出售股权百分比:</label>
+							<input class="text" type="text" id="" value="" />%
+						</li>
+						<li>
+							<label for="">出售人数上线:</label>
+							<input class="text" type="text" id="" value="" />人
+						</li>
+						<li>
+							<label for="">售卖单价/%:</label>
+							<input class="text" type="text" id="" value="" />银书钉
+						</li>
+					</form>
+				</ul>
+				<div class="sold_btn confirm_btns clear">
+					<a class="confirm_btn fl" href="javascript:;">确认</a>
+					<a class="cancel_btn fr" href="javascript:;">取消</a>
+				</div>
+			</div>
+
+			<!--设置定价-->
+			<h2>设置定价</h2>
+			<div class="setPrice_popup ">
+				<div class="setPrice">
+					<form action="" method="post">
+						<p>设置章定价:<input class="text" type="text" id="" value="" placeholder="XX~XX" />银图钉/章</p>
+						<p class="screw_price"><span>XXXXX </span>铜锣钉/章</p>
+					</form>
+				</div>
+				<div class="setPrice_btn confirm_btns clear">
+					<a class="confirm_btn fl" href="javascript:;">定价</a>
+					<a class="cancel_btn fr" href="javascript:;">取消</a>
+				</div>
+			</div>
+			<!--银行卡提现-->
+			<h2>银行卡提现</h2>
+			<div class="mon_withdraw">
+				<div class="with_title  clear">
+					<ul class="popub_titlist fl">
+						<li class="active">
+							<a href="#">银行卡提现</a>
+						</li>
+						<li>
+							<a href="#">支付宝提现</a>
+						</li>
+					</ul>
+					<img class="fr" src="img/cancel.png" />
+				</div>
+				<table border="0" cellspacing="0" cellpadding="0">
+					<form action="" method="post">
+						<tr>
+							<td class="first_column">开户人姓名:</td>
+							<td>崔顾平</td>
+						</tr>
+						<tr>
+							<td class="first_column">银行账号:</td>
+							<td><input class="text" type="text" id="" placeholder="请输入银行账号" /></td>
+							<td class="ex_col">例:622************</td>
+						</tr>
+
+						<tr>
+							<td class="first_column">开户银行:</td>
+							<td>
+								<select class="select_bank" name="">
+									<option value="">中国银行</option>
+								</select>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td class="first_column">开户地:</td>
+							<td><input class="text" type="text" id="" placeholder="请输入开户地" /></td>
+							<td class="ex_col">例:浙江省杭州市萧山区</td>
+						</tr>
+						<tr>
+							<td class="first_column">开户行名称:</td>
+							<td><input class="text" type="text" id="" placeholder="请输入开户行名称" /></td>
+							<td class="ex_col">例:XX分行/支行/营业所</td>
+						</tr>
+						<tr class="upload_img">
+							<td class="first_column">上传照片:</td>
+							<td>
+								<a href="javascript:;" class="a-upload">
+									<input type="file" name="" id="" value="" /><img class="file_img" src="img/fileimg.png" />
+								</a>
+								<p>上传银行卡照片(带银行卡账号) </p>
+								<p>2M以内</p>
+							</td>
+							<td></td>
+						</tr>
+						<tr class="recha_money">
+							<td class="first_column">输入提现金额:</td>
+							<td><input class="text" type="text" id="" value="" />
+								<input type="submit" id="" name="" value="提交申请" class="recha_btn" />
+							</td>
+							<td class="ex_col"></td>
+						</tr>
+					</form>
+				</table>
+			</div>
+			<!--支付宝提现-->
+			<h2>支付宝提现</h2>
+			<div class="mon_withdraw ali_withdraw">
+				<div class="with_title  clear">
+					<ul class="popub_titlist fl">
+						<li>
+							<a href="#">银行卡提现</a>
+						</li>
+						<li class="active">
+							<a href="#">支付宝提现</a>
+						</li>
+					</ul>
+					<img class="fr" src="img/cancel.png" />
+				</div>
+				<table border="0" cellspacing="0" cellpadding="0">
+					<form action="" method="post">
+						<tr>
+							<td class="first_column">支付宝账户:</td>
+							<td>hur728e7</td>
+						</tr>
+						<tr>
+							<td class="first_column">填写支付宝用户名:</td>
+							<td><input class="text" type="text" id="" placeholder="请输入支付宝用户名" /></td>
+						</tr>
+
+						<tr>
+							<td class="first_column">输入密码:</td>
+							<td><input class="text" type="password" id="" placeholder="请输入密码" /></td>
+
+						</tr>
+						<tr class="recha_money">
+							<td class="first_column">输入提现金额:</td>
+							<td><input class="text" type="text" id="" value="" />
+								<input type="submit" id="" name="" value="提交申请" class="recha_btn" />
+							</td>
+							<td class="ex_col"></td>
+						</tr>
+					</form>
+				</table>
+			</div>
+			<div class="book_classify">
+				<ul class="set_classify">
+					<li class="active">西幻</li>
+					<li>奇幻</li>
+					<li>日常</li>
+					<li>同人</li>
+					<li>变身</li>
+					<li>科幻</li>
+					<li>推理</li>
+					<li>惊悚</li>
+					<li>武侠</li>
+					<li>穿越</li>
+					<li>后宫</li>
+					<li>百合</li>
+					<li>冒险</li>
+				</ul>
+			</div>
+			<br /><br /><br /><br /><br />
+		</div>
+	</body>
+
+</html>

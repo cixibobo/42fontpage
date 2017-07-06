@@ -1,0 +1,90 @@
+<footer>
+	<div class="wrap_1200">
+		<div class="company clear">
+			<div class="company_info fl">
+				<dl>
+					<dt><a>42</a></dt>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/1/1">关于我们</a>
+					</dd>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/1/2">联系我们</a>
+					</dd>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/1/3">加入我们</a>
+					</dd>
+				</dl>
+				<dl>
+					<!--<dt><a></a></dt>
+					<dd>
+						<a href="#">免责声明</a>
+					</dd>
+					<dd>
+						<a href="#">公司信息</a>
+					</dd>
+					<dd>
+						<a href="#"></a>
+					</dd>-->
+					<dt><a></a></dt>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/1/5">免责声明</a>
+					</dd>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/1/4">公司信息</a>
+					</dd>
+					<dd>
+						<a>&nbsp;</a>
+					</dd>
+				</dl>
+				<dl>
+					<dt><a href="#">投稿</a></dt>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/2/1">签约制度</a>
+					</dd>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/2/2">签约流程</a>
+					</dd>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/2/3">创作之路</a>
+					</dd>
+				</dl>
+				<dl>
+					<dt><a></a></dt>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/2/4">作者福利</a>
+					</dd>
+					<dd>
+						<a href="http://www.manguo42.com/html/footerDetail.html?/2/5">投稿须知</a>
+					</dd>
+					<dd>
+						<a>&nbsp;</a>
+					</dd>
+				</dl>
+			</div>
+			<div class="company_contact fl clear">
+				<div class="weibo fl">
+					<a href="http://weibo.com/u/6055487091?refer_flag=1001030101_&is_hot=1">官方微博
+						<div class="contact_img">
+							<img src="./img/qr_code.png" ng-src="{{QRcode}}" />
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="company_friend" >
+			<ul>
+				<span class="friendshiplink">友情链接</span>
+				<!--<li style="height: 0.1px; border:#c0c0c0 1px solid;width: 1180px;margin-top: 10px;background-color: #c0c0c0;></li>-->
+				<li ng-repeat="footerlist in footerList">
+					<a href="{{footerlist.url}}" target="_blank">
+						<img ng-src="{{footerlist.imageUrl}}" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="site-info">
+			<p>杭州漫国网络科技有限公司<span class="divider">|</span>浙ICP备16041732号-1
+			</p>
+		</div>
+	</div>
+</footer>

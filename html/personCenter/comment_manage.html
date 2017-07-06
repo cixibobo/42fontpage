@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="commentManageApp">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/comment_manage.css" />
+		<link rel="stylesheet" href="../../css/tab_page.css" />
+		<link rel="stylesheet" href="../../css/popup.css" />
+	</head>
+	<body >
+		<div class="main_content " ng-controller="commentManageC" ng-cloak>
+			<a id="topbookmanage1"></a>
+			<div class="content_list_head yy">
+				<span><a href="" ng-class="{'classify_a':true, 'selected_a':newPushFlag}" ng-click="orderTimeClickC()">最近发布</a></span>
+				<span><a href="" ng-class="{'classify_a':true, 'selected_a':praiseFlag}" ng-click="orderPraiseClickC()">点赞数</a></span>
+				<span><a href="" ng-class="	{'classify_a':true, 'selected_a':replyFlag}" ng-click="orderReplyClickC()">回复数</a></span>
+				<div class="search_comments_a">
+					<span class="img_box_a"><a href="" class="search_btn_a"><i class="iconfont search_btn" style="color: #F39800;font-weight: bolder;">&#xe622;</i></a></span>
+					<input type="text" class="search_comments_content" ng-model="searchComment" ng-keydown="search($event)" placeholder="搜索评论" />
+				</div>
+				<!--<span >全部书籍<img src="" alt="" /></span>-->
+				<!--<select name="book_classify" class="all_list_btn">
+					<option value="">全部书籍</option>
+					<option value="">我关注的</option>
+					<option value="">我拥有的</option>
+				</select>-->
+				
+				<select name="book_classify"  class="all_list_btn" ng-model="selectedBook" ng-options="x.id as x.bookName for x in bookList" ng-change="bookSelect(selectedBook)">
+				</select>
+			<!--	<span class="list_choice" ><i class="iconfont">&#xe771;</i></span>-->
+				<!--<div class="s_r_r_info fr">
+					<span class="s_r_t_top" ng-click="silver_pinshow = !silver_pinshow"><span class="list_choice"><i class="iconfont list_b">&#xe771;</i></span></span>
+					<span class="s_r_t_top_current" ng-init="silver_pinshow_time='周榜'">{{silver_pinshow_time}}</span>
+					<span class='s_r_t_top_list' ng-show="silver_pinshow">
+						<span ng-click="silverTimeClick('week',1)">周榜</span>
+					<span ng-click="silverTimeClick('month',2)">月榜</span>
+					<span ng-click="silverTimeClick('quarter',3)">季榜</span>
+					</span>
+				</div>-->
+			</div>
+			<div class="content_list">
+				<p style="width:90%;text-align: center;margin-top: 90px;color: #bbb;" ng-show="holderNullShow">暂无评论</p>
+				<div class="comments_list_detail yy" ng-repeat="comment in commentList">
+					<div class="comments_list_left">
+						<span class="user_head_box"><img ng-src="{{comment.userImage}}" /></span>
+						<a href="" name="" id="read_comment_btn" ng-click="jumpBookComment(comment)">查看评论</a>
+					</div>
+					<div class="comments_list_center">
+						<div class="comments_detail_t">
+							<span class="t_color">{{comment.nickName}}</span><span class="t_color"> {{comment.commentTime}}</span><span><a href="" ng-click="reportShow=!reportShow" class="inform_a t_color">举报>></a></span>
+							<p>{{comment.commentContent}}</p>
+						</div>
+						<div class="comments_detail_bottom">
+							<a class="reply_box_a" href="" ng-click="setTop(comment)" ng-if="setTops(comment)">{{comment.isTops}}&nbsp;&nbsp;</a>
+							<a class="show_good_a" href="" ng-click="praiseClick(comment)"><i class="iconfont">&#xe656;</i>{{comment.bookCommentPraiseNum}}</a>
+							<a class="reply_box_a" href="" ng-click="replyShow=!replyShow"><i class="iconfont">&#xe600;</i>回复</a>
+							<div class="reply_box_t" id="" ng-show="replyShow">
+								<textarea id="saytext" maxlength="300" ng-model="comment.reply" rows="" cols="" name="saytext" oninput="replyContent(this.value)"></textarea>
+								<i class="iconfont smile_face">&#xe619;</i>
+								<button class="reply_btn_t" ng-click="replayComment(comment,comment.reply)">回复</button>
+							</div>
+							<!--<div class="reply_post_background">
+									<div class="reply_user_post clear">
+										<div class="reply_user_name fl"><img ng-src="" />hhh</div>
+										<div class="reply_user_con fl">
+											ss
+											<span>2016.2.2 10:22</span>
+											<span class="reply_box_btn">回复
+										</span>
+										</div>
+										<div class="report_user fr" ng-click="jubao(reply.id)">举报>></div>
+									</div>
+
+								</div>-->
+						</div>
+
+						<div class="comments_list_right">
+							<img ng-src="{{comment.bookImage}}" />
+						</div>
+					</div>
+					<!--举报弹窗 -->
+					<div class="reportDialog confirm_popub" ng-show="reportShow">
+						<textarea name="" rows="" cols="" placeholder="请输入举报理由" ng-model="jbContent"></textarea>
+						<div class="purch_btn confirm_btns clear">
+							<a class="confirm_btn fl" href="javascript:;" ng-click="submitReport(comment,jbContent)">确认</a>
+							<a class="cancel_btn fr" href="" ng-click="reportShow=false">取消</a>
+						</div>
+						<a href="javascript:;" ng-click="reportShow=false"><i class="iconfont cancle_pic">&#xe616;</i></a>
+					</div>
+				</div>
+				<div ng-show="!holderNullShow">
+					<tm-pagination conf="paginationConf"></tm-pagination>
+				</div>
+			</div>
+	</body>
+	<script src="//at.alicdn.com/t/font_ar0exrur5cr0y66r.js"></script>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/tm.pagination.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/personCenter/comment-manage.js"></script>
+</html>

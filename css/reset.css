@@ -1,0 +1,320 @@
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i,
+form,
+table,
+td,
+img,
+div,
+dl,
+dt,
+dd,
+input {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+body {
+	font-family: "Microsoft Yahei", Helvetica, arial, \5b8b\4f53, sans-serif;
+	/*font-family: Helvetica Neue,Helvetica,Arial,Microsoft YaHei,sans-serif;*/
+	font-weight: normal;
+	/*overflow:scroll;overflow-y:hidden;*/
+}
+
+.yy {
+	/*-webkit-box-shadow: -5 0 10px rgb(188, 188, 187);
+	-moz-box-shadow: -5 0 10px rgb(188, 188, 187);
+	box-shadow: -5 0 10px rgb(188, 188, 187);*/
+	box-shadow: 0 0 9px rgb(188, 188, 187);
+}
+
+em {
+	font-style: normal;
+}
+
+img {
+	border: none;
+	vertical-align: top;
+}
+
+li {
+	list-style: none;
+}
+
+input,
+select,
+textarea {
+	outline: none;
+	border: none;
+}
+
+select {
+	/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+	border: solid 1px #ddd;
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+
+select::-ms-expand {
+	display: none;
+}
+
+textarea {
+	resize: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+a {
+	text-decoration: none;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clear_all {
+	clear: both;
+}
+
+.clear:after,
+.wrap_1200:after {
+	display: block;
+	content: "";
+	clear: both;
+	height: 0;
+	visibility: hidden;
+	font-size: 0
+}
+
+.wrap_1200 {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.relative {
+	position: relative;
+}
+
+
+/*为个人中心所用*/
+
+.icon-left5 {
+	position: absolute;
+	left: -5px;
+}
+
+.wrap_1000 {
+	width: 1000px;
+	/*padding-top: 30px;*/
+}
+
+.body_wrap {
+	background: #333339;
+}
+
+
+/*iconfont 所用*/
+
+@font-face {
+  font-family: 'iconfont';  /* project id 175136 */
+  src: url('//at.alicdn.com/t/font_iak6qspz9eapp66r.eot');
+  src: url('//at.alicdn.com/t/font_iak6qspz9eapp66r.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_iak6qspz9eapp66r.woff') format('woff'),
+  url('//at.alicdn.com/t/font_iak6qspz9eapp66r.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_iak6qspz9eapp66r.svg#iconfont') format('svg');
+}
+
+.icon {
+	width: 1em;
+	height: 1em;
+	vertical-align: -0.15em;
+	fill: currentColor;
+	overflow: hidden;
+}
+
+        .iconfont {
+          font-family:"iconfont" !important;
+          font-size:16px;
+          font-style:normal;
+          -webkit-font-smoothing: antialiased;
+          -webkit-text-stroke-width: 0.2px;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+
+/**
+ * 用来解决angular CSS 渲染加载时间，ng-show,ng-hide,ng-cloak问题
+ */
+
+@charset "UTF-8";
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+	display: none !important;
+}
+
+ng\:form {
+	display: block;
+}
+
+
+/**
+ * 弹窗
+ * */
+
+.point {
+	cursor: pointer !important;
+}
+
+.toast {
+	width: 300px;
+	height: 80px;
+	background: #fff;
+	font-size: 20px;
+	line-height: 80px;
+	color: #ff9900;
+	text-align: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -150px;
+	margin-top: -140px;
+	z-index: 9999999;
+	border: 3px solid #ff9900;
+	border-radius: 10px;
+}
+
+.toastT {
+	-webkit-transition: -webkit-transform 0.5s ease-in, opacity 0.5s ease-in;
+	opacity: 0;
+}
+
+
+/*返回顶部*/
+
+.back_to_top {
+	position: fixed;
+	font-size: 36px;
+	cursor: pointer;
+	display: none;
+	z-index: 999;
+	margin-left: 1220px;
+	/*right: 10%;*/
+	bottom: 150px;
+}
+.back_to-font{
+	font-size: 16px;
+}
+._top_font {
+	color: #C0C0C0;
+	font-size: 30px;
+}
+
+._top_font:hover {
+	color: #F0AD4E;
+}
+
+
+/*关注作者弹窗*/
+
+.post_card_dis_follow {
+	width: 300px;
+	height: 160px;
+	position: absolute;
+	border: 2px solid #F39800;
+	border-radius: 10px;
+	background: #FFFFFF;
+	left: 108px;
+	top: 0px;
+	z-index: 10;
+}
+
+.dis_follow_pic {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	padding: 5px;
+}
+
+.dis_follow_info {
+	width: 200px;
+}
+
+.dis_follow_info .key_writer_name {
+	color: #000;
+	font-size: 14px;
+	padding: 10px 10px;
+}
+
+.dis_follow_info .follow_funs,
+.dis_follow_info .my_follows {
+	font-size: 13px;
+	color: #333333;
+	margin: 0 10px;
+}
+
+.key_writer {
+	height: 48px;
+	width: 280px;
+	overflow: hidden;
+	white-space: normal;
+	text-overflow: ellipsis;
+	color: #AAAAAA;
+	font-size: 13px;
+	line-height: 24px;
+	word-break: normal;
+	padding: 5px 10px;
+}
+
+.follow_btns {
+	text-align: center;
+	height: 28px;
+	/*width: 154px;*/
+	margin: 0 auto;
+	font-size: 0px;
+}
+
+.follow_btns span {
+	display: inline-block;
+	padding: 0px 8px;
+	font-size: 15px;
+	height: 24px;
+	border: 1px solid #F39800;
+	border-radius: 5px;
+	background: #FFFFFF;
+	color: #F39800;
+	text-align: center;
+	line-height: 24px;
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+.follow_btns span.active {
+	color: #FFFFFF;
+	background: #F39800;
+}

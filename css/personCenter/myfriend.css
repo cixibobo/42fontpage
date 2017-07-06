@@ -1,0 +1,166 @@
+body {
+	background: #F3F3F3;
+}
+
+.wrap_1000 {
+	margin: 0 auto;
+}
+/**
+ * 用来解决angular CSS 渲染加载时间，ng-show,ng-hide,ng-cloak问题
+ */
+@charset "UTF-8";
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+	display: none !important;
+}
+
+ng\:form {
+	display: block;
+}
+.my_fri {
+	background: #fff;
+	border-radius: 10px;
+	margin: 5px;
+}
+
+.my_fri_list {
+	width: 1000px;
+	font-size: 0;
+	margin: 27px 0 20px 12px;
+	
+}
+
+.my_fri_list li {
+	width: 258px;
+	height: 80px;
+	display: inline-block;
+	margin-bottom: 40px;
+	margin-right: 102px;
+}
+.my_fri_list li:nth-child(3n){
+	margin-right: 10px;
+}
+
+.my_fri_list li .fri_pic,
+.my_fri_list li .fri_pic img {
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+}
+
+.my_fri_list li .fri_info {
+	width: 152px;
+	height: 80px;
+	margin-left: 10px;
+}
+
+
+
+.my_flows {
+	display: inline-block;
+	width: 118px;
+	height: 24px;
+	background: #f90;
+	color: #fff;
+	border-radius: 10px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.my_funs {
+	color: #f90;
+	font-size: 18px;
+}
+
+.fun_tag {
+	padding: 2px 0 2px 8px;
+}
+
+.fun_tag>a{
+	display: inline-block;
+	width: 118px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.fri_name{
+	font-size: 16px;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.fri_date{
+	color: #aaa;
+	font-size: 12px;
+	line-height: 30px;
+}
+.contact_friBtn a{
+	display: inline-block;
+	padding: 0 10px;
+	color: #f90;
+	background: #fff;
+	border: 1px solid #f90;
+	font-size: 16px;
+	margin-right: 5px;
+	line-height: 26px;
+	height: 24px;
+	text-align: center;
+	border-radius: 10px;
+}
+.contact_friBtn a:hover{
+	color: #fff;
+	background: #f90;
+	
+}
+
+/*分页*/
+
+.discuss_pages {
+	margin-top: 15px;
+	margin-bottom: 70px;
+}
+
+.discuss_pages ul {
+	text-align: center;
+	width: 500px;
+	font-size: 0;
+	margin: 0 auto;
+}
+
+.discuss_pages ul li {
+	display: inline-block;
+	height: 26px;
+	line-height: 28px;
+	padding: 0 12px 0 12px;
+	border: 1px solid #f90;
+	border-radius: 10px;
+	margin-right: 10px;
+	font-size: 16px;
+	color: #f90;
+	background: #fff;
+}
+
+.discuss_pages ul li a {
+	font-size: 16px;
+	color: #f90;
+}
+
+.discuss_pages ul li:hover {
+	color: #fff;
+	cursor: pointer;
+	background: #f90;
+}
+
+.discuss_pages ul .active {
+	background: #f90;
+	color: #fff;
+}

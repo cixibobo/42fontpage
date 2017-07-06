@@ -1,0 +1,920 @@
+<html ng-app="personCenter">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>42文库</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<!--<link rel="stylesheet" href="../../css/nav.css" />-->
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/personCenter_head.css">
+		<link rel="stylesheet" href="../../css/homeNav.css" />
+		<link rel="stylesheet" href="../../css/daohang.css" />
+		<link rel="stylesheet" href="../../css/personCenter/sliderbar.css" />
+	</head>
+		<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+
+		<script>
+			function changeFrameHeight() {
+				var ifmheight = $("#iframepage").contents().find("body").height() + 'px';
+				console.log(ifmheight)
+				if($("#iframepage").contents().find("body").height() > 635) {
+					ifmheight = $("#iframepage").contents().find("body").height() + 30 + 'px';
+					$("#iframepage").height(ifmheight);
+				} else {
+					$("#iframepage").height(635);
+				}
+
+			}
+		</script>
+		<style>
+			.popub_body_mask {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.4);
+				z-index: 99;
+			}
+		</style>
+
+		<body ng-controller="personCenterDetail" id="sildeBody" ng-cloak>
+			<div>
+				<div class="popub_body_mask" id="maskDiv"></div>
+				<div class="top_head">
+					<div class="top_nav">
+						<div class="top_nav_content">
+							<!--<a href="../../index.html" class="top_nav_logo">
+						
+					</a>-->
+							<div class="search_area">
+								<div class="search">
+									<input type="text" name="" id="search" placeholder="请输入书名、作者名" ng-model="$parent.searchMain" ng-focus="searchTopF(1)" ng-blur="searchTopF(2)" ng-keyup="searchBook($event)" />
+									<i class="iconfont search_btn" ng-click="searchClass()">&#xe622;</i>
+									<div class="search_mask" ng-click="searchClass()"></div>
+								</div>
+							</div>
+							<ul class="slider_left">
+								<li ng-click="jumpIndex(1)">
+									<a href="#">
+										<svg class="icon center_nav_logo" aria-hidden="true">
+											<use xlink:href="#icon-logoicon"></use>
+										</svg>
+										<a href="#">主页</a>
+									</a>
+								</li>
+								<li ng-click="jumpIndex(2)">
+									<a href="#" id="top">分类</a>
+								</li>
+								<li ng-click="jumpIndex(3)">
+									<a href="#">打书钉大厅</a>
+								</li>
+								<li ng-click="jumpIndex(4)">
+									<a href="#">同好会</a>
+								</li>
+							</ul>
+							<ul class="slider_right">
+								<li class="nav_tag person">
+									<a class="user_head_pic" href="sildebar.html">
+										<img ng-src="{{headUrl}}" class="my_pic" />
+									</a>
+									<div class="person_info slider-person">
+										<p class="my_name" style="top:40px">
+											<a href="">{{personCenter.nickName}}</a>
+										</p>
+										<div class="short_info">
+											<p>{{personCenter.signature}}</p>
+										</div>
+										<ul class="my_lib" ng-init="tenPer=10">
+											<li class="my_money clear">
+												<a href="sildebar.html?needUrl=mywallet" class="fl money_num" href="#" style="width:100px;"><i class="iconfont">&#xe625;</i>{{personCenter.silverThumbTack}}银图钉</a>
+												<div class="fr contact">
+													<a class="phone" href="sildebar.html"><i class="iconfont">&#xe629;</i></a>
+													<a class="email" href="sildebar.html"><i class="iconfont">&#xe627;</i></a>
+												</div>
+											</li>
+											<li class="my_books clear">
+												<a href="sildebar.html?needUrl=bookmanage" class="fl"><i class="iconfont">&#xe626;</i>{{personCenter.bookNum}}本书</a>
+												<a href="sildebar.html?needUrl=myfriend" class="fr" style="padding-top: 3px;">{{personCenter.followNum}}粉丝</a>
+											</li>
+											<li class="my_bag">
+												<a class="fl" href="sildebar.html"><i class="iconfont">&#xe77b;</i>我的账户</a>
+												<a class="fr" href="sildebar.html?needUrl=mywallet"><i class="iconfont">&#xe625;</i>我的钱包</a>
+											</li>
+
+										</ul>
+										<div class="person_more">
+											<a href="" class="nav_title_signout" ng-click="signOut()">退出</a>
+										</div>
+									</div>
+								</li>
+								<li class="nav_tag" ng-mouseleave="messageListShow=false" ng-mouseover="messageListShow=true">
+									<span class="list_btn list_btn-pos" ng-show="message_zero">
+									<span class="list-btn-number">{{message_total}}</span>
+									</span>
+									<a class="nav_title " href="../messageCenter/reply.html">消息</a>
+									<!--消息信息弹窗-->
+									<div class="message_info silder-message-info" ng-show="messageListShow">
+										<p class="message_p" ng-click="returnToWin('messageCenter/reply')">
+											<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[0]}}</span>
+											</span>
+											<span class="main_span">回复我的</span>
+											</span>
+										</p>
+										<p class="message_p" ng-click="returnToWin('messageCenter/center')">
+											<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[1]}}</span>
+											</span>
+											<span class="main_span">@我的</span>
+											</span>
+										</p>
+										<p class="message_p" ng-click="returnToWin('messageCenter/getpraise')">
+											<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[2]}}</span>
+											</span>
+											<span class="main_span">收到的赞</span>
+											</span>
+										</p>
+										<p class="message_p" ng-click="returnToWin('messageCenter/system')">
+											<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[3]}}</span>
+											</span>
+											<span class="main_span">系统通知</span>
+											</span>
+										</p>
+										<p class="message_p" ng-click="returnToWin('messageCenter/personal')">
+											<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[4]}}</span>
+											</span>
+											<span class="main_span">我的私信</span>
+											</span>
+										</p>
+										<div class="message-person_more" ng-click="returnToWin('messageCenter/center')">
+											<a href="" class="message-nav_title_signout">查看更多</a>
+										</div>
+									</div>
+								</li>
+								<li class="nav_tag" ng-mouseleave="dynamicListShow=false">
+									<a class="nav_title" href="#" ng-mouseover="searchDynamic()">动态</a>
+									<!--动态信息弹窗-->
+									<div class="dynamic_info silder-dynamic-info" ng-show="dynamicListShow">
+										<p class="dynamic_p" ng-repeat="dymessage in dyMessage">
+											<span class="dy-img">
+											<a ng-href="../../html/book.html?book_id={{dymessage.bookId}}" target="_blank"><img ng-src="{{dymessage.imageUrl}}" /></a>
+													</span>
+											<span class="dy-content">
+													<span class="dy-r-num"></span>
+											<a style="color: #000000;" ng-href="../../html/book.html?book_id={{dymessage.bookId}}" target="_blank"><span class="dy-content1">{{dymessage.bookName}}  </span></a>
+											<span style="display: inline-block;margin-left: 9px; width: 55px; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">{{dymessage.chapterName}}</span>
+											<span style="    display: inline-block;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">更新啦</span>
+											</span>
+										</p>
+										<div class="dynamic-person_more">
+											<a href="" ng-show="moreDongtai1" class="dynamic-nav_title_signout">查看更多</a>
+											<a href="" ng-show="moreDongtai2" class="dynamic-nav_title_signout">暂无动态</a>
+											<a href="" ng-show="moreDongtai3" class="dynamic-nav_title_signout">没有更多了</a>
+										</div>
+									</div>
+								</li>
+								<li class="nav_tag" ng-mouseleave="collectListShow=false" ng-click="changFrameTop1('mybookshelf')">
+									<a class="nav_title" href="#" id="top" ng-mouseover="searchCollection()">收藏</a>
+									<!--收藏信息弹窗-->
+									<div class="message_info silder-collect-info" ng-show="collectListShow">
+										<div class="message_p" ng-repeat="collectlist in collectMesList">
+											<div class="col_re-b">
+												<div class="col-main">
+													<span class="col-r-num">
+															</span>
+													<p class="col-book-name">
+														{{collectlist.bookName}}
+													</p>
+
+												</div>
+												<div class="col-main" style="margin-left: 12px;">{{collectlist.nickName}}</div>
+											</div>
+										</div>
+										<div class="message-person_more" ng-click="changFrameTop1('mybookshelf')">
+											<a href="" class="message-nav_title_signout">查看更多</a>
+										</div>
+									</div>
+								</li>
+								<li class="nav_tag" style="margin-right: 20px!important;" ng-mouseleave="historyListShow=false">
+									<a class="nav_title" href="#" ng-mouseover="searchHistory()">历史</a>
+									<!-- 历史信息弹窗-->
+									<div class="message_info silder-search-info" ng-show="historyListShow">
+										<div class="message_p" ng-repeat="historylist in historyList">
+											<div class="col_re-b">
+												<div class="col-main">
+													<span class="col-r-num"></span>
+													<a style="color: #000000;" ng-href="../../html/book.html?book_id={{historylist.bookId}}" target="_blank">
+														<p class="col-book-name">
+															{{historylist.bookName}}
+														</p>
+													</a>
+
+												</div>
+												<div class="col-main1" style="margin-left: 12px;">
+													<a style="color: #000000;" ng-href="../../html/read.html?chapterId={{historylist.chapterId}}&book_id={{historylist.bookId}}&isHistory=1" target="_blank">
+														{{historylist.chapterName}}
+													</a>
+												</div>
+											</div>
+										</div>
+										<div class="message-person_more">
+											<a href="" class="message-nav_title_signout">查看更多</a>
+										</div>
+									</div>
+								</li>
+								<li class="top_active submission">
+									<!--								<a href="../newwrite.html" target="_blank">投稿</a>-->
+									<a href="../newwrite.html" target="_blank">投稿</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="wrap_1200 clear" ng-cloak style="margin-top: 50px;">
+					<div class="clear_all">
+						<aside class="per_c_nav  fl">
+							<div class="p_logo">
+								<a href="">
+									<!--<i class="iconfont center_logo">&#xe620;</i>-->
+									<svg class="icon center_logo" aria-hidden="true">
+										<use xlink:href="#icon-42zhongxin"></use>
+									</svg>
+
+								</a>
+							</div>
+							<ul id="sildeBarLeft">
+								<li>
+									<div class="content active" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe61a;</i>
+										<i class="iconfont iconf_hover">&#xe781;</i>
+										<a class="silder activea" href="#" ng-click="changFrame('personDetail')">个人信息</a>
+									</div>
+									<div class="mask"></div>
+								</li>
+								<li>
+									<div class="content" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe61d;</i>
+										<i class="iconfont iconf_hover">&#xe77e;</i>
+										<a class="silder" href="#" ng-click="changFrame('mybookshelf')">我的书架</a>
+									</div>
+									<div class="mask"></div>
+								</li>
+								<li ng-show="sildeShow">
+									<div class="content" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe61b;</i>
+										<i class="iconfont iconf_hover">&#xe780;</i>
+										<a class="silder" href="#" ng-click="changFrame('bookmanage')">书籍管理</a>
+									</div>
+									<div class="mask"></div>
+								</li>
+								<li>
+									<div class="content" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe613;</i>
+										<i class="iconfont iconf_hover">&#xe784;</i>
+										<a class="silder" href="#" ng-click="changFrame('myfriend')">我的好友 </a>
+									</div>
+									<div class="mask"></div>
+								</li>
+								<li>
+									<div class="content" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe61c;</i>
+										<i class="iconfont iconf_hover">&#xe77f;</i>
+										<a class="silder" href="#" ng-click="changFrame('mywallet')">我的钱包 </a>
+									</div>
+									<div class="mask"></div>
+								</li>
+								<li ng-show="sildeShow">
+									<div class="content" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe618;</i>
+										<i class="iconfont iconf_hover">&#xe782;</i>
+										<a class="silder" href="#" ng-click="changFrame('comment_manage')">评论管理 </a>
+									</div>
+									<div class="mask"></div>
+								</li>
+								<li>
+									<div class="content" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe61e;</i>
+										<i class="iconfont iconf_hover">&#xe77d;</i>
+										<a class="silder" href="../messageCenter/center.html" target="_blank">消息中心 </a>
+									</div>
+									<div class="mask"></div>
+								</li>
+								<li>
+									<div class="content" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe612;</i>
+										<i class="iconfont iconf_hover">&#xe785;</i>
+										<a class="silder" href="" ng-click="toWriteCenter()">创作中心 </a>
+									</div>
+									<div class="mask"></div>
+								</li>
+								<li>
+									<div class="content" onmouseover="over(this)" onmouseleave="leave(this)">
+										<i class="iconfont iconf_default">&#xe615;</i>
+										<i class="iconfont iconf_hover">&#xe783;</i>
+										<a class="silder" href="#" ng-click="changFrame('netservice')">网络服务台 </a>
+									</div>
+									<div class="mask"></div>
+								</li>
+							</ul>
+						</aside>
+
+					</div>
+				</div>
+			</div>
+			<!--申请作者弹出框-->
+			<div class="application-author-agreement" ng-init="applicationAuthor=false" ng-show="applicationAuthor">
+				<div class="buy_detail_box">
+					<h6 class="heyue_title">《42文库作者申请协议》</h6>
+					<span class="close_btn_b" ng-click="applicationAuthor=!applicationAuthor"><i class="iconfont">&#xe616;</i></span>
+					<div class="book_list_detail">
+						<div class="book_list_detail_d">
+							<p>1）“42文库网”（http://www.manguo42.com）是杭州漫国网络科技有限公司的互联网文字内容平台，以下声明中的“本站”指的均是 “42文库网”。</p>
+							<p>2）凡符合国家法律法规，由作者本人创作的作品，均可在授权本站发表或转载，并授予本站的“作者资格”。</p>
+							<p>3）凡在本站授权本站发表或转载的作品，其版权归属归作者所有或作者享有，根据作品授权的不同级别，网站会提供不同的功能服务并抽取一定的服务费用。</p>
+							<p>4）本站一经核实作者作品属于非原创作品，将进行处理。此类作品所产生的一切后果责任由投稿人自负。</p>
+							<p>5）本站拒绝一切诸如反动、淫秽之类违反国家法律法规的作品，对于那些有悖社会道德伦理、政治色彩强烈的作品本站不予发表。</p>
+							<p>6）本站谢绝任何不符合42文库发展方向的作品。</p>
+							<p>7）一切破坏网站安定团结，妨碍网站正常运行的作品或作者，网站将严肃处理。</p>
+							<p>8）严于律己，宽以待人。</p>
+						</div>
+					</div>
+					<form>
+						<p class="read_detail"><input type="checkbox" class="point" ng-init="isAgree=false" ng-model="isAgree" ng-true-value="true" ng-false-value="false" class="read_agree_btn" />我已同意《42文库作者申请协议》</p>
+					</form>
+					<div class="buy_detail_bottom">
+						<input type="button" name="" id="ensure_buy_btn" ng-click="applyAuthor()" value="申请" />
+						<input type="button" name="" id="cancle_a_btn" ng-click="applicationAuthor=!applicationAuthor" value="取消" />
+					</div>
+				</div>
+			</div>
+			<iframe ng-src="{{frameSrc}}" id="iframepage" scrolling="no" frameborder="0" width="1000px"></iframe>
+
+		</body>
+
+		<script type="text/javascript" src="../../js/common.js"></script>
+		<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+		<script src="http://at.alicdn.com/t/font_36mew63pj5l5l8fr.js"></script>
+		<script type="text/javascript">
+			$('#maskDiv').hide();
+			$(".content").eq(0).children().eq(0).hide();
+			$(".content").eq(0).children().eq(1).show();
+
+			function changeFrameHeightF() {
+				var ifm = document.getElementById("iframepage");
+				ifm.height = 635;
+			}
+			changeFrameHeightF();
+
+			//		changeFrameHeight();
+
+			function leave(x) {
+
+				if($(x).hasClass("active")) {
+					return;
+				}
+				setTimeout(function(){
+					$(x).children("a").css("color", "#000")
+				},200)
+				$(x).children().eq(1).hide();
+				$(x).children().eq(0).show();
+			}
+
+			function over(x) {
+
+				if($(x).hasClass("active")) {
+					return;
+				}
+				//			alert(JSON.stringify($(x).find('i').eq(1)))
+				//			console.log($(x).children().eq(0))
+				$(x).children("a").css("color", "#FFFFFF");
+				$(x).children().eq(0).hide();
+				$(x).children().eq(1).show();
+				//$(x).find('i').eq(1).show();
+				//alert($(x).find("i").html());
+			}
+			$(".silder").click(function() {
+				if(!isLogin()) {
+					Toast("请先登陆", 1000);
+					setCookie("previousURL", location.href);
+					setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+					return;
+				}
+				$(this).parent().unbind('onmouseover').unbind('mouseleave');
+				$(".silder").removeClass('activea');
+				var index = $(".silder").index($(this));
+				$(this).addClass('activea');
+				for(var i = 0; i < 9; i++) {
+					console.log(i)
+					$(".content").eq(i).removeClass('active');
+					$(".content").eq(i).children().eq(0).show();
+					$(".content").eq(i).children().eq(1).hide();
+					$(".content").eq(i).children("a").css("color", "#000");
+				}
+				$(".content").eq(index).addClass('active');
+				$(this).parent().children().eq(1).show();
+				$(this).css("color", "#FFFFFF");
+
+			})
+		</script>
+		<script type="text/javascript">
+			var app = angular.module('personCenter', []);
+			var Request = new Object();
+			Request = GetRequest();
+			app.controller('personCenterDetail', function($scope, $window) {
+
+				if(!isLogin()) {
+					Toast("请先登陆", 1000);
+					setCookie("previousURL", location.href);
+					setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+					return;
+				}
+				if(identityINFO == 0) { //0代表读者
+					$scope.sildeShow = false;
+				} else {
+					$scope.sildeShow = true;
+				}
+				//点击创作中心
+				$scope.toWriteCenter = function() {
+					if(identityINFO == 0) {
+						$scope.applicationAuthor = true;
+					} else {
+						$scope.applicationAuthor = false;
+						window.open('../newwrite.html')
+					}
+				}
+				//申请成为作者－－－－－－－
+				$scope.applyAuthor = function() {
+					if(!$scope.isAgree) {
+						Toast("请先同意协议", 1000);
+						return;
+					}
+					//				href="../newwrite.html" target="_blank"
+					window.open('../newwrite.html')
+					//				alert(.read_detail.isAgree)
+
+				}
+				if(localStorage.userInfo) {
+					$scope.person_info = true;
+					$.ajax({
+							type: "post",
+							url: IP + '/userMoney/queryMoney.do',
+							async: true,
+							data: {
+								id: userId
+							}
+						})
+						.done(function(data) {
+							if(data.flag == 1) {
+								$scope.$apply(function() {
+									$scope.personCenter = data.objectList[0];
+								})
+							}
+						})
+				}
+				//系统消息
+				$scope.searchMessage = function() {
+					$.ajax({
+							type: "post",
+							url: IP + "/sysUserMessage/queryMessageCount.do",
+							async: true,
+							data: {
+								userId: userId,
+							}
+						})
+						.done(function(data) {
+							console.log("xiaoxi", data)
+							console.log(sixinInfoNum)
+							if(data.flag == 1) {
+								if(sessionStorage.getItem("sixinInfoNum")) {
+									sixinInfoNum = parseInt(sessionStorage.getItem("sixinInfoNum"));
+								}
+								$scope.$apply(function() {
+									$scope.message_total = data.total + sixinInfoNum;
+									$scope.message = data.objectList;
+									$scope.message[4] = sixinInfoNum;
+									if(data.total == 0 && sixinInfoNum == 0) {
+										$scope.message_zero = false;
+									} else {
+										$scope.message_zero = true;
+									}
+								})
+							} else {
+								console.log('消息系统异常', data.flag)
+							}
+						})
+				}
+				//动态
+				$scope.searchDynamic = function() {
+					$scope.dynamicListShow = true;
+					$.ajax({
+							type: "post",
+							url: IP + "/history/queryDynamicRecordList.do",
+							async: true,
+							data: {
+								userId: userId,
+								type: 1,
+								pageNum: 1,
+								numPerPage: 4
+							}
+						})
+						.done(function(data) {
+							console.log(data)
+							if(data.flag == 1) {
+								$scope.$apply(function() {
+									$scope.dyMessage = data.objectList;
+									$scope.moreDongtai2 = false;
+									$scope.moreDongtai3 = false;
+									$scope.moreDongtai1 = false;
+									if($scope.dyMessage == null || $scope.dyMessage.length == 0) {
+										$scope.moreDongtai2 = true;
+									} else if($scope.dyMessage.length <= 5) {
+										$scope.moreDongtai3 = true;
+									} else {
+										$scope.moreDongtai1 = true;
+									}
+								})
+							} else {
+								console.log('消息系统异常', data.flag)
+							}
+						})
+				}
+
+				//收藏
+				$scope.searchCollection = function() {
+					$scope.collectListShow = true
+					$.ajax({
+							type: "post",
+							url: IP + "/userBookShelf/queryCollection.do",
+							async: true,
+							data: {
+								id: userId,
+								pageNum: 1,
+								numPerPage: 5
+							}
+						})
+						.done(function(data) {
+							if(data.flag == 1) {
+								$scope.$apply(function() {
+									$scope.collectMesList = data.objectList;
+								})
+							} else {
+								console.log('消息系统异常', data.flag)
+							}
+						})
+				}
+				//历史
+				$scope.searchHistory = function() {
+					$scope.historyListShow = true
+					$.ajax({
+							type: "post",
+							url: IP + "/history/queryPersonHistory.do",
+							async: true,
+							data: {
+								userId: userId,
+								type: 2,
+								pageNum: 1,
+								numPerPage: 5
+							}
+						})
+						.done(function(data) {
+							console.log(data)
+							if(data.flag == 1) {
+								$scope.$apply(function() {
+									$scope.historyList = data.objectList;
+								})
+							} else {
+								console.log('消息系统异常', data.flag)
+							}
+						})
+				}
+				$scope.searchMessage(); //系统消息
+				//		$scope.searchDynamic();	//动态
+
+				$scope.frameSrc = './personDetail.html'
+				$scope.headUrl = userInfo.headUrl;
+
+				/**
+				 * 导航部分跳转
+				 * @param {Object} index
+				 */
+				$scope.jumpIndex = function(index) {
+					switch(index) {
+						case 1:
+							$window.open("../../index.html#/homePage");
+							break;
+						case 2:
+							$window.open("../../index.html#/classify");
+							break;
+						case 3:
+							$window.open("../../index.html#/stapleHall");
+							break;
+						case 4:
+							$window.open("../../index.html#/association");
+							break;
+					}
+				}
+				//作者个人信息
+
+				/**
+				 * 搜索书籍
+				 * @param {Object} e
+				 */
+				$scope.searchBook = function(e) {
+					var keycode = window.event ? e.keyCode : e.which;
+					if(keycode == 13) {
+						console.log($scope.searchMain)
+						$scope.searchClass();
+					}
+				};
+
+				//分类搜素
+				$scope.searchClass = function() {
+					var search = {
+						searchValue: $scope.searchMain
+					}
+					var searchJson = JSON.stringify(search)
+					var hrefsrc = window.location;
+					var substr = "classify";
+					sessionStorage.Search = searchJson;
+					sessionStorage.setItem("first", 1);
+					window.location.href = "../../index.html#/classify";
+				}
+				if(Request.needUrl == "mywallet") {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					$scope.frameSrc = Request.needUrl + '.html';
+					var silderList = $(".silder");
+					$('#maskDiv').hide();
+					$(".content").eq(0).children().eq(1).hide();
+					$(".content").eq(0).children().eq(0).show();
+					$(".content").eq(4).children().eq(0).hide();
+					$(".content").eq(4).children().eq(1).show();
+					silderList.eq(0).removeClass('activea');
+					silderList.eq(4).addClass('activea');
+					$(".content").eq(0).removeClass('active');
+					$(".content").eq(4).addClass('active');
+					$("#iframepage").height(635);
+					$("#iframepage").height($("#iframepage").height() + 260);
+				} else if(Request.needUrl == "mybookshelf") {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					$scope.frameSrc = Request.needUrl + '.html';
+					var silderList = $(".silder");
+					$('#maskDiv').hide();
+					$(".content").eq(0).children().eq(1).hide();
+					$(".content").eq(0).children().eq(0).show();
+					$(".content").eq(1).children().eq(0).hide();
+					$(".content").eq(1).children().eq(1).show();
+					silderList.eq(0).removeClass('activea');
+					silderList.eq(1).addClass('activea');
+					$(".content").eq(0).removeClass('active');
+					$(".content").eq(1).addClass('active');
+					$("#iframepage").height(635);
+					$("#iframepage").height($("#iframepage").height() + 530);
+				} else if(Request.needUrl == "bookmanage") {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					$scope.frameSrc = Request.needUrl + '.html';
+					var silderList = $(".silder");
+					$('#maskDiv').hide();
+					$(".content").eq(0).children().eq(1).hide();
+					$(".content").eq(0).children().eq(0).show();
+					$(".content").eq(2).children().eq(0).hide();
+					$(".content").eq(2).children().eq(1).show();
+					silderList.eq(0).removeClass('activea');
+					silderList.eq(2).addClass('activea');
+					$(".content").eq(0).removeClass('active');
+					$(".content").eq(2).addClass('active');
+					$("#iframepage").height(635);
+					$("#iframepage").height($("#iframepage").height() + 1960);
+				} else if(Request.needUrl == "myfriend") {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					$scope.frameSrc = Request.needUrl + '.html';
+					var silderList = $(".silder");
+					$('#maskDiv').hide();
+					$(".content").eq(0).children().eq(1).hide();
+					$(".content").eq(0).children().eq(0).show();
+					$(".content").eq(3).children().eq(0).hide();
+					$(".content").eq(3).children().eq(1).show();
+					silderList.eq(0).removeClass('activea');
+					silderList.eq(3).addClass('activea');
+					$(".content").eq(0).removeClass('active');
+					$(".content").eq(3).addClass('active');
+					$("#iframepage").height(635);
+					$("#iframepage").height($("#iframepage").height() + 260);
+				} else if(Request.needUrl == "personDetail") {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					$scope.frameSrc = Request.needUrl + '.html';
+					var silderList = $(".silder");
+					$('#maskDiv').hide();
+					$(".content").eq(0).children().eq(1).hide();
+					$(".content").eq(0).children().eq(0).show();
+					$(".content").eq(0).children().eq(0).hide();
+					$(".content").eq(0).children().eq(1).show();
+					silderList.eq(0).removeClass('activea');
+					silderList.eq(0).addClass('activea');
+					$(".content").eq(0).removeClass('active');
+					$(".content").eq(0).addClass('active');
+					$("#iframepage").height(635);
+					//				$("#iframepage").height($("#iframepage").height() + 260);
+				} else if(Request.needUrl == "comment_manage") {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					$scope.frameSrc = Request.needUrl + '.html';
+					var silderList = $(".silder");
+					$('#maskDiv').hide();
+					$(".content").eq(0).children().eq(1).hide();
+					$(".content").eq(0).children().eq(0).show();
+					$(".content").eq(5).children().eq(0).hide();
+					$(".content").eq(5).children().eq(1).show();
+					silderList.eq(0).removeClass('activea');
+					silderList.eq(5).addClass('activea');
+					$(".content").eq(0).removeClass('active');
+					$(".content").eq(5).addClass('active');
+					$("#iframepage").height(635);
+					$("#iframepage").height($("#iframepage").height() + 1960);
+				} else if(Request.needUrl == "netservice") {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					$scope.frameSrc = Request.needUrl + '.html';
+					var silderList = $(".silder");
+					$('#maskDiv').hide();
+					$(".content").eq(0).children().eq(1).hide();
+					$(".content").eq(0).children().eq(0).show();
+					$(".content").eq(8).children().eq(0).hide();
+					$(".content").eq(8).children().eq(1).show();
+					silderList.eq(0).removeClass('activea');
+					silderList.eq(8).addClass('activea');
+					$(".content").eq(0).removeClass('active');
+					$(".content").eq(8).addClass('active');
+					$("#iframepage").height(635);
+					$("#iframepage").height($("#iframepage").height() + 160);
+				}
+				//改变页面事件
+				$scope.changFrame = function(frame_src) {
+
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+
+					$scope.frameSrc = frame_src + '.html';
+					//				window.location.href=window.location.href+"?needUrl="+frame_src;
+					//				alert(window.location.href)
+					$window.open(CurrentIp + "/html/personCenter/sildebar.html?needUrl=" + frame_src, "_self");
+					//				parent.location.href(window.location.href);
+					/**
+					 * personDetail
+					 */
+					switch(frame_src) {
+						case 'bookmanage':
+							$("#iframepage").height(635);
+							$("#iframepage").height($("#iframepage").height() + 1960);
+							break;
+						case 'personDetail':
+							$("#iframepage").height(635);
+							$("#iframepage").height($("#iframepage").height() + 260);
+							break;
+						case 'mybookshelf':
+							$("#iframepage").height(635);
+							$("#iframepage").height($("#iframepage").height() + 530);
+							break;
+						case 'myfriend':
+							$("#iframepage").height(635);
+							$("#iframepage").height($("#iframepage").height() + 260);
+							break;
+						case 'mywallet':
+							$("#iframepage").height(635);
+							$("#iframepage").height($("#iframepage").height() + 330);
+							break;
+						case 'comment_manage':
+							$("#iframepage").height(635);
+							$("#iframepage").height($("#iframepage").height() + 4100);
+							break;
+						case 'netservice':
+							$("#iframepage").height(635);
+							$("#iframepage").height($("#iframepage").height() + 160);
+							break;
+						default:
+							$("#iframepage").height(635);
+							$("#iframepage").height($("#iframepage").height() + 300);
+							break;
+					}
+				}
+				$scope.changFrameTop = function(frame_src) {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					var silderList = $(".silder");
+					for(var i = 0; i < 8; i++) {
+						silderList.eq(i).removeClass('active');
+					}
+					silderList.eq(1).addClass('active');
+					$scope.frameSrc = frame_src + '.html';
+				}
+				$scope.changFrameTop1 = function(frame_src) {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					$window.open("../personCenter/sildebar.html?needUrl=" + frame_src, "_self");
+				}
+
+				$scope.signOut = function() {
+					localStorage.removeItem('userInfo')
+					setTimeout("window.location.href='../LoginRegister/login.html'", 10);
+				}
+
+				//页面跳转选择
+				$scope.returnToWin = function(url) {
+					if(!isLogin()) {
+						Toast("请先登陆", 1000);
+						setCookie("previousURL", location.href);
+						setTimeout("window.location.href='../LoginRegister/login.html'", 1000);
+						return;
+					}
+					if(isLogin()) {
+						window.open("../" + url + ".html")
+						return;
+					}
+				}
+
+			})
+
+			app.directive('imageonload', function() {
+				return {
+					restrict: 'A',
+					link: function(scope, element, attrs) {
+						element.bind('load', function() {
+							//call the function that was passed 
+							scope.$apply(attrs.imageonload);
+						});
+					}
+				};
+			})
+		</script>
+		<script>
+			$('.per_c_nav ul li').mouseenter(function() {
+				$(this).find('.mask').css({
+					left: '-130px'
+				});
+				$(this).find('.mask').animate({
+					left: '0px'
+				}, 300);
+				
+			});
+			$('.per_c_nav ul li').mouseleave(function() {
+				$(this).find('.mask').animate({
+					left: '130px'
+				}, 300);
+			});
+		</script>
+
+</html>

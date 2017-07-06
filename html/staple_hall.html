@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body ng-controller="bookDingController">
+		<div class="popub_body_mask" ng-show=" popubBodyMask"></div>
+		<div class="main_content_staple">
+			<div class="content_list clear">
+				<!--<div class="search_friend_a fl">
+					<span class="img_box_a"><a href=""><i class="iconfont search_f_btn">&#xe622;</i></a></span>
+					<input type="text" class="search_friend_content" placeholder="寻找小伙伴" />
+				</div>-->
+				<div class="classify_content fr">
+					<!--<div class="s_r_r_info_hall fl">
+						<span class="s_r_t_top" ng-click="complex_listshow = !complex_listshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+						<span ng-show="!complex_listshow" class="s_r_t_top_current" ng-init="complex_list_time='周榜'">{{complex_list_time}}</span>
+						<span class='s_r_t_top_list' ng-show="complex_listshow">
+							<span  ng-click="ComplexTimeClick('week',1)">周榜</span>
+							<span ng-click="ComplexTimeClick('month',2)">月榜</span>
+							<span ng-click="ComplexTimeClick('quarter',3)">季榜</span>
+						</span>
+					</div>-->
+					<span class="fl"><a href="" ng-class="{'selected_b':hot,'most_new':newMost}" ng-click="hotS()">最热门</a></span>
+					<span class="fl"><a href="" ng-class="{'selected_b':newMost,'most_new':hot}" ng-click="newMostS()">最新</a></span>
+				</div>
+			</div>
+			<div class="b_body">
+				<!--<span class="all_reward">周 月 季</span>-->
+				<!--<select name="book_classify" class="all_list_btn" ng-model="selectedBook" ng-options="x.id as x.time for x in bookList" ng-change="bookSelect(selectedBook)">
+				</select>-->
+
+				<div class="list_live" ng-repeat="l in listLive" runoob-directive="rrr()">
+					<div class="s_r_r_info_hall">
+						<span class="s_r_t_top" ng-click="l.complex_listshow = !l.complex_listshow"><span class="list_choice"><i class="iconfont">&#xe771;</i></span></span>
+						<span class="s_r_t_top_current" ng-init="l.complex_list_time='周榜'" ng-show="!l.complex_listshow">{{l.complex_list_time}}</span>
+						<span class='s_r_t_top_list' ng-show="l.complex_listshow">
+						<span  ng-click="ComplexTimeClick(l,1,$index)">周榜</span>
+						<span ng-click="ComplexTimeClick(l,2,$index)">月榜</span>
+						<span ng-click="ComplexTimeClick(l,3,$index)">季榜</span>
+						</span>
+					</div>
+					<!--四角背景-->
+					<div class="radius_bg">
+						<i class="iconfont left_top">&#xe610;</i>
+						<i class="iconfont right_top">&#xe60e;</i>
+						<i class="iconfont left_bottom">&#xe611;</i>
+						<i class="iconfont right_bottom">&#xe60f;</i>
+					</div>
+
+					<div class="list_live_content">
+						<div class="list_live_img_wrap">
+							<img style="width:135px;height: 175px;" ng-src="{{l.bookImageUrl}}" />
+							<div class="list_live_img_mask" ng-click="jump(l.bookId)">
+								<img class="live_writer_pic" ng-src="{{l.headUrl}}" />
+								<p class="live_writer_name"><i class="iconfont">&#xe606;</i>{{l.nickName}}</p>
+								<!--<p class="all_money">打书钉总:{{l.holderNum}}</p>-->
+								<!--<p class="rest_money">打书钉剩:{{l.nowStock}}%</p>-->
+								<!--<p class="mow_money">当前价值</p>
+								<p class="mow_money_num">{{l.sellUnit}}银图钉/1%</p>-->
+							</div>
+						</div>
+						<span class="book_price">{{(l.silverProfit/10).toFixed(2)}}金书钉</span>
+					</div>
+					<div class="list_live_content_right">
+						<div class="list_live_content_top_r">
+							<span class="book_name">{{l.bookName}}</span>
+							<span class="book_reward">当月红利收益：{{l.silverProfit}}银图钉</span>
+						</div>
+
+						<div class="list_live_content_bottom_r">
+							<canvas width="1000px" height="157px">
+						</div>
+
+						<!--<div class="buyBtnCss">
+							<input  type="button" id="buy_btn_a" ng-disabled="l.canBuy" ng-model="l.buyValue" value="{{l.buyValue}}" ng-click="buyStock(l)"/>
+						</div>-->
+					</div>
+				</div>
+				
+				<div class="buy_detail_box" ng-show="showBuyInfo">
+					<h6 class="heyue_title">《42文库打书钉安全协议》</h6>
+					<span class="close_btn_b" ng-click="cancelBuyStock()"><i class="iconfont">&#xe616;</i></span>
+					<div class="book_list_detail">
+						<div class="book_list_detail_d">
+						及1.甲方除应遵守乙方网站xx上的相关产品的说明和在线服务条款外，还应特别遵守并承诺如下内容：
+
+1.1甲方明确：从事互联网信息服务，拟利用乙方网络接入资源开展网络信息服务的，应当履行互联网信息服务备案手续，并取得许可。甲方应当在网络信息服务系统的显著位置刊载经营许可证编号或者备案编号、网络信息服务规则，并提示上网用户发布信息需要承担的法律责任。甲方还应当按照经批准或者备案的类别和栏目提供服务，不得超出类别或者另设栏目提供服务。
+
+1.2甲方网站须同时具备以下几个条件：（1）有确定的网络信息服务类别和栏目；（2）有完善的网络信息服务规则；（3）有网络信息服务安全保障措施；（4）有相应的专业管理人员和技术人员，能够对网络信息服务实施有效管理。
+
+1.3甲方必须遵守《计算机信息网络国际联网安全保护管理办法》《中华人民共和国计算机信息网络国际联网管理暂行规定》 《中华人民共和国计算机信息系统安全保护条例》《中华人民共和国电信条例》《全国人大常委会关于维护互联网安全的决定》、《互联网信息服务管理办法》、《互联网电子公告服务管理规定》、《互联网站从事登载新闻业务管理暂行规定》、《互联网等信息网络传播视听节目管理办法》、《互联网文化管理暂行规定》和国家其他有关法律、法规、行政规章，并不得制作、复制、发布、传播任何法律法规禁止的有害信息。特别的，甲方网站禁止发布含有下列任何内容的信息：（1）反对宪法所确定的基本原则的；（2）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；（3）损害国家荣誉和利益的；（4）煽动民族仇恨、民族歧视，破坏民族团结的；（5）破坏国家宗教政策，宣扬邪教和封恐怖或者教唆犯罪的；（8）侮辱或者诽谤他人，侵害他人合法权益的；（9）含有法律、行政法规禁止的
+					</div>
+						</div>
+					<p class="read_detail"><input type="checkbox" ng-model="isAgree" class="read_agree_btn"/>我已同意《42文库打书钉安全协议》</p>
+					<div class="buy_ding">
+						购买<input type="number"  id="staple_rank" placeholder="10~50" ng-model="buyPercent" ng-change="buyChF(buyPercent)" />%打书钉=<i class="iconfont" id="refresh_btn_a">&#x3437;</i><input type="number" id="staple_num" value=""  ng-model="transPrice" readonly="true"/>银图钉
+					</div>
+					<div class="buy_detail_bottom">
+						<input type="button" name="" id="ensure_buy_btn" ng-click="buySure(buyPercent)" value="确认购买" />
+						<input type="button" name="" id="cancle_a_btn" ng-click="cancelBuyStock()" value="取消" />
+					</div>
+				</div>
+				
+				
+			</div>
+			<!--返回到顶部-->
+			<back-to-top   class="back_to_top" >
+				<i class="iconfont _top_font">&#xe636;</i>
+			</back-to-top>
+			<!--分页-->
+			<div class="pages">
+				<tm-pagination conf="paginationConf"></tm-pagination>
+			</div>
+			
+		</div>
+	</body>
+</html>

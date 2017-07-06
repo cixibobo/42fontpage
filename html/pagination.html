@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		ul {
+			overflow: hidden;
+			width: 100%;
+		}
+		
+		.page-list {
+			height: 10px;
+			padding: 10px 0;
+			text-align: center;
+		}
+		
+		.page-list ul {
+			display: inline-block;
+		}
+		
+		.page-list .pagination li {
+			float: left;
+			list-style: none;
+			display: inline-block;
+			background-color: #FFFFFF;
+			border: 1px solid #99A2AA;
+			border-radius: 8px;
+			padding: 0px 12px;
+			color: #99A2AA;
+			height: 27px;
+			line-height: 29px;
+			margin-left: 10px;
+			cursor: pointer;
+		}
+		
+		.page-list .pagination li a {
+			text-decoration: none;
+		}
+		/*.page-list .pagination li:hover {
+	color: #F39800;
+	border:1px solid #F39800;
+}*/
+		
+		.page-list .pagination .page_hover {
+			color: #F39800;
+			border: 1px solid #F39800;
+		}
+		
+		.page-list .pagination .active {
+			background-color: #F39800;
+			border-color: #F39800;
+			color: #FFFFFF;
+		}
+		
+		.page-list .pagination {
+			cursor: pointer;
+		}
+		
+		.page-list .pagination .separate {
+			cursor: default;
+			border-top: none;
+			border-bottom: none;
+		}
+		
+		.page-list .pagination .separate li:hover {
+			/*background: none;*/
+			background-color: #FFFFFF;
+			border: 1px solid #F39800;
+			border-radius: 5px;
+			padding: 5px;
+			display: inline-block;
+			color: #F39800;
+		}
+		
+		.page-list .page-total input,
+		.page-list .page-total select {
+			height: 26px;
+			border: 1px solid #ddd;
+		}
+		
+		.page-list .page-total input {
+			width: 40px;
+			padding-left: 3px;
+		}
+		
+		.page-list .page-total select {
+			width: 50px;
+		}
+		
+		.prev,
+		.next {
+			height: 20px;
+		}
+	</style>
+
+	<body ng-controller="pagination_ctrl">
+		<div class="page-list">
+			<ul class="pagination" style="margin: 0px;">
+				<li ng-class="{true:'disabled'}[p_current==1]" ng-click="p_index()">
+					<a href="javascript:void(0);">首页</a>
+				</li>
+				<li ng-repeat="page in pages" ng-class="{true:'active'}[p_current==page]" ng-click="load_page(page)" ng-click="p_last()">
+					<a href="javascript:void(0);">{{ page }}</a>
+				</li>
+				<li ng-class="{true:'disabled'}[p_current==p_all_page]">
+					<a href="javascript:void(0);">尾页</a>
+				</li>
+				<li style="vertical-align: 12px;"> 共：{{count}} 条</li>
+			</ul>
+		</div>
+	</body>
+	<script src="//at.alicdn.com/t/font_ar0exrur5cr0y66r.js"></script>
+	<script type="text/javascript" src="../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../js/lib/Chart.js"></script>
+	<script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/lib/jquery.qqFace.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="../js/pagination.js"></script>
+
+</html>

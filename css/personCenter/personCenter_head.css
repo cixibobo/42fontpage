@@ -1,0 +1,540 @@
+body,
+html {
+	background: #F3F3F3;
+	width: 100%;
+	/*height: 100%;*/
+}
+
+.per_c_nav {
+	background: #fff;
+	width: 178px;
+	height: 100%;
+	border-right: 2px solid #aaa;
+	/*border-radius: 10px;*/
+	position: fixed;
+	left: 0px;
+}
+
+
+/**
+ * 用来解决angular CSS 渲染加载时间，ng-show,ng-hide,ng-cloak问题
+ */
+
+@charset "UTF-8";
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+	display: none !important;
+}
+
+ng\:form {
+	display: block;
+}
+
+.p_logo {
+	width: 150px;
+	height: 46px;
+	margin: 10px auto;
+}
+
+.center_logo {
+	font-size: 110px;
+	color: #333;
+	line-height: 40px;
+	margin-left: 5px;
+	text-align: center;
+	position: absolute;
+	top: -25px;
+}
+
+.p_logo a {
+	display: block;
+	width: 120px;
+	height: 40px;
+	border-width: 4px;
+	border-style: dashed;
+	border-color: rgb(215, 213, 213);
+	border-image: initial;
+	border-radius: 10px;
+	margin: 0 auto;
+}
+
+
+/*.per_c_nav ul {
+	width: 178px;
+	padding-top: 10px;
+}
+
+.per_c_nav ul li {
+	width: 130px;
+	height: 30px;
+	margin: 0 auto;
+	line-height: 30px;
+	margin-bottom: 10px;
+	margin-left: 30px;
+	position: relative;
+}*/
+
+
+/*以下新改*/
+
+
+/*.per_c_nav ul li .back_move{
+	width: 0px;
+	height: 30px;
+	background:#f39800;
+	transition:width 0.5s;
+	-moz-transition:width 0.5s; 
+	-webkit-transition:width 0.5s; 
+	-o-transition:width 0.5s; 
+}
+
+.per_c_nav ul li .back_move:hover{
+	width:130px;
+	
+	transition:width 0.5s;
+	-moz-transition:width 0.5s; 
+	-webkit-transition:width 0.5s; 
+	-o-transition:width 0.5s; 
+}
+
+.per_c_nav ul li .back_move2{
+	float:left;
+	width: 110px;
+	height: 30px;
+}
+
+.per_c_nav ul li i {
+	color: #F39800;
+	position: absolute;
+	left: 0;
+	top: 1px;
+	font-size: 24px;
+}
+
+.per_c_nav ul li a {
+	color: #000;
+	margin-left: 30px;
+}
+.per_c_nav ul li a:hover {
+	color: white;
+	margin-left: 30px;
+}
+
+.per_c_nav ul li {}*/
+
+.per_c_nav ul li .active {
+	width: 130px;
+	height: 30px;
+	border: 1px solid #fff;
+	overflow: hidden;
+	background-color: #f39800;
+}
+
+.per_c_nav ul li .activea {
+	width: 130px;
+	height: 30px;
+	background-color: #f39800;
+	color: #FFFFFF;
+}
+
+.per_c_nav ul li {
+	width: 130px;
+	height: 30px;
+	border-radius: 20px;
+	margin: 0 auto;
+	color: white;
+	
+	line-height: 30px;
+	margin-bottom: 10px;
+	/*margin-left: 30px;*/
+	position: relative;
+	overflow: hidden;
+}
+
+.per_c_nav ul li .mask {
+	width: 130px;
+	height: 30px;
+	/*border-radius: 20px;*/
+	color: white;
+	overflow: hidden;
+	position: absolute;
+	background: #f39800;
+	left: -130px;
+	top: 0;
+	z-index: -1;
+}
+
+.per_c_nav ul li .content {
+	width: 130px;
+	height: 30px;
+	border: 1px solid #fff;
+	overflow: hidden;
+}
+
+.per_c_nav ul li {
+	position: relative;
+}
+
+.per_c_nav ul .iconf_default {
+	color: #F39800;
+	position: absolute;
+	left: 12;
+	top: 1px;
+	font-size: 24px;
+}
+
+.per_c_nav ul .iconf_hover {
+	color: #FFFFFF;
+	display: none;
+	position: absolute;
+	left: 12;
+	top: 1px;
+	font-size: 24px;
+}
+
+.per_c_nav ul li a {
+	color: #000;
+	margin-left: 40px;
+}
+
+/*.per_c_nav ul li a:hover {
+	color: white;
+}*/
+
+/*.per_c_nav ul li:hover {
+	color: white;
+}*/
+
+
+/*以上新改*/
+
+iframe {
+	position: absolute;
+	left: 50%;
+	margin-left: -410px;
+	padding-top: 20px;
+}
+
+
+/* end 左侧导航*/
+
+.top_head {
+	position: fixed;
+	top:0px;
+	z-index: 999;
+	margin: 0px;
+	width: 100%;
+	height: 50px;
+	background-image: url(../../img/nav.png);
+}
+
+.top_head .top_nav {
+	position: relative;
+	background-color: #ffffff;
+	opacity: 0.8;
+	height: 50px;
+	background-image: url(../../img/nav.png);
+}
+
+.homeName {
+	font-size: 20px;
+	color: #000;
+}
+
+.slider_left {
+	position: absolute;
+	top: 0px;
+	float: left;
+	margin-left: 20px;
+}
+
+.top_head .slider_left li {
+	color: #000000;
+	display: inline-block;
+	height: 100%;
+	width: 100px;
+	height: 50px;
+	z-index: 10;
+	line-height: 50px;
+	text-align: center;
+	font-size: 15px;
+	font-family: SimHei;
+	cursor: pointer;
+	/*    margin-top: -18px;*/
+}
+
+.top_head .slider_left li a {
+	color: #000000;
+	cursor: pointer;
+	font-size: 15px;
+	font-family: SimHei;
+}
+
+.center_nav_logo {
+	position: relative;
+	font-size: 36px;
+	top: 5px;
+}
+
+.top_head .top_nav .top_nav_content {
+	box-shadow: 1px 2px 1px #BBb;
+	position: relative;
+}
+
+.top_head .top_nav .top_nav_content ul li {
+	cursor: pointer;
+}
+
+.top_head .top_nav .top_nav_content .head_logo {
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.top_head .top_nav .top_nav_content .user_head_pic {
+	position: absolute;
+	right: 40px;
+	top: 5px;
+	z-index: 990;
+}
+.top_head .top_nav .top_nav_content .user_head_pic .my_pic {
+	width: 35px;
+	height: 35px;
+	zoom: normal;
+	
+	border-radius: 50%;
+/*	margin-top: 8px;*/
+	z-index: 990;
+	cursor: pointer;
+	position: relative;
+	transition: transform 0.8s;
+	transform-origin:top  center;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+}
+.top_head .top_nav .top_nav_content .user_head_pic .my_pic:hover{
+	transform: scale(2);
+	/*z-index: 999;
+	position: relative;*/
+}
+.top_head .slider_right {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.top_head ul li {
+	list-style: none;
+	float: left;
+}
+.nav_tag{
+	margin-right: 0px !important;
+    display: inline-block;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    }
+    
+ .list_btn-pos{
+  	left: 4px !important;
+  }
+ .nav_tag .nav_title{
+	color: #000000;
+	display: inline-block;
+	height: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-size: 15px;
+	font-family: SimHei;
+	/*    margin-top: -18px;*/
+}
+.slider_left li:hover{
+	background-color: #FAAE30;
+	color: #FFFFFF;
+	border-bottom-left-radius: 5px !important;
+	border-bottom-right-radius: 5px !important;
+}
+.slider_left li:hover a{
+	color: #FFFFFF;	
+}
+.top_head ul  .nav_tag:hover {
+	background-color: #FAAE30;
+	color: #FFFFFF;
+	border-bottom-left-radius: 5px !important;
+	border-bottom-right-radius: 5px !important;
+}
+.top_head ul  .nav_tag:hover  .nav_title{
+	color: #ffffff;
+}
+
+.top_active {
+	height: 52px;
+	background-color: #FAAE30;
+	border-bottom-left-radius: 5px !important;
+	border-bottom-right-radius: 5px !important;
+}
+
+.top_active a {
+	color: #FFFFFF !important;
+}
+
+.top_nav_logo {
+	position: absolute;
+	width: 168px;
+	height: 40px;
+	padding-left: 40px;
+	padding-top: 10px;
+	/*-webkit-box-shadow:0 0 5px rgba(0, 0, 0, .3);  
+ 	 -moz-box-shadow:0 0 5px rgba(0, 0, 0, .3);  
+ 	 box-shadow:0 0 5px rgba(0, 0, 0, .3);*/
+}
+
+.logo {
+	position: absolute;
+	font-size: 180px;
+	overflow: hidden;
+	top: -63px;
+	left: -12px;
+}
+
+
+/*收索框*/
+
+.search_area {
+	width: 100%;
+	margin: auto auto;
+	text-align: center;
+	height: 50px;
+	position: relative;
+	top: 10px;
+}
+
+.search {
+	position: relative;
+	z-index: 2;
+	width: 280px;
+	margin: 0px auto;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+	box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+}
+
+.search_btn {
+	position: absolute;
+	right: 15px;
+	top: 4px;
+	z-index: 10;
+	color: #fff;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.search input {
+	width: 280px;
+	margin: 0 auto;
+	height: 32px;
+	font-size: 12px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	text-indent: 1em;
+}
+
+.book_name {
+	width: 46px;
+	text-align: center;
+	height: 32px;
+	line-height: 30px;
+	background: rgba(255, 153, 0, 0.8);
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.book_name span {
+	color: #FFFFFF;
+	font-size: 12px;
+}
+
+.search_mask {
+	width: 46px;
+	height: 32px;
+	background: rgba(255, 153, 0, 0.8);
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+
+.select_choice {
+	width: 66px;
+	height: 34px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	background: rgba(255, 153, 0, 0.5);
+	border: none;
+	color: #FFFFFF;
+	text-indent: 3px;
+}
+
+.select_choice span {
+	font-size: 12px;
+	line-height: 34px;
+	padding: 0 5px;
+}
+
+.select_choice_btn {
+	position: absolute;
+	top: 10px;
+	left: 50px;
+	cursor: pointer;
+	color: #FFFFFF;
+}
+/*
+ * 顶部，导读部分与前面导航不同出
+ */
+.slider-person{
+	position: absolute;
+	left: -126px !important;
+}
+.silder-message-info{
+	position: absolute;
+	left: -45px !important;
+}
+.silder-dynamic-info{
+	position: absolute;
+	left: -64px !important;
+}
+.silder-collect-info{
+	position: absolute;
+	left: -44px !important;
+}
+.silder-search-info{
+	position: absolute;
+	left: -44px !important;
+}

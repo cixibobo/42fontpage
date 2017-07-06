@@ -1,0 +1,298 @@
+body {
+	padding: 0px;
+	margin: 0;
+	font-family: "黑体";
+	background-color: #F3F3F3;
+	height: 100%;
+}
+
+
+/**
+ * 用来解决angular CSS 渲染加载时间，ng-show,ng-hide,ng-cloak问题
+ */
+
+@charset "UTF-8";
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+	display: none !important;
+}
+
+ng\:form {
+	display: block;
+}
+
+html {
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+li {
+	list-style: none;
+}
+
+.top_head {
+	margin: 0px;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+.top_head .top_nav {
+	background-color: #ffffff;
+	opacity: 0.8;
+	height: 50px;
+}
+
+.top_head .top_nav .top_nav_content {
+	width: 1200px;
+	margin-left: 50%;
+	left: -600px;
+	position: relative;
+}
+
+.top_head .top_nav .top_nav_content .head_logo {
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.top_head .top_nav .top_nav_content .user_head_pic {
+	position: absolute;
+	right: 310px;
+	top: 5px;
+}
+
+.top_head .top_nav .top_nav_content .user_head_pic img {
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+}
+
+.top_head ul {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.top_head ul li {
+	list-style: none;
+	float: left;
+}
+
+.top_head ul li a {
+	color: #000000;
+	display: inline-block;
+	height: 100%;
+	width: 60px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-size: 14px;
+	margin-top: -18px;
+}
+
+.top_head ul li a:hover {
+	background-color: #FAAE30;
+	color: #FFFFFF;
+	border-radius: 5px;
+}
+
+.main_content {
+	width: 1100px;
+	height: 100%;
+	margin-left: 50%;
+	left: -600px;
+	position: relative;
+}
+
+.main_content .content_list_side {
+	width: 180px;
+	float: left;
+	position: fixed;
+	top: 70px;
+}
+
+.main_content .content_list_side .content_side_top {
+	height: 60px;
+	border: 2px solid #D7D5D5;
+	border-radius: 12px;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+.main_content .content_list_side .content_side_top a {
+	display: inline-block;
+	width: 85%;
+	height: 44px;
+	line-height: 47px;
+	border: 4px dashed #D7D5D5;
+	border-radius: 10px;
+	margin-top: 5px;
+	font-size: 25px;
+	font-family: "方正大黑简体";
+}
+
+.main_content .content_list_side .content_side_bottom {
+	height: 300px;
+	border: 2px solid #D7D5D5;
+	border-radius: 12px;
+	margin-top: 20px;
+	background-color: #FFFFFF;
+}
+
+.main_content .content_list_side .content_side_bottom li {
+	width: 100px;
+	height: 52px;
+	line-height: 52px;
+	color: #BCB8B8;
+}
+
+.main_content .content_list_side .content_side_bottom .border_b {
+	border-top: 4px dashed #D7D5D5;
+	border-bottom: 4px dashed #D7D5D5;
+}
+
+.main_content .content_list_side .content_side_bottom .disc_size {
+	color: #BCB8B8;
+	font-size: 12px;
+	margin-right: 5px;
+}
+
+.main_content .content_list_side .content_side_bottom li a {
+	display: inline-block;
+	font-size: 18px;
+	height: 30px;
+	line-height: 30px;
+	width: 120px;
+}
+
+.main_content .content_list_side .content_side_bottom li a:hover {
+	border: 4px solid #F39800;
+	border-radius: 14px;
+	margin-left: -20px;
+	padding-left: 16px;
+}
+
+.main_content .content_list_side .content_side_bottom .selected_page {
+	border: 4px solid #F39800;
+	border-radius: 14px;
+	margin-left: -20px;
+	padding-left: 16px;
+}
+
+.main_content .connect_person_list {
+	width: 220px;
+	height: 710px;
+	margin-left: 100px;
+	background-color: #FFFFFF;
+	border: 2px solid #D7D5D5;
+	border-radius: 12px;
+	float: left;
+}
+
+.main_content .connect_person_list .connect_person_list_head {
+	height: 20px;
+	text-align: center;
+	color: #FFFFFF;
+	background-color: #F39800;
+	border-radius: 12px 12px 0 0;
+}
+
+.main_content .connect_person_list .each_connect_list {
+	height: 96%;
+	background-color: #FFFFFF;
+	padding: 4px 10px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border-radius: 0 0 12px 12px;
+}
+
+::-webkit-scrollbar {
+	width: 3px;
+	height: 15px;
+	background-color: #F0F0F0;
+}
+
+.main_content .connect_person_list .each_connect_detail {
+	height: 60px;
+	background-color: #FFFFFF;
+	border-bottom: 2px solid #D7D5D5;
+}
+
+.main_content .connect_person_list .each_connect_detail .heading_a {
+	display: inline-block;
+	width: 50px;
+	height: 60px;
+}
+
+.main_content .connect_person_list .each_connect_detail .heading_a img {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+}
+
+.main_content .connect_person_list .each_connect_detail .friend_message {
+	display: inline-block;
+	height: 60px;
+}
+
+.main_content .connect_person_list .each_connect_detail .friend_message p {
+	color: #BCB8B8;
+	/*overflow: hidden;*/
+}
+
+.main_content .content_list {
+	margin-left: 350px;
+}
+
+.main_content .comments_list_head {
+	height: 45px;
+	line-height: 45px;
+	font-size: 25px;
+	border: 2px solid #D7D5D5;
+	border-radius: 12px;
+	margin-bottom: 15px;
+	background-color: #FFFFFF;
+	text-align: center;
+}
+
+.main_content .each_message_box {
+	height: 645px;
+	border: 2px solid #D7D5D5;
+	border-radius: 12px;
+	margin-bottom: 15px;
+	background-color: #FFFFFF;
+}
+
+.main_content .write_message_box {
+	height: 120px;
+	border: 2px solid #F39800;
+	border-radius: 12px;
+	margin-bottom: 15px;
+	background-color: #FFFFFF;
+}
+
+
+/**
+ * 设置消息 
+ */
+
+.myInfo {
+    position: absolute;
+    left: 285px;
+    background-color: #FF9900;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    border: #FF9900;
+    border-radius: 30px;
+    color: white;
+}

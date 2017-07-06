@@ -1,0 +1,53 @@
+  
+  
+           #sliderBar ul, li { list-style: none; }
+            #sliderBar img { display: block; border: none; }
+          #sliderBar  .wrap {
+                width:497px;
+                height: 224px;
+                /*border: 1px solid red;*/
+               
+                position: relative;
+                overflow: hidden;
+            }
+            #sliderBar .slidebox {
+                position: absolute;
+                /*width: 3600px;*/
+                height: 224px;
+                top: 0;
+                left: 0;
+            }
+            #sliderBar .slide-item { float: left; }
+            #sliderBar .slide-num {
+                /*text-align: center;*/
+                /*width: 100%;*/
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 15px;
+            }
+             #sliderBar .slide-num span {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                border: 1px solid #FF9900;
+                cursor: pointer;
+                margin: 0 5px;
+            }
+            #sliderBar .active { background-color: #FF9900 }
+            #sliderBar  .arrow {
+                position: absolute;
+                text-decoration: none;
+                top: 50%;
+                transform: translateY(-50%);
+               /* padding: 30px 20px;*/
+                font-size: 40px;
+                /*background-color: rgba(0, 0, 0, 0.5);*/
+                color: #ffffff;
+                font-weight: bold;
+                display: none;
+            }
+         #sliderBar .wrap:hover .arrow { display: block; }
+            #sliderBar .arrow:hover { color: #FF9900; }
+            #sliderBar .arrow-next { right: 0; }

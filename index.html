@@ -1,0 +1,306 @@
+b<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8" />
+		<title>42文库</title>
+		<meta name="keywords" content="42文库,42文库官网">
+		<meta name="description" content="42文库是国内新兴的小说内容平台，我们致力收录更好更多的小说作品。为作者提供更好的创作环境，是我们一直努力的目标。">
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/home_page.css" />
+		<link rel="stylesheet" type="text/css" href="css/footer.css">
+		<link rel="stylesheet" type="text/css" href="css/classification.css">
+		<link rel="stylesheet" type="text/css" href="css/staple_hall.css" />
+		<link rel="stylesheet" type="text/css" href="css/association.css" />
+		<link rel="stylesheet" type="text/css" href="css/post_detail.css" />
+		<link rel="stylesheet" type="text/css" href="css/popup.css" />
+		<link rel="stylesheet" type="text/css" href="css/tab_page.css" />
+		<link rel="stylesheet" type="text/css" href="css/lib/slider.css">
+		<link rel="stylesheet" type="text/css" href="umeditor/themes/default/_css/umeditor.css" />
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?6c2ed55eff0d39976bb31777a6bc45ec";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+	</head>
+
+	<body>
+		<header ng-controller="header" ng-cloak>
+			<div class="banner" ng-style='backgroudImg'>
+				<!--<a href="http://webscan.360.cn/index/checkwebsite/url/www.manguo42.com" name="cfa0819e56ee7ae411854d8a792e44b8" >360网站安全检测平台</a>-->
+				<div class="nav_bg">
+					<img src="./img/nav.png" class="nav_bg_img" />
+					<div class="wrap_1200">
+						<nav>
+							<div class="logo fl">
+								<a href="index.html">
+									<svg class="icon logo" aria-hidden="true">
+										<use xlink:href="#icon-logo"></use>
+									</svg>
+								</a>
+							</div>
+							<div class="person_nav fr">
+								<ul class="nav_wrap">
+									<li class="person nav_tag" ng-show="person_info">
+										<div class="nav_title">
+											<a href="./html/personCenter/sildebar.html" class="nav_title" target="_blank">
+												<img ng-src="{{personCenter.headUrl}}" class="my_pic" />
+											</a>
+											<!--个人信息弹窗-->
+											<div class="person_info">
+												<p class="my_name">
+													<a>{{personCenter.nickName}}</a>
+												</p>
+												<div class="short_info">
+													<p>{{personCenter.signature}}</p>
+												</div>
+												<ul class="my_lib" ng-init="tenPer=100">
+													<li class="my_money clear">
+														<a href="./html/personCenter/sildebar.html?needUrl=mywallet" target="_blank" class="fl money_num" style="width:100px;"><i class="iconfont">&#xe625;</i>{{personCenter.silverThumbTack}}银图钉</a>
+														<div class="fr contact">
+															<a class="phone" href="./html/personCenter/sildebar.html" target="_blank"><i class="iconfont">&#xe629;</i></a>
+															<a class="email" href="./html/personCenter/sildebar.html" target="_blank"><i class="iconfont">&#xe627;</i></a>
+														</div>
+													</li>
+													<li class="my_books clear">
+														<a href="./html/personCenter/sildebar.html?needUrl=bookmanage" target="_blank" class="fl"><i class="iconfont">&#xe626;</i>{{personCenter.bookNum}}本书</a>
+														<a href="./html/personCenter/sildebar.html?needUrl=myfriend" target="_blank" class="fr" style="padding-top: 3px;">{{personCenter.followNum}}粉丝</a>
+													</li>
+													<li class="my_bag">
+														<a class="fl" href="./html/personCenter/sildebar.html" target="_blank"><i class="iconfont">&#xe77b;</i>我的账户</a>
+														<a class="fr" href="./html/personCenter/sildebar.html?needUrl=mywallet" target="_blank"><i class="iconfont">&#xe625;</i>我的钱包</a>
+													</li>
+												</ul>
+												<div class="person_more" ng-click="signOut()">
+													<a href="" class="nav_title_signout">退出</a>
+												</div>
+											</div>
+										</div>
+									</li>
+									<span ng-show="loginShow">
+										<li class="nav_tag">
+											<a class="nav_title" ng-click="returnToWin('LoginRegister/login.html')" href="">登陆</a>
+										</li>
+										<li class="nav_tag">
+											<a class="nav_title" href="./html/LoginRegister/register.html">注册</a>
+										</li>
+									</span>
+									<span ng-show="!loginShow">
+										<li class="nav_tag" ng-mouseleave="messageListShow=false" ng-mouseover="messageListShow=true">
+											<span class="list_btn list_btn-pos" ng-show="message_zero">
+												<span class="list-btn-number">{{message_total}}</span>
+									</span>
+									<a class="nav_title " ng-click="returnToWin('messageCenter/center')" href="">消息</a>
+									<!--消息信息弹窗-->
+									<div class="message_info" ng-show="messageListShow">
+										<p class="message_p" ng-click="returnToWin('messageCenter/reply')">
+											<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[0]}}</span>
+											</span>
+											<span class="main_span">回复我的</span>
+											</span>
+										</p>
+										<p class="message_p" ng-click="returnToWin('messageCenter/center')">
+											<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[1]}}</span>
+											</span>
+											<span class="main_span">@我的</span>
+											</span>
+										</p>
+										<p class="message_p" ng-click="returnToWin('messageCenter/getpraise')">
+											<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[2]}}</span>
+											</span>
+											<span class="main_span">收到的赞</span>
+											</span>
+										</p>
+										<p class="message_p" ng-click="returnToWin('messageCenter/system')">
+											<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[3]}}</span>
+											</span>
+											<span class="main_span">系统通知</span>
+											</span>
+										</p>
+										<p class="message_p" ng-click="returnToWin('messageCenter/personal')">
+											<span class="message_re-b">
+														<span class="m-r-num">
+														<span>{{message[4]}}</span>
+											</span>
+											<span class="main_span">我的私信</span>
+											</span>
+										</p>
+										<div class="message-person_more" ng-click="returnToWin('messageCenter/center')">
+											<a href="" class="message-nav_title_signout">查看详情</a>
+										</div>
+									</div>
+									</li>
+									<li class="nav_tag" ng-mouseleave="dynamicListShow=false">
+										<a class="nav_title" href="#" ng-mouseover="searchDynamic()">动态</a>
+										<!--动态信息弹窗-->
+										<div class="dynamic_info" ng-show="dynamicListShow">
+											<p class="dynamic_p" ng-repeat="dymessage in dyMessage">
+												<span class="dy-img">
+														<a ng-href="html/book.html?book_id={{dymessage.bookId}}" target="_blank"><img ng-src="{{dymessage.imageUrl}}" /></a>
+													</span>
+												<span class="dy-content">
+													<span class="dy-r-num"></span>
+													<a style="color: #000000;" ng-href="html/book.html?book_id={{dymessage.bookId}}" target="_blank"><span class="dy-content1">{{dymessage.bookName}}  </span></a>
+													<span style="display: inline-block;margin-left: 9px; width: 55px; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">{{dymessage.chapterName}}</span>
+													<span style="    display: inline-block;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">更新啦</span>
+												</span>
+											</p>
+											<div class="dynamic-person_more">
+												<a href="" ng-show="moreDongtai1" class="dynamic-nav_title_signout">查看更多</a>
+												<a href="" ng-show="moreDongtai2" class="dynamic-nav_title_signout">暂无动态</a>
+												<a href="" ng-show="moreDongtai3" class="dynamic-nav_title_signout">没有更多了</a>
+											</div>
+										</div>
+									</li>
+									<li class="nav_tag" ng-mouseleave="collectListShow=false" ng-click="returnToWin1('personCenter/sildebar.html?needUrl=mybookshelf')">
+										<a class="nav_title" href="#" ng-mouseover="searchCollection()">收藏</a>
+										<!--收藏信息弹窗-->
+										<div class="message_info" ng-show="collectListShow">
+											<div class="message_p" ng-repeat="collectlist in collectMesList">
+												<div class="col_re-b point">
+													<div class="col-main ">
+														<span class="col-r-num">
+															</span>
+														<span class="col-book-name">
+																{{collectlist.bookName}}
+															</span>
+													</div>
+													<div class="col-main" style="margin-left: 12px;">{{collectlist.nickName}}</div>
+												</div>
+											</div>
+											<div class="message-person_more" ng-click="returnToWin1('personCenter/sildebar.html?needUrl=mybookshelf')">
+												<a href="" class="message-nav_title_signout">查看更多</a>
+											</div>
+										</div>
+									</li>
+									<li class="nav_tag point" ng-mouseleave="historyListShow=false">
+										<a class="nav_title" href="#" ng-mouseover="searchHistory()">历史</a>
+										<!-- 历史信息弹窗-->
+										<div class="message_info" ng-show="historyListShow">
+											<div class="message_p" ng-repeat="historylist in historyList">
+												<div class="col_re-b">
+													<div class="col-main">
+														<span class="col-r-num">
+															</span>
+														<a style="color: #000000;" ng-href="html/book.html?book_id={{historylist.bookId}}" target="_blank"><span class="col-book-name">
+																{{historylist.bookName}}
+														</span></a>
+
+													</div>
+													<div class="col-main" style="margin-left: 12px;"><a style="color: #000000;" ng-href="html/read.html?chapterId={{historylist.chapterId}}&book_id={{historylist.bookId}}&isHistory=1" target="_blank">{{historylist.chapterName}}</a></div>
+												</div>
+											</div>
+											<div class="message-person_more">
+												<a href="" class="message-nav_title_signout">查看更多</a>
+											</div>
+										</div>
+									</li>
+									</span>
+									<li class="submission nav_tag_end point" ng-click="returnToWin('personCenter/sildebar')">
+										<a class="nav_title" href="">投稿</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+						<div class="search">
+							<form action="" method="post">
+								<input type="text" name="" id="search" placeholder="请输入书名、作者名" ng-model="searchContent" />
+								<i class="iconfont search_btn" ng-click="searchClass()">&#xe622;</i>
+								<div class="search_mask"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div>
+			<div class="content">
+				<div class="con_nav" id="con_nav">
+					<div class="wrap_1200">
+						<ul>
+							<li class="nav_bar">
+								<div class="nav_name active">
+									<a href="#/">主页</a>
+									<span></span>
+								</div>
+							</li>
+							<li class="nav_bar">
+								<div class="nav_name">
+									<a href="#/classify">分类</a>
+									<span></span>
+								</div>
+							</li>
+							<li class="nav_bar">
+								<div class="nav_name">
+									<a href="#/stapleHall">打书钉大厅</a>
+									<span></span>
+								</div>
+							</li>
+							<li class="nav_bar">
+								<div class="nav_name">
+									<a href="#/association">同好会</a>
+									<span></span>
+								</div>
+							</li>
+							<li onclick="zh_tran('t')" id="complexFont"><span style="font-size: 16px;margin-left: 425px;" class="point">繁</span></li>
+							<li onclick="zh_tran('s')" id="simpStyle" ><span style="font-size: 16px;margin-left: 425px;" class="point">简</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-view=""></div>
+		<div ng-controller="footerControll" ng-include="'./html/footer.html'" onload="footerShow()" style="margin-top: 30px;"></div>
+	</body>
+	<script src="https://g.alicdn.com/aliww/??h5.imsdk/2.1.5/scripts/yw/wsdk.js,h5.openim.kit/0.4.0/scripts/kit.js" charset="utf-8"></script>
+	<script src="//at.alicdn.com/t/font_u0ponn94eg17cik9.js"></script>
+	<script type="text/javascript" src="js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="js/lib/angular-route.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-form.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/homePage.js"></script>
+	<script type="text/javascript" src="js/classification.js"></script>
+	<script type="text/javascript" src="js/association.js"></script>
+	<script type="text/javascript" src="js/postDetail.js"></script>
+	<!--<script type="text/javascript" src="js/init.js"></script>-->
+	<script type="text/javascript" src="js/lib/Chart.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.qqFace.js"></script>
+	<script type="text/javascript" src="js/lib/tm.pagination.js"></script>
+	<script type="text/javascript" src="js/lib/language.js"></script>
+	<script type="text/javascript" src="js/stapleHall.js"></script>
+	<script type="text/javascript" src="js/lib/slide.js"></script>
+	<script type="text/javascript" src="umeditor/umeditor.config.js"></script>
+	<script type="text/javascript" src="html/editor_api_home.js"></script>
+	<script type="text/javascript" src="umeditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="true"></script>
+	<script type="text/javascript">
+		QC.Login.getMe(function(openId, accessToken){	
+			console.log(accessToken)
+		})
+//			var Request = new Object();
+//			Request = GetRequest();
+//			console.log(Request)
+//			alert(JSON.stringify(Request));
+//		if(Request){
+//			if(Request.code){
+//				var code = Request.code;
+//				alert(code)
+//				console.log(code);
+//			}
+//		}
+	</script>
+	
+</html>

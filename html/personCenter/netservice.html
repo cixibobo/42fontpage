@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="netServiceApp">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/userservice.css"/>
+		<!--<link rel="stylesheet" href="../../css/reset.css" />-->
+	</head>
+	<script src="https://g.alicdn.com/aliww/??h5.imsdk/2.1.5/scripts/yw/wsdk.js,h5.openim.kit/0.4.0/scripts/kit.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../js/lib/angular.min.js" ></script>
+	
+	<body ng-controller="netServiceC" ng-cloak>
+		<!--<div class="top_head">
+			<div class="top_nav">
+				<div class="top_nav_content">
+					<img src="../../img/messageCenter/logo-name.png" class="head_logo"/>
+					<span class="user_head_pic"><img src="../../img/messageCenter/user-pic.png"/></span>
+					<ul>
+						<li><a href="">消息</a></li>
+						<li><a href="">动态</a></li>
+						<li><a href="">收藏</a></li>
+						<li><a href="">历史</a></li>
+						<li><a href="">投稿</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>-->
+		<div class="main_content">
+			<div class="connect_person_list">
+				<div class="connect_person_list_head">
+					最近联系人
+				</div>
+				<div class="each_connect_list" >
+					<div class="each_connect_detail" ng-repeat="firend in firendList" ng-click="changeUid(firend)">
+						<div class="heading_a"><img ng-src="{{firend.headUrl}}"/></div>
+						<div class="friend_message">
+							<a href="" title="{{firend.nickName}}"><span class="friend_name_a"  style=" text-overflow: ellipsis;overflow: hidden;display: block;white-space: nowrap;width: 100px;">{{firend.nickName}} &nbsp;&nbsp;<span ng-show="firend.noreadshow" class="myInfo">{{firend.noRead}}</span></span></a>
+							<p style=" text-overflow: ellipsis; display: block;white-space: nowrap; width: 100px;">{{firend.lastMsg}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content_list">
+				<div class="comments_list_head">
+					{{userNick}}
+				</div>
+				<div class="each_message_box" id="Im">
+				</div>
+
+			</div>
+		</div>
+	</body>
+		<script type="text/javascript" src="../../js/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../js/common.js" ></script>
+	<script type="text/javascript" src="../../js/personCenter/net-service.js" ></script>
+
+</html>

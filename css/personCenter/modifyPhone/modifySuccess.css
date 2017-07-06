@@ -1,0 +1,146 @@
+body {
+	background: #F3F3F3;
+}
+
+.modifyPhone {
+	width: 1200px;
+	height: 314px;
+	/*设计图给的top太高*/
+	/*margin-top: 50px;*/
+	margin-top: 200px;
+	margin-bottom: 150px;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	padding-top: 36px;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 60px rgba(0, 0, 0, 0.06) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset; 
+}
+
+
+/*背景*/
+
+.left_top,
+.left_bottom,
+.right_bottom,
+.right_top {
+	color: #f8c673;
+	position: absolute;
+	font-size: 30px;
+}
+
+.left_top {
+	left: 10px;
+	top: 10px;
+}
+
+.left_bottom {
+	left: 10px;
+	bottom: 10px;
+}
+
+.right_bottom {
+	right: 10px;
+	bottom: 10px;
+}
+
+.right_top {
+	right: 10px;
+	top: 10px;
+}
+
+.modifyPhone_bg {
+	width: 1076px;
+	height: 20px;
+	border-top: 2px solid #cac9c9;
+	margin: 0 auto;
+}
+
+.modifyPhone_title {
+	width: 188px;
+	height: 40px;
+	background: #fff;
+	text-align: center;
+	line-height: 40px;
+	font-weight: bold;
+	font-size: 30px;
+	margin-left: -94px;
+	position: absolute;
+	left: 50%;
+	top: 16px;
+}
+
+.modifyPhone_info ul {
+	width: 478px;
+	margin: 40px auto 0;
+	position: relative;
+}
+
+.new_phone_bg {
+	width: 100%;
+	border-radius: 10px;
+	background: #e6dfdf;
+}
+
+.now_phone {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	color: #757171;
+	font-size: 18px;
+}
+
+.now_phone_b {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	color: #757171;
+	font-size: 18px;
+	font-size: 22px;
+}
+
+.modifyPhone_info ul li {
+	margin-bottom: 8px;
+	width: 478px;
+}
+
+.modifyPhone_info ul li .nor_text {
+	height: 48px;
+	border-radius: 10px;
+	font-size: 18px;
+}
+
+.modifyPhone_info ul li .text {
+	/*width: 466px;*/
+	padding-left: 10px;
+	color: #666;
+	border: 1px solid #c0c0c0;
+}
+
+.nickName {
+	width: 340px;
+}
+
+.modifyPhone_btn {
+	width: 230px;
+	background: #F39800;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+	position: absolute;
+	left: 50%;
+	margin-left: -115px;
+	margin-top: 10px;
+	line-height: 48px;
+}
+
+
+/*设置[[placeholder样式]]*/
+
+::-webkit-input-placeholder {
+	color: #e0e0e0;
+	font-weight: 200;
+}

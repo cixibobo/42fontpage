@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div class="wrap_1200 clear main_content_asso" ng-app="" ng-controller="associationController" style="margin-top: 10px;">
+			<!--左侧主要信息-->
+			<div class="main_con_l fl">
+
+				<div class="">
+					<p class="dis_title clear" id="disTitle">
+						<a class="hot_post fl active" href="" ng-click="posterListHot('html')">最热门</a>
+						<a class="new_post fl" href="" ng-click="posterListNew('html')">最新</a>
+						<a class="hot_post fl" href="" ng-click="fineList('html')">精品帖</a>
+						<a class="rele_post fr" href="" ng-click="anchorScroll()">发帖</a>
+						<span class="search_bar">
+							<input placeholder="请输入帖子标题" ng-model="serachBarContent"/>
+							<i class="iconfont" ng-click="serachContent()">&#xe622;</i>
+						</span>
+					</p>
+
+				</div>
+				<div class="content_list">
+					<!--帖子列表-->
+					<div class="post_list clear" ng-repeat="(index,postlist) in postList">
+						<i class="iconfont post_nums_bg">&#xe62f;</i>
+						<div class="post_nums fl">{{postlist.replyNum}}</div>
+						<div class="post_info fl ">
+							<div class="post_head clear">
+								<span class="post_head_tag fl" ng-show="postlist.themeTop==1">置顶</span>
+								<span class="post_head_tag fl" ng-show="postlist.themeFine==1">精</span>
+								<a class="post_title fl" ng-click="openDetail(postlist.id)">{{postlist.title}}</a>
+								<a class="report_post fr point" href="" ng-click="fnReportShow(postlist.id)">举报>></a>
+							</div>	
+							<div>
+								<div class="post_info_tag">
+									<a href="" class="post_title fl">{{postlist.nickName}}</a>
+									<span class="report_post fl">{{postlist.themeTime}}</span>
+
+									<!--<a href="" class="report_post fr">2014-09-09 13:09</a>
+								<span class="post_title fr">回帖用户昵称</span>-->
+								</div>
+								<div class="post_content point" ng-click="openDetail(postlist.id)" >
+									<div ng-bind-html="postlist.themeContent | trustHtml" ></div>
+								</div>
+								<!--<div class="post_content point" ng-click="openDetail(postlist.id)" >{{postlist.themeContent}}</div>-->
+								<div ng-if="postlist.picList" class="post_con_pic point" >
+									<span class="img_fa" ng-repeat="(_index,pic) in postlist.picList | limitTo :3" id="{{index}}img{{_index}}" ng-click="changeImageSize(index,_index)">
+										<img  ng-src="{{pic.imageUrl}}" id="{{index}}imgimg{{_index}}"  />
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--帖子-->
+
+				</div>
+				<br /><br /><br />
+				<!--分页-->
+				<tm-pagination conf="paginationConf"></tm-pagination>
+				<!--评论-->
+
+				<div id="book_comment" class="book_comment1"  name="sendPost" style="position: relative;" >
+					<span class="write_btn"><i class="iconfont write_btn_icon2">&#xe618;</i>发表帖子</span>
+					<div style="position: relative;" id="associationFrom">
+						<input class="com_title_t" type="text" ng-model="title" id="" value="" placeholder="请输入标题" />
+						<div><span class="emotion"><i class="iconfont">&#xe619;</i></span></div>
+						<!--<dl class="post_class" id="postClass">
+							<dt>发帖类型</dt>
+							<dd class="active" ng-click="chooseType(1)">求助</dd>
+							<dd ng-click="chooseType(2)">问答</dd>
+							<dd ng-click="chooseType(3)">其他</dd>
+						</dl>-->
+						<div style="height:5px;"></div>
+						<div class="input_number"><span class="emotion"></span><span id="inputNumber">0</span>/6000</div>
+						<div contenteditable="true"  maxlength="6000" ng-model="_themeContent" name="textArea" id="textArea"  class="input_post_content_t"  oninput="OnInput()" onpropertychange="OnPropChanged()" placeholder="请输入内容"></div>
+						<div id="inputImg">
+							<div class="img_number"><span id="img_number">0</span>/6</div>
+							<form method='post' enctype="multipart/form-data" id="associationImg">
+								<input type="file" class="submit_img" file-model="myFile" name="uploadFile" onchange="$('#associationImg').submit()" />
+							</form>
+							<!--<img id="img_first" src="./img/association/img_submit.jpg" />-->
+							<div id="img_first">
+								<div class="img_row"></div>
+								<div class="img_col"></div>
+							</div>
+						</div>
+						<div id="temp-img-list" style="display:none"></div>
+						<div class="publish_btn point" ng-click="insertPost()">发表</div>
+						<!--<p style="float: right;margin-right:50px;margin-top: 6px ;">你还可以输入 <b>{{textLength}}</b> 个字哦</p>-->
+					</div>
+				</div>
+			</div>
+			<!--右侧信息-->
+			<div class="information_side fr">
+				<div class="information_side_top">
+					<img src="img/association/asso_head.png" />
+					<span class="post_num">帖子:{{postTotal}}</span>
+					<!--<span class="focus_num">关注：13,234</span>-->
+				</div>
+				<!--<div class="information_side_bottom">
+					<span class="manage_title">管理团队</span>
+					<ul>
+						<li><img class="manage_head" src="img/association/user-pic.png" />用户昵称用户昵称<span class="manage_name">会主</span></li>
+						<li><img class="manage_head" src="img/association/user-pic.png" />用户昵称用户昵称<span class="manage_name">管理</span></li>
+						<li><img class="manage_head" src="img/association/user-pic.png" />用户昵称用户昵称<span class="manage_name">管理</span></li>
+						<li><img class="manage_head" src="img/association/user-pic.png" />用户昵称用户昵称<span class="manage_name">管理</span></li>
+					</ul>
+				</div>-->
+			</div>
+			<!--举报弹窗 -->
+			<div class="reportDialog confirm_popub" ng-show="reportShow">
+				<textarea name="" rows="" cols="" placeholder="请输入举报理由" ng-model="handleContent"></textarea>
+				<div class="purch_btn confirm_btns clear">
+					<a class="confirm_btn fl" href="javascript:;" ng-click="submitReport()">确认</a>
+					<a class="cancel_btn fr" href="" ng-click="fnReport()">取消</a>
+				</div>
+				<a href="javascript:;" ng-click="fnReport()" class="cancle_pic">
+					<svg class="icon logo" aria-hidden="true">
+								<use xlink:href="#icon-guanbi"></use>
+					</svg>
+				</a>
+			</div>
+				<!--返回到顶部-->
+			<back-to-top   class="back_to_top" >
+				<i class="iconfont _top_font">&#xe636;</i>
+			</back-to-top>
+		</div>
+		
+	</body>
+
+</html>

@@ -1,0 +1,88 @@
+
+.page-list {
+	height: 10px;
+	padding: 10px 0;
+	text-align: center;
+}
+
+.page-list ul {
+	display: inline-block;
+}
+
+.page-list .pagination li {
+	float: left;
+	list-style: none;
+	display: inline-block;
+	background-color: #FFFFFF;
+	border: 1px solid #99A2AA;
+	border-radius: 8px;
+	padding: 0px 12px;
+	color: #99A2AA;
+	height: 27px;
+	line-height: 29px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.page-list .pagination li a{
+	text-decoration: none;
+	color: #99A2AA;
+}
+
+/*.page-list .pagination li:hover {
+	color: #F39800;
+	border:1px solid #F39800;
+}*/
+.page-list .pagination .page_hover{
+	color: #F39800;
+	border:1px solid #F39800;
+}
+.page-list .pagination .active {
+	background-color: #F39800;
+	border-color: #F39800;
+	color: #FFFFFF;
+}
+
+.page-list .pagination{
+	cursor: pointer;
+}
+
+.page-list .pagination .separate {
+	cursor: default;
+	/*border-top: none;
+	border-bottom: none;*/
+}
+
+.page-list .pagination .separate li:hover {
+	/*background: none;*/
+	background-color: #FFFFFF;
+	border: 1px solid #F39800;
+	border-radius: 5px;
+	padding: 5px;
+	display: inline-block;
+	color: #F39800;
+}
+
+.page-list .page-total input,
+.page-list .page-total select {
+	height: 26px;
+	border: 1px solid #ddd;
+}
+
+.page-list .page-total input {
+	width: 40px;
+	padding-left: 3px;
+}
+
+.page-list .page-total select {
+	width: 50px;
+}
+
+.prev,.next{
+	height: 20px;
+}
+/**
+ *子分页 
+ */
+.tab-tab-list{
+	height: 20px !important;
+}

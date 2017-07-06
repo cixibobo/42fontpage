@@ -1,0 +1,653 @@
+/*打赏弹窗*/
+
+
+/*确认按钮*/
+
+.confirm_btns {
+	width: 176px;
+	margin: 0 auto;
+}
+
+.confirm_btns a {
+	display: inline-block;
+	width: 72px;
+	height: 24px;
+	line-height: 26px;
+	border: 1px solid #f90;
+	text-align: center;
+	color: #f90;
+	border-radius: 5px;
+}
+
+.confirm_btns .confirm_btn {
+	margin-right:10px;
+}
+
+.recha_btn,
+.purch_btn {
+	margin-top: 20px;
+}
+
+.popub_title {
+	border-bottom: 2px solid #ddd;
+	padding-bottom: 4px;
+	line-height: 30px;
+	font-size: 20px;
+}
+
+.cancle_pic {
+	position: absolute;
+	top: 0px;
+	right: 2px;
+	color: #F39800;
+	font-size: 24px;
+}
+
+
+/*@打赏弹窗*/
+
+.reward_popup {
+	width: 510px;
+	height: 289px;
+	border: 3px solid #f90;
+	border-radius: 10px;
+	padding: 5px 10px 0 10px;
+	background: #fff;
+	-webkit-box-shadow:  5px 5px 5px rgba(0, 0, 0, .2);
+	box-shadow:  5px 5px 5px rgba(0, 0, 0, .2);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.reward_title {
+	border-bottom: 2px solid #ddd;
+	padding-bottom: 4px;
+	line-height: 30px;
+	font-size: 20px;
+}
+
+.sub_title {
+	line-height: 36px;
+}
+
+.screw_list,
+.pushpin_list {
+	font-size: 0;
+	margin-left: 40px;
+}
+.screw_list li i{
+	font-size: 20px;
+}
+.screw_list li,
+.pushpin_list li {
+	display: inline-block;
+	padding: 0 5px 0 5px;
+	border: 1px solid #f90;
+	font-size: 16px;
+	height: 26px;
+	line-height: 28px;
+	border-radius: 5px;
+	width: 72px;
+	margin-right: 30px;
+	margin-bottom: 10px;
+	color: #f90;
+	cursor: pointer;
+}
+
+.screw_list .active,
+.pushpin_list .active {
+	color: #FFFFFF;
+	background: #F39800;
+}
+
+.recharge {
+	color: #F90;
+	text-decoration: underline;
+}
+
+.reward_info {
+	border-top: 2px solid #ddd;
+	height: 30px;
+}
+
+.reward_info p {
+	color: #f90;
+	text-align: center;
+	line-height: 30px;
+	font-size: 13px;
+}
+
+
+/*@ end 打赏弹窗*/
+
+
+/*@ 阅读设置弹窗*/
+
+
+/*设置公用代码*/
+
+.set_list dt,
+.set_list dd {
+	float: left;
+}
+
+.set_list dt {
+	padding-right: 20px;
+}
+
+.set_list dd {
+	cursor: pointer;
+}
+
+
+/*举报理由*/
+
+.reportDialog{
+	position: flex;
+	left: 50%;
+	/*margin-left: -164px;*/
+	top: 50%;
+/*	margin-top: -68px;*/
+	width:300px;
+	height:170px;
+	border: 1px solid #F39800;
+	z-index: 100;
+	border-radius: 10px;
+-webkit-box-shadow:  5px 5px 5px rgba(0, 0, 0, .2);
+	box-shadow:  5px 5px 5px rgba(0, 0, 0, .2);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.reportDialog textarea{
+	width:250px;
+	padding-top: 10px;
+	height:70px;
+	line-height: 20px;
+	font-size: 16px;
+}
+
+
+/*阅读主题*/
+
+.r_set_popup {
+	width: 510px;
+	height: 289px;
+	border: 3px solid #f90;
+	border-radius: 10px;
+	padding: 5px 10px 0 10px;
+	background: #fff;
+	
+}
+
+.read_theme {
+	margin-top: 15px;
+	height: 60px;
+}
+
+.read_theme dd i {
+	color: #F39800;
+	position: absolute;
+	top: 4px;
+	left: 6px;
+	font-size: 24px;
+}
+
+.read_theme dt {
+	line-height: 24px;
+}
+
+
+/*！阅读主题 ！*/
+
+.read_theme dd {
+	height: 39px;
+	width: 39px;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	margin-right: 16px;
+	position: relative;
+}
+
+.read_theme .white {
+	background: #fff;
+}
+
+.read_theme .naturals {
+	background: #f6f4ec;
+}
+
+.read_theme .green {
+	background: #e6f0e6;
+}
+
+.read_theme .skyblue {
+	background: #e3f5fa;
+}
+
+.read_theme .grey {
+	background: #f5f5f5;
+}
+
+.read_theme .pink {
+	background-color: #f5e9ef;
+}
+
+.read_theme .dark {
+	background: #323536;
+}
+
+.theme_active {
+	color: #F39800;
+	font-size: 20px;
+	line-height: 38px;
+	margin-left: 8px;
+}
+
+.readset_btn {
+	margin-top: 10px;
+}
+
+.popub_icon {
+	color: #F39800;
+	position: absolute;
+	left: 10px;
+	top: 6px;
+	font-size: 24px;
+}
+
+.title_btn {
+	margin-left: 30px;
+}
+
+
+/*字体选择*/
+
+.font_fam {
+	height: 47px;
+}
+
+.font_fam dt {
+	line-height: 18px;
+}
+
+.font_fam dd {
+	width: 52px;
+	height: 24px;
+	border: 1px solid #f90;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 26px;
+	margin-right: 12px;
+	color: #F39800;
+}
+
+.font_fam .active {
+	background: #f90;
+	color: #fff;
+}
+
+
+/*字体公用*/
+
+.font dd {
+	width: 186px;
+	height: 26px;
+	background: #f90;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 26px;
+	margin-right: 12px;
+	color: #fff;
+}
+
+.font span {
+	width: 53px;
+	height: 24px;
+	text-align: center;
+	background: #fff;
+	line-height: 24px;
+	margin: 1px;
+	border-radius: 5px;
+	color: #f90;
+	cursor: pointer;
+}
+
+.font dt {
+	line-height: 18px;
+}
+
+
+/*字体大小*/
+
+.font_size {
+	height: 47px;
+}
+
+.font_line {
+	height: 37px;
+}
+
+.font_line dt {
+	text-indent: 1em;
+}
+
+.setcon_wrap {
+	border-top: 2px solid #ddd;
+}
+
+.setcon_btn {
+	margin: 10px auto 0;
+}
+
+
+/*@ end 阅读设置弹窗*/
+
+
+/*出售打书钉代码*/
+
+.sold_d {
+	height: 136px;
+	width: 328px;
+	border: 3px solid #f90;
+	border-radius: 10px;
+	background-color: #FFFFFF;
+	margin-left: 22%;
+}
+
+.sold_d ul {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.sold_d ul li {
+	height: 30px;
+}
+
+.sold_d .text {
+	height: 20px;
+	width: 35px;
+	border: 1px solid #f90;
+	border-radius: 5px;
+	color: #aaa;
+	padding-left: 5px;
+	margin: 0 5px;
+}
+
+
+/*@ end 出售打书钉代码*/
+
+
+/*@设置定价弹窗*/
+
+.setPrice_popup {
+	height: 185px;
+	width: 368px;
+	border-radius: 5px;
+	border: 2px solid #aaaaaa;
+	background: #e5e9ef;
+}
+
+.setPrice {
+	width: 270px;
+	height: 66px;
+	margin: 28px auto 0;
+}
+
+.setPrice p {
+	float: right;
+	line-height: 30px;
+}
+
+.setPrice .text {
+	height: 23px;
+	width: 90px;
+	border-radius: 10px;
+	border: 1px solid #aaa;
+	background: #E5E9EF;
+	color: #aaa;
+	padding-left: 5px;
+	margin: 0 5px;
+}
+
+.screw_price span {
+	color: #aaa;
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+.setPrice_popup .setPrice_btn {
+	margin-top: 20px;
+	width: 200px;
+}
+
+.setPrice_popup .setPrice_btn a {
+	color: #aaa;
+	border: 2px solid #aaa;
+}
+
+
+/*@ end 设置定价弹窗*/
+
+
+/*@确认弹窗*/
+
+.confirm_popub {
+	height: 136px;
+	width: 328px;
+	border: 3px solid #f90;
+	border-radius: 10px;
+	text-align: center;
+	background: #fff;
+	z-index: 1000;
+}
+
+.confirm_popub p {
+	margin-top: 44px;
+}
+
+
+/*@ end确认弹窗*/
+
+
+/*@ 提现*/
+
+.mon_withdraw {
+	height: 270px;
+	width: 786px;
+	border: 3px solid #f90;
+	border-radius: 10px;
+	padding: 5px 10px 0;
+	background: #fff;
+}
+
+.with_title {
+	border-bottom: 0;
+}
+
+.popub_titlist {
+	font-size: 0;
+}
+
+.popub_titlist li {
+	display: inline-block;
+	height: 22px;
+	padding: 0 10px;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 22px;
+}
+
+.popub_titlist .active {
+	background: #f90;
+}
+
+.popub_titlist .active a {
+	color: #fff;
+}
+
+.popub_titlist li a {
+	font-size: 18px;
+	color: #f90;
+}
+
+.mon_withdraw table {
+	width: 700px;
+	margin: 10px auto 0;
+}
+
+.mon_withdraw tr {
+	height: 48px;
+}
+
+.first_column {
+	font-size: 13px;
+	color: #222;
+	font-weight: 300;
+	text-align: right;
+	padding-right: 20px;
+}
+
+.mon_withdraw table .text,
+.select_bank {
+	height: 38px;
+	border-radius: 5px;
+	border: 1px solid #dae1e4;
+	padding-left: 10px;
+	color: #a9a9a9;
+	font-size: 16px;
+}
+
+.mon_withdraw .text {
+	width: 288px;
+}
+
+.select_bank {
+	width: 298px;
+}
+
+.ex_col {
+	font-size: 16px;
+	font-weight: 200;
+	color: #a9a9a9;
+}
+
+
+/*a  upload */
+
+.a-upload {
+	width: 298px;
+	height: 158px;
+	line-height: 158px;
+	position: relative;
+	cursor: pointer;
+	color: #888;
+	text-align: center;
+	background: url(../img/big_banner2.png) no-repeat rgba(255, 120, 120, 0.5);
+	opacity: 0.9;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	overflow: hidden;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1
+}
+
+.a-upload input {
+	position: absolute;
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	cursor: pointer
+}
+
+.a-upload:hover {
+	border-color: #ccc;
+	text-decoration: none;
+}
+
+.file_img {
+	margin-top: 50px;
+}
+
+.upload_img p {
+	color: #aaa;
+	font-size: 14px;
+	text-indent: 20px;
+	line-height: 20px;
+}
+
+.recha_money .text {
+	width: 100px;
+}
+
+.recha_btn {
+	width: 100px;
+	height: 40px;
+	border-radius: 5px;
+	background: #f90;
+	margin-left: 80px;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+
+/*支付宝高度*/
+
+.ali_withdraw {
+	height: 260px;
+}
+
+
+/*@ end 提现*/
+
+.book_classify {
+	width: 108px;
+	border: 2px solid #aaa;
+	background: #E5E9EF;
+	border-radius: 5px;
+}
+
+.book_classify ul {
+	width: 99px;
+	margin: 14px auto 0;
+}
+/*设置分类*/
+.set_classify li {
+	height: 21px;
+	width: 95px;
+	background: #e5e9ef;
+	border-radius: 5px;
+	border: 2px solid #aaaaaa;
+	margin-bottom: 5px;
+	text-align: center;
+	line-height: 22px;
+	color: #6a6868;
+	cursor: pointer;
+}
+#classifylist .active{
+	color: #fff;
+	background: #f9c062;
+}
+.set_classify .active {
+	color: #fff;
+	background: #a5a0a0;
+}
+.classify_btn a{
+	height: 21px !important;
+	width: 45px !important;
+	background: #e5e9ef;
+	border-radius: 5px;
+	border: 2px solid #aaaaaa;
+	margin-bottom: 5px;
+	text-align: center;
+	line-height: 22px;
+	color: #6a6868;
+	cursor: pointer;
+}
+
+

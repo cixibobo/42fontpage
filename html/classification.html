@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+		<div class="wrap_1200">
+			<input type="hidden" ng-model="search_content_name" />
+			<input type="hidden" ng-model="_bookType" value="{{_bookType}}"/>
+			<input type="hidden" ng-model="_bookQueryType" id="_bookQueryType" value="{{_bookQueryType}}"/>
+			<input type="hidden" ng-model="_newBookType"  value="{{_newBookType}}"/>
+			
+			<div class="main_content_class">
+				<div class="content_list">
+					<div class="content_list_title">
+						<div class="list_a">
+							<div class="classify_label">
+								<span class="class_title">分类：</span>
+							</div>
+							<div class="classify_name classifyListA">
+								<i class="iconfont left_top">&#xe610;</i>
+								<span ng-click="bookClasifyCode('')" class="selected"><a href="" >全部</a></span>
+								<span  repeatclass-finish ng-repeat="(classifyIndex,classifylist) in classifyList" ng-click="bookClasifyCode(classifylist.code)">
+									<a href="" id="AA{{classifylist.code}}" >{{classifylist.name}}</a>
+								</span>
+								<i class="iconfont right_top">&#xe60e;</i>
+							</div>
+						</div>
+						<div class="list_a">
+							<div class="classify_label">
+								<span class="class_title">排序：</span>
+							</div>
+							<div class="classify_name classifyListB" id="selectedSecond">
+								<span ng-click="bookQueryType('')" class=" selected"><a href="">全部</a></span>
+								<span ng-click="bookQueryType(3)"><a href="">银图钉</a></span>
+								<span ng-click="bookQueryType(4)"><a href="">铜螺钉</a></span>
+								<span ng-click="bookQueryType(5)"><a href="">更新</a></span>
+								<span ng-click="bookQueryType(0)"><a href="">点击</a></span>
+								<span ng-click="bookQueryType(2)"><a href="">收藏</a></span>
+								<span ng-click="bookQueryType(1)"><a href="">点赞</a></span>
+								
+							</div>
+						</div>
+						<div class="list_a">
+							<div class="classify_label">
+								<span class="class_title">作品：</span>
+							</div>
+							<div class="classify_name classifyListC" id="selectedSecondP">
+								<i class="iconfont left_bottom">&#xe611;</i>
+								<span ng-click="bookWorks('')"  class=" selected"><a href="">全站</a></span>
+								<span ng-click="bookWorks(6)"><a href="">新书</a></span>
+								<i class="iconfont right_bottom">&#xe60f;</i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="b_body">
+					<ul class="list_live">
+						<li ng-repeat="hotbook in hot_book" ng-click="openWin(hotbook.id)" chapter-finish>
+							<div class="book_pic_wrap">
+								<img class="first_pic" ng-src="{{hotbook.imageUrl}}" alt="" on-finish-render />
+								<img class="cls_blur" ng-src="{{hotbook.imageUrl}}" alt="" on-finish-render />
+							</div>
+							<div class="classInfo_list">
+								<p class="classInfo_writer">
+									<img class="class_book_writer" ng-src="{{hotbook.userImage}}">
+									<span class="classinfo_writer_name">{{hotbook.nickName}}</span>
+								</p>
+								<p class="class_p1">铜书钉:{{hotbook.copperMoney}}</p>
+								<p class="class_p1" ng-if="!hotbook.copperMoney">铜书钉:0</p>
+								<p class="class_p2">银书钉:{{hotbook.silverMoney}}</p>
+								<p class="class_p2" ng-if="!hotbook.silverMoney">银书钉:0</p>
+								<p class="class_p3">点赞量:{{hotbook.praiseNum}}</p>
+								<p class="class_p3" ng-if="!hotbook.praiseNum">点赞量:0</p>
+								<p class="class_p4">点击量:{{hotbook.checkNub}}</p>
+								<p class="class_p4" ng-if="!hotbook.checkNub">点击量:0</p>
+								<p class="class_p5">收藏:{{hotbook.collectionNum}}</p>
+								<p class="class_p5" ng-if="!hotbook.collectionNum">收藏:0</p>
+							</div>
+							<p class="book_name">{{hotbook.bookName}}</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<back-to-top   class="back_to_top" >
+			<i class="iconfont _top_font">&#xe636;</i>
+			</back-to-top>
+		</div>
+		
+		<div class="pages">
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</body>
+
+</html>

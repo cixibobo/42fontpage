@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myfriend">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的好友</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/myfriend.css" />
+		<link rel="stylesheet" href="../../css/tab_page.css" />
+	</head>
+
+	<body>
+
+		<div class="clear" ng-controller="myFriendC" ng-cloak>
+			<div ng-include="'./personCenter_head.html'"></div>
+			<div ng-include="'./sidebar.html'"></div>
+			<div class="wrap_1000 fr">
+				<div class="my_fri yy">
+					<p class="fun_tag">
+						<a href="#" ng-click="queryFlows()" ng-class="{'my_flows':flow,'my_funs':fun}">{{cernNum}}关注</a>
+						<a href="#" ng-click="queryFuns()" ng-class="{'my_flows':fun,'my_funs':flow}">{{fansNum}}粉丝</a>
+					</p>
+					<ul class="my_fri_list ">
+						<li class="clear" ng-repeat="myConFans in myConFansList">
+							<div class="fri_pic fl">
+								<a href="#"><img ng-src="{{myConFans.headImg}}" /></a>
+							</div>
+							<div class="fri_info fl">
+								<p class="fri_name">{{myConFans.nickName}}</p>
+								<p class="fri_date">{{myConFans.followTime}}</p>
+								<p class="contact_friBtn">
+									<a href="" ng-show="flagCancelFlow" ng-click="cancelFlows(myConFans.followId,myConFans.userId)">取消关注</a>
+									<a href="" ng-click="sixin(myConFans)">私信</a>
+								</p>
+							</div>
+						</li>
+
+					</ul>
+					<!--所有评论的分页-->
+
+				</div>
+				<tm-pagination conf="paginationConf"></tm-pagination>
+
+			</div>
+	</body>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/lib/tm.pagination.js"></script>
+	<script type="text/javascript" src="../../js/personCenter/my-friend.js"></script>
+	<script type="text/javascript">
+	</script>
+
+</html>

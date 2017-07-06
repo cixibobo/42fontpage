@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html ng-app="readBook">
+	<head>
+		<meta charset="UTF-8">
+		<title id="title"></title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/read.css" />
+		<link rel="stylesheet" type="text/css" href="../css/popup.css" />
+	</head>
+
+	<body  ng-controller="personCtrl" onselectstart="return false" ng-cloak oncontextmenu=self.event.returnValue=false onselectstart="return false">
+		
+		<div class="body_wrap">
+			<div class="wrap_1200" ng-class="{true:'fullScreen_true',false:'fullScreen_false'}[fullScreenClass]">
+				<back-to-top class="back_to_top icon-book-totop">
+					<i class="iconfont _top_font ">&#xe636;</i>
+				</back-to-top>
+				<div ng-class="{true:'nightmode'}[nightModeClass]">
+					<div ng-style="theme_bg">
+						<nav>
+							<dl class="read_nav">
+								<dt class="ft_bag" ><a href="../index.html">42文库 ></a> </dt>
+								<dd class="novel_name" ng-click="backToBook()">
+									<a href="#">{{chapter.bookName}}></a>
+								</dd>
+								<!--<dd class="volume_note" ng-click="backToBook()">
+									<a href="#">第{{_juan_index}}卷 ></a>
+								</dd>-->
+								<dd class="volume_name">
+									<a href="#">{{chapter.volumeName}}</a>
+								</dd>
+							</dl>
+						</nav>
+						<div class="read_content">
+							<div class="readb_info">
+								<p class="readb_title">{{chapter.chapterName}}</p>
+								<p class="readb_renew">
+									<span class="readb_writer">作者：{{chapter.nickName}} </span>
+									<span class="readb_name">字数：{{chapter.chapterNumber}}</span>
+									<span class="readb_name">更新日期：{{chapter.createTime}}</span>
+								</p>
+							</div>
+							<article class="read_article" id="readArticle"></article>
+							<div class="reward_bbtn" ng-click="toggle()">
+								<span class="r_btn">打  赏</span>
+							</div>
+
+							<!--是否购买该章节-->
+							<div ng-show="purchaseChapter">
+								<h2>章节购买</h2>
+								<div class="confirm_popub  ">
+									<p>是否购买该章节？</p>
+									<input type="checkbox" id="islongerPrompt" ng-model="islongerPrompt">本次登录不再提醒!</input>
+									<div class="purch_btn confirm_btns clear">
+										<a class="confirm_btn fl" href="javascript:;" ng-click="confirmPurchaseChapter()">确认</a>
+										<a class="cancel_btn fr" ng-click="cancelPurchaseChapter()" href="javascript:;">取消</a>
+									</div>
+									<a href="" class="cancle_pic" ng-click="cancelPurchaseChapter()"><i class="iconfont cancle_pic">&#xe616;</i></a>
+									<!--将数据隐藏在弹出框的dialog中-->
+									<input type="hidden" ng-model="_chapterId_show" />
+									<input type="hidden" ng-model="_book_Id_show" />
+									<input type="hidden" ng-model="_index_show" />
+									<input type="hidden" ng-model="chapter_money_show" />
+
+								</div>
+							</div>
+
+							<!--打赏弹窗-->
+
+							<div class="reward_popup " ng-show="myVar" ng-cloak>
+								<div class="reward_title popub_title clear">
+									<i class="iconfont popub_icon">&#xe614;</i>
+									<span class="fl title_btn">打赏</span>
+									<a href="javascript:;" ng-click="cancelP()"><i class="iconfont cancle_pic">&#xe616;</i></a>
+								</div>
+								<div class="screw">
+									<div class="sub_title clear">
+										<span class="screw_title fl">敲击多少颗铜螺钉</span>
+										<span class="fr">铜螺钉余额：<em>{{userMoney.copperThumbTack}}</em></span>
+									</div>
+									<ul class="screw_list" id="screwList">
+										<li ng-click="setRewardT(10)"><i class="iconfont">&#xe62c;</i>X10</li>
+										<li ng-click="setRewardT(50)"><i class="iconfont">&#xe62c;</i>X50</li>
+										<li ng-click="setRewardT(100)"><i class="iconfont">&#xe62c;</i>X100</li>
+										<li ng-click="setRewardT(500)"><i class="iconfont">&#xe62c;</i>X500</li>
+									</ul>
+								</div>
+								<div class="pushpin">
+									<div class="sub_title clear">
+										<span class="pushpin_title fl">敲击多少颗银图钉</span>
+										<a href="#" class="recharge fr">点击充值</a>
+										<span class="balance fr">银图钉余额：<em>{{userMoney.silverThumbTack}}</em></span>
+									</div>
+									<ul class="pushpin_list" id="pushpinList">
+										<!--<li ng-click="setRewardY(7)"><i class="iconfont">&#xe62b;</i>X7</li>
+										<li ng-click="setRewardY(42)"><i class="iconfont">&#xe62b;</i>X42</li>-->
+										<li ng-click="setRewardY(106)"><i class="iconfont">&#xe62b;</i>X106</li>
+										<li ng-click="setRewardY(248)"><i class="iconfont">&#xe62b;</i>X248</li>
+										<li ng-click="setRewardY(473)"><i class="iconfont">&#xe62b;</i>X473</li>
+										<li ng-click="setRewardY(613)"><i class="iconfont">&#xe62b;</i>X613</li>
+										<li ng-click="setRewardY(1031)"><i class="iconfont">&#xe62b;</i>X1031</li>
+										<li ng-click="setRewardY(2017)"><i class="iconfont">&#xe62b;</i>X2017</li>
+									</ul>
+								</div>
+								<div class="reward_info">
+									<p>{{rewardTitle}}</p>
+								</div>
+								<div class="reward_btn confirm_btns clear">
+									<a class="confirm_btn fl" href="javascript:;" ng-click="subReward()">敲击</a>
+									<a class="cancel_btn fr" ng-click="cancelP()" href="javascript:;">取消</a>
+								</div>
+							</div>
+							<div class="readb_footer">
+								<span class="next_note" ng-show="preChapterId" ng-click="preChapter()"><i class="iconfont">&#xe779;</i>上一章 </span>&nbsp;&nbsp;
+								<span class="next_note" ng-show="nextChapterId" ng-click="nextChapter()">下一章 <i class="iconfont">&#xe775;</i></span>
+								<p class="mes">按键盘上的 <i class="iconfont">&#xe779;</i>【左】与【右】<i class="iconfont">&#xe775;</i>可快速切换章节</p>
+							</div>
+						</div>
+						<aside class="readb_fun">
+							<ul class="readb_tag">
+								<li class="switch" ng-click="fullScreen()" title="全屏"><i class="iconfont">&#xe604;</i></li>
+								<li class="catlog" ng-click="backToBook()" title="章节"><i class="iconfont">&#xe605;</i></li>
+								<li class="setup" ng-click="readSet()" title="阅读设置"><i class="iconfont">&#xe617;</i></li>
+								<!--阅读设置弹窗-->
+								<div class="r_set_popup " ng-show="r_set_popup" style="height: 250px;" ng-cloak>
+									<div class="popub_title clear">
+										<i class="iconfont popub_icon">&#xe77c;</i>
+										<span class="fl title_btn">设置</span>
+										<a href="javascript:;" ng-click="closeSet()"><i class="iconfont cancle_pic">&#xe616;</i></a>
+									</div>
+									<dl class="set_list read_theme" id="changeTheme">
+										<dt>阅读主题:</dt>
+										<dd class="pink" ng-click="changeTheme('pink')"></dd>
+										<dd class="white" ng-click="changeTheme('white')"></dd>
+										<dd class="naturals" ng-click="changeTheme('naturals')"></dd>
+										<dd class="green" ng-click="changeTheme('green')"><i class='iconfont'>&#xe621;</i></dd>
+										<dd class="skyblue" ng-click="changeTheme('skyblue')"></dd>
+										<dd class="grey" ng-click="changeTheme('grey')"></dd>
+										<dd class="dark" ng-click="changeTheme('dark')"></dd>
+									</dl>
+									<dl class="set_list  font_fam" id="changeFont">
+										<dt>正文字体:</dt>
+										<dd class="active change_font" ng-click="changeFont('yaahei')">雅黑</dd>
+										<dd class="change_font" ng-click="changeFont('soong')">宋体</dd>
+										<dd class="change_font" ng-click="changeFont('kaai')">楷体</dd>
+									</dl>
+									<dl class="set_list font font_size">
+										<dt>字体大小:</dt>
+										<dd ng-init="fontSize='20'">
+											<span ng-click="fontSizeChange(0)" class="fl">-</span>{{fontSize}}
+											<span ng-click="fontSizeChange(1)" class="fr">+</span>
+										</dd>
+									</dl>
+									<dl class="set_list font font_line">
+										<dt>行间距:</dt>
+										<dd ng-init="fontLine='2.0'">
+											<span ng-click="fontLineChange(0)" class="fl">-</span>{{fontLine}}
+											<span ng-click="fontLineChange(1)" class="fr">+</span>
+										</dd>
+									</dl>
+									<!--<div class="setcon_wrap">
+										<div class="readset_btn confirm_btns clear">
+											<a class="confirm_btn fl" ng-click="closeSet()" href="javascript:;">确认</a>
+											<a class="cancel_btn fr" ng-click="closeSet()" href="javascript:;">取消</a>
+										</div>
+									</div>-->
+								</div>
+								<li class="light" ng-click="nightMode()" title="夜间模式"><i class="iconfont">&#xe60d;</i></li>
+								<li class="left" ng-click="preChapter()" title="上一章"><i class="iconfont">&#xe779;</i></li>
+								<li class="right" ng-click="nextChapter()" title="下一章"><i class="iconfont">&#xe775;</i></li>
+							</ul>
+						</aside>
+					</div>
+				</div>
+			</div>
+			<!--	余额不足充值弹窗-->
+			<div ng-show="balanceDialog">
+				<h2>余额不足</h2>
+				<div class="confirm_popub ">
+					<p>余额不足，是否前往充值？</p>
+					<div class="purch_btn confirm_btns clear">
+						<a class="confirm_btn fl" href="javascript:;" ng-click="returnToRecharge()">确认</a>
+						<a class="cancel_btn fr" ng-click="balanceDialog=!balanceDialog" href="javascript:;">取消</a>
+					</div>
+					<a href="" class="cancle_pic" ng-click="balanceDialog=!balanceDialog"><i class="iconfont cancle_pic">&#xe616;</i></a>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/lib/angular.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/read.js"></script>
+	</body>
+
+</html>

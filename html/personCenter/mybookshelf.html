@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="mgbookshelf">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的书架</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/mybookshelf.css" />
+		<link rel="stylesheet" href="../../css/tab_page.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/myfriend.css" />
+	</head>
+
+	<body>
+		<div class=" clear" ng-cloak>
+			<div ng-include="'./personCenter_head.html'"></div>
+			<div ng-include="'./sidebar.html'"></div>
+			<div class="wrap_1000 fr ">
+				<div ng-controller="myBookC" ng-cloak>
+					<div class="collect_book book_pub clear yy">
+						<p class="shelf_title fl">收藏的书籍</p>
+						<div class="book_show fr">
+							<p style="width:90%;text-align: center;margin-top: 90px;color: #bbb;" ng-show="collectNullShow">暂无收藏书籍</p>
+							<ul>
+								<li class="book_info" ng-repeat="myBook in myCollectBookList">
+									<a class="cover_wrap" href="">
+										<img class="book_cover" ng-src="{{myBook.imageUrl}}" />
+										<div class="mask_cover" ng-click="jump(myBook)">
+											<img class="writer_pic" ng-src="{{myBook.headUrl}}" />
+											<p>{{myBook.nickName}}</p>
+											<!--<p class="writer_name">{{myBook.nickName}}</p>-->
+											<p>浏览量：{{myBook.checkNub}}</p>
+											<p>收藏量：{{myBook.collectionNum}}</p>
+										</div>
+									</a>
+									<a href="" class="book_title" ng-click="jump(myBook)">{{myBook.bookName}} </a>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+					<div ng-if="upOneCol"><tm-pagination conf="paginationConf"></tm-pagination></div>
+				</div>
+				<div ng-controller="myHolderC" ng-cloak>
+					<div class="own_book  book_pub clear yy">
+						<p class="shelf_title fl">打书钉持有</p>
+						<div class="book_show fr">
+							<p style="width:90%;text-align: center;margin-top: 90px;color: #bbb;" ng-show="holderNullShow">暂无持有书籍</p>
+							<ul>
+								<li class="book_info" ng-repeat="myBook in myHolderBookList">
+									<a class="cover_wrap" href="">
+										<img class="book_cover" ng-src="{{myBook.imageUrl}}" />
+										<div class="mask_cover" ng-click="jumpH(myBook)">
+											<img class="writer_pic" ng-src="{{myBook.headUrl}}" />
+											<p class="writer_name">{{myBook.nickName}}</p>
+											<p>打书钉持有:{{myBook.holderNum}}%</p>
+											<p>当前价值:{{myBook.sellUnit}}</p>
+											<p ng-show="myBook.isSelf">当前剩余:{{myBook.nowStock}}%</p>
+										</div>
+									</a>
+									<a href="" class="book_title" ng-click="jumpH(myBook)">{{myBook.bookName}} </a>
+									<!--<a class="assign_btn" href="">转让
+										<div class="assign_win">
+											<form action="" method="post" name="transferForm">
+												<label for="user_text">转让用户:</label>
+												<input class="user_text" name="user_text" type="text" ng-model="phone" placeholder="转让用户号码" /><br />
+												<label for="user_num">转让图钉:</label>
+												<input class="user_num" name="user_num" type="number" ng-model="treMoney" placeholder="转让图钉的百分比" />
+												<div class="btn_block">
+													<span class="confirm" ng-click="transfreSubmit(myBook.holderNum,myBook,phone,treMoney)">确认</span>
+													<span class="cancel">取消</span>
+												</div>
+											</form>
+										</div>
+									</a>-->
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div ng-if="upOneholder"><tm-pagination conf="paginationConf1"></tm-pagination></div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/tm.pagination.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery-form.js"></script>
+	<script type="text/javascript" src="../../js/personCenter/my-book-shelf.js"></script>
+	<!--<script type="text/javascript">
+	var app=angular.module('mgbookshelf', [])
+</script>-->
+
+</html>

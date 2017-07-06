@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html ng-app="personDetailApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<title>个人信息</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" href="../../css/city.css" />
+		<link rel="stylesheet" href="../../css/popup.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/lib/cropper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/person_detail.css" />
+		<style>
+			input{
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+		<!--<script type="text/javascript" src="../../js/lib/jquery.min.js" ></script>-->
+
+		<!--<script type="text/javascript" src="../../js/lib/angular-file-upload.min.js" ></script>-->
+	</head>
+	<body ng-controller="personDetail" ng-cloak>
+		<!-- 	<div class="wrap_1200 clear"> -->
+		<!-- 	<div ng-include="'./personCenter_head.html'" onload="bobo()"></div>
+		<div ng-include="'./sidebar.html'" ></div> -->
+		<div class="wrap_1000 fr">
+			<!--<form action="" method="post" name="myForm" id="myForm" enctype="multipart/form-data" >-->
+			<div class="user clear">
+				<div class="user_intro yy fl clear">
+					<div class="user_logo fl">
+						<img id="smallImg" ng-src="{{personInfo.headUrl}}" />
+						<form method='post' enctype="multipart/form-data" class="img-form">
+							<input id="fileInput3" type="file" class="fileInputTwo" file-model="myFile" name="uploadFile"  />
+						</form>
+						
+					</div>
+					<div class="user_show fl clear">
+						<h2 class="fl">{{personInfo.nickName}}</h2>
+						<div class="modify_name_wrap fl">
+							<a href="" class="modify_name1" ng-click="fixNickShowF()">修改昵称</a>
+							<p class="notenick">注：1银图钉修改一下</p>
+							<div class="modify_name_p clear" ng-show="fixNickShow">
+								<input class="modify_name_text fl" type="text" ng-model="newNick" id="" name="" value="" placeholder="请输入新昵称" ng-focus="fixNN=false;nickTrue=false;check()" />
+								<a class="repeat_name_check fl" href="" ng-click="fixNickName(newNick)">{{nickNameCheck}}</a>
+								<p class="regis_prompt" ng-show="fixNN">昵称不能为空</p>
+								<p class="regis_prompt" ng-show="nickTrue">昵称已经存在啦</p>
+								<p class="regis_prompt" ng-show="nickOK">昵称可用</p>
+							</div>
+						</div>
+						<div class="buy_detail_box " ng-show="sureFixSomeMoneyShow">
+							<p style="margin-top: 25px;margin-bottom: 0px;">你确定将昵称修改为{{newNick}}？</p>(注：修改昵称将花费1个银图钉)
+							<div class="confirm_btns clear">
+								<a class="confirm_btn fl" href="javascript:;" ng-click="sureSomeMoney(newNick)">确认</a>
+								<a class="cancel_btn fr" href="javascript:;" ng-click="cancelSure()">取消</a>
+							</div>
+							<a ng-click="cancelSure()" href="javascript:;"><i class="iconfont cancle_pic">&#xe616;</i></a>
+						</div>
+						
+						<form method='post' enctype="multipart/form-data" id="smallForm" >
+							<a href="#" class="file">修改头像
+								<input id="fileInput2" type="file" class="fixNick" file-model="myFile" name="uploadFile"  />
+							</a>
+						</form>
+								<!--截屏区小图片----------->
+						<div class="screenshot-area"   ng-show="screenshot">
+							<svg class="icon big_icon screenshot-icon" aria-hidden="true" style="z-index: 1000;" ng-click="screenshot=false" >
+								<use xlink:href="#icon-guanbi" ></use>
+							</svg>
+						 	 <div class="container">
+						        <div class="img-container" id="localImag">
+						          <img id="image2" src="" alt="Picture">
+						        </div>
+						        <div class="docs-preview clearfix">
+						          <div class="img-preview2 preview-lg"></div>
+						        </div>
+						    </div>
+						    <div class="row">
+						      <div class=" docs-buttons">
+						        <div class="btn-group btn-group-crop" style="text-align: center;">
+						          <button type="button" class="btn-block" data-method="getCroppedCanvas" style="cursor: pointer;">
+						            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCroppedCanvas&quot;)" ng-click="screenshot=false">
+						              提交
+						            </span>
+						          </button>
+						        </div>
+						      </div>
+						    </div>
+						</div>
+			<!--  end of 截屏区-->
+					</div>
+				</div>
+				<div class="user_sign yy fr" ng-click="sign()">
+					<div class="sign_show" ng-show="sign_show">
+						<p>你已经连续签到{{personInfo.continueSign}}天</p>
+						<!--<p>连续签到7天</p>
+						<p>就可得黄金万辆哦~</p>-->
+
+					</div>
+				</div>
+			</div>
+			<form action="" method="post" name="myForm" novalidate>
+				<div class="user_setinfo yy">
+
+					<table border="0" cellspacing="0" cellpadding="0" class="input_wrap">
+						<tr>
+							<td class="input_title">
+								<label for="textfield">闲话闲说：</label>
+							</td>
+							<td class="input_con">
+								<textarea class="user_brief" id="" ng-model="personInfo.signature"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="input_title">
+								<label for="">性别：</label>
+							</td>
+							<td class="input_con">
+								<ul class="ch_sex">
+									<li ng-repeat="sex in sexs">
+										<span ng-class="{'active':flag==sex}" ng-bing="sex" ng-click="cl(sex)">{{sex}}</span>
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td class="input_title">
+								<label for="">出生日期：</label>
+							</td>
+							<td class="input_con">
+								<input class="text" type="date" ng-model="personInfo.dateOfBirth" id="" />
+							</td>
+						</tr>
+						<tr>
+							<td class="input_title">
+								<label for="">所在地：</label>
+							</td>
+							<td class="input_con" id="cityID">
+								<select class="text" name="location_p" id="location_p">
+								</select>
+								<select class="text" name="location_c" id="location_c">
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="input_title">
+								<label for="">绑定手机：</label>
+							</td>
+							<td class="input_con">
+								<input class="text" type="" name="phone" id="" ng-model="personInfo.phone" ng-maxlength="11" required readonly=true/>
+								<!--<span class="modify_btn" ng-show="myForm.phone.$error.required">手机号要填的(⊙ o ⊙)</span>-->
+								<!--<span class="modify_btn" ng-click="fixPhone()">修改手机号码</span>-->
+								<a class="md-trigger modify_btn" data-modal="modal-1" target="_blank" href="../personCenter/modifyPhone/modifyPhone.html">修改手机号码</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="input_title">
+								<label for="">绑定邮箱：</label>
+							</td>
+							<td class="input_con">
+								<input class="text" type="email" name="email" id="" ng-model="personInfo.email" required ng-readonly="emailOnly" ng-focus="emailRShow=false;emailGShow=false" />
+								<!--<span class="modify_btnError" ng-show="emailRShow">邮箱要填的(⊙ o ⊙)</span>
+								<span class="modify_btnError" ng-show="emailGShow">邮箱格式不正确~_~</span>-->
+								<a class="md-trigger modify_btn" ng-click="fixEmail()">修改绑定邮箱</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="input_title">
+								<label for="">绑定支付宝：</label>
+							</td>
+							<td class="input_con">
+								<input ng-class="{'backColor':!zfOnly,'text':true}" ng-focus="alipayRShow=false;alipayGShow=false" type="text" name="alipay" id="" ng-model="personInfo.alipay" ng-focus="alipayRShow=false;alipayGShow=false" ng-readonly="zfOnly" />
+								<span class="modify_btnError" ng-show="alipayRShow">支付宝账号要填的(⊙  o ⊙)</span>
+								<span class="modify_btnError" ng-show="alipayGShow">支付宝账号格式不正确~_~</span>
+								<span ng-class="{'md-trigger':true,'modify_btn':true}" ng-click="zfClick()">修改绑定支付宝</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="input_title">
+								<label for="">密码：</label>
+							</td>
+							<td class="input_con">
+								<input class="text" type="password" name="psd" id="" ng-model="personInfo.password" readonly="true" />
+								<a class="md-trigger modify_btn" target="_blank" href="../LoginRegister/updatePassword.html">修改密码</a>
+							</td>
+						</tr>
+					</table>
+
+					<div class="keep">
+						<input type="button" class="keep_btn" value="保存" ng-click="saveInfo()"></input>
+					</div>
+
+				</div>
+			</form>
+		</div>
+		<!-- 	</div> -->
+	</body>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/city_list.js"></script>
+	<script type="text/javascript" src="//at.alicdn.com/t/font_u0ponn94eg17cik9.js"></script>
+	<script type="text/javascript" src="../../js/lib/cropper.js" ></script>
+	<script type="text/javascript" src="../../js/newwriteConfig.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery-form.js"></script>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/personCenter/person-detail.js"></script>
+
+	<!--<script src="js/css-filters-polyfill.js"></script>-->
+	<!--<script type="text/javascript">
+		app.controller('test', function($scope) {
+			$scope.newNick = ""
+			$scope.check = function() {
+				console.log($scope.newNick)
+			}
+		});
+	</script>-->
+
+</html>

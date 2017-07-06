@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="loginApp">
+	<head>
+		<meta charset="UTF-8">
+		<title>登录42文库</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
+		<link rel="stylesheet" href="../../css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/LoginRegister/login.css" />
+	</head>
+	<body>
+		<div  ng-controller="loginCtrl" ng-cloak>
+			<div  ng-include="'../navbar.html'" ></div>
+			<div class="login wrap_1200">
+				<!--四角背景-->
+				<div class="radius_bg">
+					<i class="iconfont left_top">&#xe610;</i>
+					<i class="iconfont right_top">&#xe60e;</i>
+					<i class="iconfont left_bottom">&#xe611;</i>
+					<i class="iconfont right_bottom">&#xe60f;</i>
+				</div>
+				<!--注册标题-->
+				<div class="login_bg">
+					<div class="login_title">登录</div>
+				</div>
+				<div class="login_wrap clear">
+					<div class="login_welcome fl">
+						<!--<img src="../../img/association/asso_head.png" />-->
+					</div>
+					<div class="login_info fl">
+						<form action="" method="post">
+							<ul>
+								<li><input type="tel" ng-model="login_phone" ng-focus="phone_null=false;phone_format=false;phone_login=false" class="text nor_text" id=""  value=""  ng-blur="verifyPhone()"  placeholder="你的手机号或者邮箱" />
+									<p class="login_prompt" ng-show="phone_null" >请输入手机号码或者邮箱</p>
+									<p class="login_prompt" ng-show="phone_format" >请输入正确的手机号或者正确的邮箱</p>
+									<p class="login_prompt" ng-show="phone_login">账号不存在，请重新输入</p>
+								</li>
+								<li><input type="password" ng-init="phone_password=false" ng-focus="phone_password_null=false;phone_password=false" ng-blur="verifyPassword()" ng-model="login_password" class="text nor_text" id="" value="" placeholder="密码" />
+									<p class="login_prompt" ng-show="phone_password_null">请输入密码</p>
+									<p class="login_prompt" ng-show="phone_password">密码格式不正确</p>
+								</li>
+								<li>
+									<input type="text" ng-init="phone_code=false" ng-focus="phone_code=false;phone_code_null=false" class="nor_text ver_code" ng-model="login_code" id="vcode" value="" placeholder="验证码" />
+									<canvas id="canvas" width="110" height="36"></canvas>
+								</li>
+								<li>
+									<p class="agree_login">
+										<input type="checkbox" ng-model="rememberMe" />
+										记住我
+										<span ng-show="phone_code">验证码错误，请重新输入</span></p>
+										<span ng-show="phone_code_null">验证码错误，请重新输入</span></p>
+								</li>
+								<li>
+									<a  class="nor_text login_btn" ng-click="loginFunction()" >登录</a>
+									<a href='register.html' class="nor_text regis_btn">注册</a>
+								</li>
+								<li>
+									<a href='forgetPassword.html' class="forget_password_btn">忘记密码</a>
+								</li>
+							</ul>
+							<span id="qqLoginBtn"></span>
+							<script type="text/javascript">
+							    QC.Login({
+							       btnId:"qqLoginBtn"	//插入按钮的节点id
+							});
+							</script>
+						<!--	<input type="image" src="../../img/wx_button.png" onclick="window.open('https://open.weixin.qq.com/connect/qrconnect?appid=wxbdc5610cc59c1631&redirect_uri=https%3A%2F%2Fpassport.yhd.com%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect');"/>-->
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="marginId" ></div>
+		<div  ng-controller="footerControll" ng-include="'../footer.html'" onload="footerShow()"></div>
+	</body>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/verificationCode.js"></script>
+	<script type="text/javascript" src="../../js/common.js" ></script>
+	<script type="text/javascript" src="../../js/lib/md5.js"></script>
+	<script src="//at.alicdn.com/t/font_ar0exrur5cr0y66r.js"></script>
+	<script type="text/javascript" src="../../js/LoginRegister/login.js" ></script>
+	<script type="text/javascript" src="../../js/foot.js" ></script>
+	<script>
+	if($(document).height()>1000){
+		$("#marginId").height($(document).height()-1000)　
+	}
+	</script>
+</html>

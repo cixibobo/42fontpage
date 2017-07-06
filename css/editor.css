@@ -1,0 +1,347 @@
+/*@import url(http://weloveiconfonts.com/api/?family=fontawesome);*/
+
+/* fontawesome */
+/*
+[class*="fontawesome-"]:before {
+	font-family: 'FontAwesome', sans-serif;
+	font-size: 21px;
+	position: absolute;
+	margin-top: 15px;
+	margin-left: 14px;
+}*/
+
+.write_edit {
+	height: 100%;
+}
+
+#editorContent body {
+	margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	background: #E5EBEF;
+}
+
+/*#editorContent div .header {
+	background: rgba(57, 89, 123, 0.8);
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	z-index: 1;
+	padding-left: 160px;
+}*/
+
+/*#editorContent div .sidebar .circles {
+	border-style: solid;
+	border-color: white;
+	border-radius: 50%;
+	border-width: 5px;
+	width: 10px;
+	height: 10px;
+	margin-top: 30px;
+	margin-left: 15px;
+	float: left;
+	box-shadow: 16px 0px 0px -5px #29343A, 16px 0px 0px 0px white, 32px 0px 0px -5px #29343A, 32px 0px 0px 0px white;
+	position: relative;
+}
+
+#editorContent div .sidebar .exitMenu input {
+	display: none;
+}
+
+#editorContent div .sidebar .exitMenu label {
+	border-style: solid;
+	border-color: white;
+	border-radius: 50%;
+	border-width: 5px;
+	width: 20px;
+	height: 20px;
+	margin-left: -10px;
+	float: left;
+	position: absolute;
+	bottom: 35px;
+}
+
+#editorContent div .sidebar .exitMenu input:checked~ label {
+	border-style: double;
+}
+
+#editorContent div .sidebar .exitMenu input:checked~ .finishButton {
+	bottom: -100px;
+}
+
+#editorContent div .sidebar label:not(:first-child):hover {
+	opacity: .8;
+	cursor: pointer;
+}
+
+#editorContent div .header .path {
+	margin-top: 15px;
+}
+
+#editorContent div .header .path p {
+	color: rgba(255, 255, 255, .7);
+	float: left;
+}
+
+#editorContent div .header .path p:hover {
+	color: rgba(255, 255, 255, 1);
+	cursor: pointer;
+}
+
+#editorContent div .header .path p:not(:first-child):before {
+	content: ">";
+	margin: 0px 10px;
+	display: block-inline;
+	color: #456;
+	font-weight: bold;
+}
+
+#editorContent div .header .logo {
+	margin-top: 10px;
+	margin-right: 180px;
+	float: right;
+	font-size: 25px;
+}
+
+#editorContent div .header .logo:after {
+	content: "By Rikard Legge";
+	color: #2A4C6F;
+}
+
+#editorContent div .sidebar {
+	background: #29343A;
+	width: 80px;
+	position: fixed;
+	height: 100%;
+}*/
+
+
+/*#editorContent div .content{
+  margin-left:80px;
+  
+  padding-top:110px;
+  padding-left:80px;
+  padding-right:80px;
+}*/
+
+#editorContent .content {
+	
+}
+.kalamu-box{
+	
+}
+#editorContent h1 {
+	font-size: 40px;
+	color: rgba(150, 150, 150, 0.8);
+	/*text-shadow: 0px 0px 6px #def, 0 0 0 #000, 0px 0px 6px #def;*/
+	padding: 5px;
+	outline: none;
+	transition: .2s;
+}
+
+#editorContent h1:focus {
+	background: white;
+	border-radius: 5px;
+	/*box-shadow: inset 0px 0px 5px 0px grey;*/
+	text-shadow: none;
+	color: #444;
+}
+
+#editorContent h1:hover {
+	background: white;
+	border-radius: 5px;
+	/*box-shadow: inset 0px 0px 5px 0px grey;*/
+	text-shadow: none;
+	color: #444;
+}
+
+#editorContent::selection {
+	background-color: #444;
+	color: #ffffff;
+}
+
+
+
+
+/*#editorContent .content #contentText:focus {
+	background: white;
+	box-shadow: inset 0px 0px 4px -1px black;
+}*/
+
+
+/*#editorContent .content #contentText:hover {
+	background: white;
+	box-shadow: inset 0px 0px 4px -1px black;
+}*/
+
+#editorContent .textEditing {
+	height: 40px;
+	width: 738px;
+	background: #e9ebee;
+}
+
+#editorContent .textEditing input {
+	display: none;
+}
+
+
+#editorContent .textEditing #link {
+	display: inline-block;
+	position: absolute;
+	margin-top: 17px;
+	width: 0;
+	transition: .4s;
+	overflow: hide;
+	border: none;
+}
+
+#editorContent .textEditing input:first-child+ label span:after {
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+}
+
+#editorContent .textEditing input:nth-last-child(2)+ label span:after {
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+
+
+/*#editorContent .textEditing span:after {
+	content: "";
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	border-color: #B8C3CB;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #F2F6F8;
+}*/
+
+
+/*#editorContent .textEditing #linkLable span:after {
+	background: #29343A;
+	transition: .4s;
+	width: 0px;
+}
+
+#editorContent .textEditing input:checked + label span:after {
+	background-color: #29343A;
+	color: #fff;
+}
+
+#editorContent .textEditing input:checked+ label span {
+	color: #fff;
+}
+
+#editorContent .textEditing #attachment:checked~ #linkLable span:after {
+	width: 320px;
+}
+
+#editorContent .textEditing #attachment:checked~ #link {
+	width: 300px;
+}
+
+#editorContent .textEditing span:hover:after {
+	background-color: white;
+}*/
+
+#editorContent div .finishButton {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	width: calc(100% - 80px);
+	margin-left: 80px;
+	position: fixed;
+	bottom: 0;
+	background: #E5EBEF;
+	transition: .3s ease;
+	/*box-shadow: 0px 0px 0px #fff, 0px 0px 5px #888;*/
+}
+
+#editorContent .finishButton a {
+	background-color: #999;
+	border-radius: 7px;
+	border-width: 1px;
+	border-color: #eee;
+	border-style: solid;
+	color: #fff;
+	display: inline-block;
+	margin-right: 20px;
+	padding: 15px 0px;
+	width: 130px;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+#editorContent .finishButton a:hover {
+	/*box-shadow: inset 0px 0px 3px black;*/
+}
+
+#publish {
+	background-color: #57D36B;
+	margin-left: 80px;
+}
+
+#save {
+	background-color: #62B1DF;
+	margin-left: 10px;
+}
+
+#delete {
+	background-color: #E37668;
+	position: absolute;
+	right: 50px;
+}
+
+#editorContent input {
+	outline: none;
+}
+.textEditing  li  i{
+	font-size: 20px;
+}
+
+.textEditing .fun_list i {
+	color: #8c8a8a;
+	cursor: pointer;
+}
+
+.fun_list li {
+	display: inline-block;
+	line-height: 40px;
+	height: 40px;
+	padding: 0 10px;
+	text-align: center;
+	color: #8c8a8a;
+	cursor: pointer;
+	
+}
+
+.fun_list li:hover {
+	background-color: #b5b5b5;
+	cursor: pointer;
+	color: #e8eaed;
+	
+}
+.fun_list li:hover i{
+	color: #e8eaed;
+}
+.fun_list .text_fun:hover{
+	border-color: #b5b5b5;
+}
+.fun_list .text_fun:hover span{
+	color: #e8eaed;
+}
+.contentText{
+	height: 100%;
+	overflow-y: auto;
+}
+.fun_list li.text_fun{
+	border: 2px solid #a0a2a5;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 10px;
+	font-size: 14px;
+}
+.fun_list li.text_fun span{
+	color: #8c8a8a;
+	cursor: pointer;
+}

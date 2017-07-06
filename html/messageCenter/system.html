@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html ng-app="systemApp">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>系统通知</title>
+		<link rel="stylesheet" href="../../css/reset.css" />
+		<link rel="stylesheet" href="../../css/homeNav.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/messageCenter/system.css" />
+		<link rel="stylesheet" href="../../css/tab_page.css" />
+		<!--<link rel="stylesheet" href="../../css/popup.css" />-->
+		<link rel="stylesheet" href="../../css/personCenter/personCenter_head.css" />
+		<link rel="stylesheet" href="../../css/daohang.css" />
+		
+	</head>
+
+	<body ng-controller="systemC" ng-cloak>
+		<div class="top_head">
+			<div class="top_nav">
+				<div class="top_nav_content">
+					<div class="search_area">
+						<div class="search">
+							<input type="text" name="" id="search" placeholder="请输入书名、作者名" ng-model="$parent.searchMain" ng-focus="searchTopF(1)" ng-blur="searchTopF(2)" ng-keyup="searchBook($event)" />
+							<i class="iconfont search_btn" ng-click="searchClass()">&#xe622;</i>
+							<div class="search_mask" ng-click="searchClass()"></div>
+						</div>
+					</div>
+					<ul class="slider_left">
+						<li ng-click="jumpIndex(1)">
+							<a href="#">
+								<svg class="icon center_nav_logo" aria-hidden="true">
+									<use xlink:href="#icon-logoicon"></use>
+								</svg>
+								<a href="#" >主页</a>
+							</a>
+						</li>
+						<li ng-click="jumpIndex(2)">
+							<a href="#" id="top" >分类</a>
+						</li>
+						<li ng-click="jumpIndex(3)">
+							<a href="#">打书钉大厅</a>
+						</li>
+						<li ng-click="jumpIndex(4)">
+							<a href="#" >同好会</a>
+						</li>
+					</ul>
+						<ul class="slider_right">
+							<li class="nav_tag person">
+								<a class="user_head_pic" href="../personCenter/sildebar.html">
+									<img class="my_pic" ng-src="{{headUrl}}" />
+									<div class="person_info slider-person">
+										<p class="my_name">
+											<a href="">{{personCenter.nickName}}</a>
+										</p>
+										<div class="short_info">
+											<p>{{personCenter.signature}}</p>
+										</div>
+										<ul class="my_lib" ng-init="tenPer=100">
+											<li class="my_money clear">
+												<a class="fl money_num" href="../personCenter/sildebar.html?needUrl=mywallet" style="width:100px;"><i class="iconfont">&#xe625;</i>{{personCenter.silverThumbTack}}银图钉</a>
+												<div class="fr contact">
+													<a class="phone" href="../personCenter/sildebar.html"><i class="iconfont">&#xe629;</i></a>
+													<a class="email" href="../personCenter/sildebar.html"><i class="iconfont">&#xe627;</i></a>
+												</div>
+											</li>
+											<li class="my_books clear">
+												<a href="../personCenter/sildebar.html?needUrl=mybookshelf" class="fl"><i class="iconfont">&#xe626;</i>{{personCenter.bookNum}}本书</a>
+												<a href="../personCenter/sildebar.html?needUrl=myfriend" class="fr" style="padding-top: 3px;">{{personCenter.followNum}}粉丝</a>
+											</li>
+											<li class="my_bag">
+												<a class="fl" href="../personCenter/sildebar.html"><i class="iconfont">&#xe77b;</i>我的账户</a>
+												<a class="fr" href="../personCenter/sildebar.html?needUrl=mywallet"><i class="iconfont">&#xe625;</i>我的钱包</a>
+											</li>
+
+										</ul>
+										<div class="person_more">
+											<a href="" class="nav_title_signout" ng-click="signOut()">退出</a>
+										</div>
+									</div>
+							</li>
+							<li class="nav_tag" ng-mouseleave="messageListShow=false" ng-mouseover="messageListShow=true">
+								<span class="list_btn list_btn-pos" ng-show="message_zero">
+									<span class="list-btn-number">{{message_total}}</span>
+								</span>
+								<a class="nav_title " href="../messageCenter/reply.html">消息</a>
+								<!--消息信息弹窗-->
+								<div class="message_info silder-message-info" ng-show="messageListShow">
+									<p class="message_p" ng-click="returnToWin('messageCenter/reply')">
+										<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[0]}}</span>
+										</span>
+										<span class="main_span">回复我的</span>
+										</span>
+									</p>
+									<p class="message_p" ng-click="returnToWin('messageCenter/center')">
+										<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[1]}}</span>
+										</span>
+										<span class="main_span">@我的</span>
+										</span>
+									</p>
+									<p class="message_p" ng-click="returnToWin('messageCenter/getpraise')">
+										<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[2]}}</span>
+										</span>
+										<span class="main_span">收到的赞</span>
+										</span>
+									</p>
+									<p class="message_p" ng-click="returnToWin('messageCenter/system')">
+										<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[3]}}</span>
+										</span>
+										<span class="main_span">系统通知</span>
+										</span>
+									</p>
+									<p class="message_p" ng-click="returnToWin('messageCenter/personal')">
+										<span class="message_re-b">
+											<span class="m-r-num">
+											<span>{{message[4]}}</span>
+										</span>
+										<span class="main_span">我的私信</span>
+										</span>
+									</p>
+									<div class="message-person_more" ng-click="returnToWin('messageCenter/center')">
+										<a href="" class="message-nav_title_signout">查看更多</a>
+									</div>
+								</div>
+							</li>
+							<li class="nav_tag" ng-mouseleave="dynamicListShow=false">
+								<a class="nav_title" href="#" ng-mouseover="searchDynamic()">动态</a>
+								<!--动态信息弹窗-->
+								<div class="dynamic_info silder-dynamic-info" ng-show="dynamicListShow">
+									<p class="dynamic_p" ng-repeat="dymessage in dyMessage">
+										<span class="dy-img">
+											<a ng-href="../../html/book.html?book_id={{dymessage.bookId}}" target="_blank"><img ng-src="{{dymessage.imageUrl}}" /></a>
+													</span>
+										<span class="dy-content">
+													<span class="dy-r-num"></span>
+										<a style="color: #000000;" ng-href="../../html/book.html?book_id={{dymessage.bookId}}" target="_blank"><span class="dy-content1">{{dymessage.bookName}}  </span></a>
+										<span style="display: inline-block;margin-left: 9px; width: 55px; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">{{dymessage.chapterName}}</span>
+										<span style="    display: inline-block;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">更新啦</span>
+										</span>
+									</p>
+									<div class="dynamic-person_more">
+										<a href="" ng-show="moreDongtai1" class="dynamic-nav_title_signout">查看更多</a>
+										<a href="" ng-show="moreDongtai2" class="dynamic-nav_title_signout">暂无动态</a>
+										<a href="" ng-show="moreDongtai3" class="dynamic-nav_title_signout">没有更多了</a>
+									</div>
+								</div>
+							</li>
+							<li class="nav_tag" ng-mouseleave="collectListShow=false" ng-click="changFrameTop1('mybookshelf')">
+								<a class="nav_title" href="#" id="top" ng-mouseover="searchCollection()">收藏</a>
+								<!--收藏信息弹窗-->
+								<div class="message_info silder-collect-info" ng-show="collectListShow">
+									<div class="message_p" ng-repeat="collectlist in collectMesList">
+										<div class="col_re-b">
+											<div class="col-main">
+												<span class="col-r-num">
+															</span>
+												<p class="col-book-name">
+																{{collectlist.bookName}}
+															</p>
+
+											</div>
+											<div class="col-main" style="margin-left: 12px;">{{collectlist.nickName}}</div>
+										</div>
+									</div>
+									<div class="message-person_more" ng-click="changFrameTop1('mybookshelf')">
+										<a href="" class="message-nav_title_signout">查看更多</a>
+									</div>
+								</div>
+							</li>
+							<li class="nav_tag" style="margin-right: 20px!important;" ng-mouseleave="historyListShow=false">
+								<a class="nav_title" href="#" ng-mouseover="searchHistory()">历史</a>
+								<!-- 历史信息弹窗-->
+								<div class="message_info silder-search-info" ng-show="historyListShow">
+									<div class="message_p" ng-repeat="historylist in historyList">
+										<div class="col_re-b">
+											<div class="col-main">
+												<span class="col-r-num"></span>
+													<a style="color: #000000;" ng-href="../../html/book.html?book_id={{historylist.bookId}}" target="_blank"><p class="col-book-name">
+																	{{historylist.bookName}}
+													</p></a>
+												
+											</div>
+											<div class="col-main1" style="margin-left: 12px;">
+												<a style="color: #000000;" ng-href="../../html/read.html?chapterId={{historylist.chapterId}}&book_id={{historylist.bookId}}&isHistory=1" target="_blank">
+													{{historylist.chapterName}}
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="message-person_more">
+										<a href="" class="message-nav_title_signout">查看更多</a>
+									</div>
+								</div>
+							</li>
+							<li class="top_active submission">
+								<!--								<a href="../newwrite.html" target="_blank">投稿</a>-->
+								<a href="../newwrite.html" target="_blank">投稿</a>
+							</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main_content">
+			<div class="content_list_side">
+				<div class="content_side_top">
+					<a href="javascript:location.reload();">消息中心</a>
+				</div>
+				<div class="content_side_bottom">
+					<ul>
+						<li>
+							<a href="reply.html"><span class="disc_size">●</span>回复我的</a>
+						</li>
+						<li class="border_b">
+							<a href="center.html"><span class="disc_size">●</span>@我的</a>
+						</li>
+						<li>
+							<a href="getpraise.html"><span class="disc_size">●</span>收到的赞</a>
+						</li>
+						<li class="border_b">
+							<a href="system.html" class="selected_page"><span class="disc_size">●</span>系统通知</a>
+						</li>
+						<li>
+							<a href="personal.html"><span class="disc_size">●</span>我的私信</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="content_list">
+				<p style="width:90%;text-align: center;margin-top: 90px;color: #bbb;" ng-show="isShow">暂无系统消息</p>
+				
+				<div class="comments_list_detail" ng-repeat="sysInfo in sysInfoList">
+					<div class="comments_list_center">
+						<div class="comments_detail_t">
+							<span class="replying_username">{{sysInfo.noticeTitle}}</span><span class="t_color">{{sysInfo.createTime}}</span>
+						</div>
+						<div class="comments_detail_bottom">
+							<span class="centerNotice">{{sysInfo.noticeContent}}</span>
+						</div>
+						<div class="detailDiv" ng-if="detailShow(sysInfo)" >
+							<a  href="" ng-click="detail(sysInfo)" class="detailA" >{{sysInfo.dealInfo}}</a>
+						</div>
+					</div>
+
+				</div>
+
+				<tm-pagination conf="paginationConf"></tm-pagination>
+			</div>
+		</div>
+		<div class="confirm_popub" ng-show="detailInfo">
+			<p>点击同意您将：<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;①获得<a href="" style="color: #F39800;" ng-click="jumpBook()">《{{bookName}}》</a>{{stockNum}}%股权
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;②减少{{money}}个银图钉</p>
+			({{endTime}}后此条通知将作废，请尽快处理)
+			<div class="purch_btn confirm_btns clear">
+				<a class="confirm_btn fl" href="" ng-click="agree(1)">同意</a>
+				<a class="cancel_btn fr" href="" ng-click="agree(2)">不同意</a>
+				<i ng-click="detailInfo=false" class="iconfont cancle_pic">&#xe616;</i>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/tm.pagination.js"></script>
+	<script src="//at.alicdn.com/t/font_ar0exrur5cr0y66r.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/messageCenter/system.js"></script>
+	<script src="http://at.alicdn.com/t/font_36mew63pj5l5l8fr.js"></script>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="moreApp">
+	<head>
+		<meta charset="UTF-8">
+		<title>42文库更多</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/tab_page.css" />
+		<link rel="stylesheet" href="../../css/nav.css" />
+		<link rel="stylesheet" href="../../css/more_list.css">
+	</head>
+	<body>
+		<div ng-controller="moreCtrl" ng-cloak class="main_content_class">
+			<div ng-include="'../navbar.html'"></div>
+			<div class="login wrap_1200" style="margin-top: 40px;">
+				<div class="list_a">
+					<div class="classify_label">
+						<span class="class_title">分区：</span>
+					</div>
+					<div class="classify_name classifyListA">
+						<i class="iconfont left_top icon-font">&#xe610;</i>
+						<i class="iconfont right_top icon-font">&#xe60e;</i>
+						<span ng-click="bookClasifyCode(0,1)" ng-class="{'selected':allSel}"><a href="" >全部</a></span>
+						<span ng-click="bookClasifyCode(1,1)" ng-class="{'selected':yinSel}">><a href="" >银图钉</a></span>
+						<span ng-click="bookClasifyCode(2,1)" ng-class="{'selected':gengSel}">><a href="" >更新</a></span>
+						<span ng-click="bookClasifyCode(3,1)" ng-class="{'selected':newSel}">><a href="" >新书</a></span>
+						<i class="iconfont left_bottom icon-font">&#xe611;</i>
+						<i class="iconfont right_bottom icon-font">&#xe60f;</i>
+					</div>
+				</div>
+				<div class="b_body ">
+					<ul class="list_live">
+						<li ng-repeat="hotbook in more_book" ng-click="openWin(hotbook.id)" chapter-finish>
+							<div class="book_pic_wrap">
+								<img class="first_pic" ng-src="{{hotbook.imageUrl}}" alt="" on-finish-render />
+								<img class="cls_blur" ng-src="{{hotbook.imageUrl}}" alt="" on-finish-render />
+							</div>
+							<div class="classInfo_list" ng-click="toBookInfo(hotbook.id)">
+								<p class="classInfo_writer">
+									<img class="class_book_writer" ng-src="{{hotbook.userImage}}">
+									<span class="classinfo_writer_name">{{hotbook.nickName}}</span>
+								</p>
+								<p class="class_p1">铜书钉:{{hotbook.copperMoney}}</p>
+								<p class="class_p1" ng-if="!hotbook.copperMoney">铜书钉:0</p>
+								<p class="class_p2">银书钉:{{hotbook.silverMoney}}</p>
+								<p class="class_p2" ng-if="!hotbook.silverMoney">银书钉:0</p>
+								<p class="class_p3">点赞量:{{hotbook.praiseNum}}</p>
+								<p class="class_p3" ng-if="!hotbook.praiseNum">点赞量:0</p>
+								<p class="class_p4">点击量:{{hotbook.checkNub}}</p>
+								<p class="class_p4" ng-if="!hotbook.checkNub">点击量:0</p>
+								<p class="class_p5">收藏:{{hotbook.collectionNum}}</p>
+								<p class="class_p5" ng-if="!hotbook.collectionNum">收藏:0</p>
+							</div>
+							<p class="more-book_name" ng-click="toBookInfo(hotbook.id)">{{hotbook.bookName}}</p>
+						</li>
+					</ul>
+				</div>
+				<back-to-top class="back_to_top">
+					<i class="iconfont _top_font">&#xe636;</i>
+				</back-to-top>
+			</div>
+			<div class="pages">
+				<tm-pagination conf="paginationConf"></tm-pagination>
+			</div>
+		</div>
+
+		<div ng-controller="footerControll" ng-include="'../footer.html'" onload="footerShow()"></div>
+	</body>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/tm.pagination.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script src="//at.alicdn.com/t/font_ar0exrur5cr0y66r.js"></script>
+	<script type="text/javascript" src="../../js/moreList.js"></script>
+	<script type="text/javascript" src="../../js/foot.js"></script>
+
+</html>

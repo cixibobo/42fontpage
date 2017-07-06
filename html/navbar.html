@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="top_head">
+			<div class="top_nav">
+				<div class="top_nav_content">
+					<a href="../../index.html" class="top_nav_logo">
+						<svg class="icon logo" aria-hidden="true">
+							<use xlink:href="#icon-logo"></use>
+						</svg>
+					</a>
+					<div class="search">
+						<form action="" method="post">
+							<input type="text" name="" id="search" placeholder="请输入书名、作者名" ng-model="$parent.searchMain" ng-focus="searchTopF(1)" ng-blur="searchTopF(2)"  ng-keyup="searchBook($event)" />
+							<i class="iconfont search_btn" ng-click="searchClass()">&#xe622;</i>
+							<div class="search_mask" ng-click="searchClass()" ></div>
+						</form>
+					</div>
+					<!--<span class="user_head_pic"><img src="../../img/messageCenter/user-pic.png"/></span>-->
+					<ul>
+						<!--<li>
+							<a href="">消息</a>
+						</li>
+						<li>
+							<a href="">动态</a>
+						</li>
+						<li>
+							<a href="">收藏</a>
+						</li>
+						<li>
+							<a href="">历史</a>
+						</li>-->
+						<li class="top_active">
+							<a href="../html/personCenter/sildebar.html" ng-click="subMission()">投稿</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

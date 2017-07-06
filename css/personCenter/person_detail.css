@@ -1,0 +1,514 @@
+body {
+	background: #f3f3f3;
+}
+
+.backColor {
+	background-color: bisque;
+	font-style: italic;
+}
+
+.wrap_1200 {
+	margin-top: 25px;
+}
+
+.user_intro {
+	width: 762px;
+	height: 168px;
+	margin: 5px;
+	background: #fff;
+	border-radius: 10px;
+}
+
+.buy_detail_box {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -260px;
+	margin-top: -220px;
+	background-color: #fff;
+	width: 300px;
+	height: 140px;
+	border: 1px solid #F39800;
+	border-radius: 5px;
+	text-align: center;
+	z-index: 999;
+}
+
+.fileInputTwo {
+	position: absolute;
+	font-size: 100px;
+	width: 130px;
+	height: 130px;
+	/* right: 0; */
+	top: 0px;
+	opacity: 0;
+}
+.img-form{
+	top:20px;
+	width: 130px;
+	height: 130px;
+	position: absolute;
+	overflow: hidden;
+}
+
+/**
+ *截屏区 
+ */
+
+.screenshot-area {
+	position: absolute;
+	left: 40%;
+	top: 10%;
+	z-index: 99999;
+	background-color: #eeeeee;
+	width: 300px;
+	height: auto;
+}
+
+.btn-block {
+	border: 1px solid #F39800;
+	border-radius: 6px;
+	color: #FFFFFF;
+	background-color: #F39800;
+	cursor: pointer;
+}
+
+.screenshot-area img {
+	width: 100px;
+	height: 100px;
+}
+
+.screenshot-icon {
+	position: absolute;
+	right: 0px;
+}
+
+.preview-lg {
+	border: 1px solid #eee;
+	width: 100px;
+	height: 100px;
+}
+
+.docs-preview {
+	width: 300px;
+	text-align: center;
+}
+
+.img-preview {
+	text-align: center;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.img-preview2 {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.docs-tooltip {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-size: 16px;
+	padding: 2px 4px;
+}
+
+.img-container {
+	height: 200px;
+	/*width: 400px;*/
+}
+
+
+/**
+ * 用来解决angular CSS 渲染加载时间，ng-show,ng-hide,ng-cloak问题
+ */
+
+@charset "UTF-8";
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+	display: none !important;
+}
+
+ng\:form {
+	display: block;
+}
+
+.regis_prompt {
+	display: block;
+	color: #F39800;
+	font-size: 12px;
+	line-height: 26px;
+	padding-left: 2px;
+}
+
+.user_logo {
+	margin: 15px;
+	width: 132px;
+	height: 132px;
+	border: 2px solid #ddd;
+	border-radius: 10px;
+}
+
+.user_logo img {
+	width: 132px;
+	height: 132px;
+	border-radius: 10px;
+}
+
+.user_show {
+	margin-top: 15px;
+}
+
+.user_show h2 {
+	padding-right: 15px;
+	color: #000;
+}
+
+.user_show h2,
+.user_show .modify_name {
+	display: inline-block;
+}
+
+.user_show .modify_name1 {
+	position: relative;
+	display: inline-block;
+	background: #FFFFFF;
+	border: 1px solid #F39800;
+	border-radius: 10px;
+	padding: 0px 12px;
+	/* overflow: hidden; */
+	color: #F39800;
+	height: 24px;
+	line-height: 24px;
+	text-decoration: none;
+	text-indent: 0;
+	font-size: 15px;
+	margin-top: 10px;
+}
+
+.user_show a:hover {
+	background: #F39800;
+	color: #FFFFFF;
+}
+
+.notenick {
+	display: inline-block;
+	color: #BBBBBB;
+	font-family: "黑体";
+	font-size: 16px;
+}
+
+.user_show .modify_name:hover {
+	background: #F39800;
+	color: #fff;
+}
+
+.modify_pic {
+	display: block;
+}
+
+.user_show h2 {
+	font-size: 30px;
+}
+
+.user_show {
+	line-height: 40px;
+}
+
+
+/*.user_show span {
+	height: 24px;
+	width: 74px;
+	border: 1px solid #F39800;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 24px;
+	color: #F39800;
+	font-size: 15px;
+	cursor: pointer;
+	top: 10px;
+}*/
+
+.commentBtn {
+	height: 24px;
+	width: 74px;
+	border: 1px solid #f90;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 24px;
+	color: #f90;
+	font-size: 14px;
+	cursor: pointer;
+	display: block;
+}
+
+.modify_pic {
+	margin-top: 10px;
+}
+
+.modify_name_wrap {
+	display: inline-block;
+	position: relative;
+}
+
+.modify_name_p {
+	width: 268px;
+	height: 50px;
+	z-index: 10;
+	position: absolute;
+	left: 15px;
+	box-sizing: border-box;
+	top: 31px;
+	background: url(../../img/personCenter/person_detail/name_bg.png) no-repeat;
+	padding: 15px 0 0 10px;
+}
+
+.modify_name_text {
+	background: #f2efef;
+	height: 24px;
+	width: 156px;
+	line-height: 24px;
+	display: inline-block;
+	padding-left: 5px;
+	/*padding-top: 2.5px;*/
+	color: #222222;
+}
+
+.repeat_name_check {
+	display: inline-block;
+	color: #FFFFFF;
+	font-size: 14px;
+	height: 24px;
+	line-height: 24px;
+	border-radius: 5px;
+	text-align: center;
+	width: 82px;
+	background: #F39800;
+	margin-left: 5px;
+	/*padding-top: 2.5px;*/
+}
+
+
+/*签到*/
+
+.user_sign {
+	width: 209px;
+	height: 168px;
+	margin: 5px;
+	border-radius: 10px;
+	background: url(../../img/personCenter/person_detail/sign.png) no-repeat center;
+	background-color: #fff;
+	cursor: pointer;
+	position: relative;
+}
+
+.sign_show {
+	position: absolute;
+	width: 224px;
+	height: 96px;
+	padding-top: 20px;
+	background: url(../../img/personCenter/person_detail/signw.png) no-repeat center;
+	top: 140px;
+	text-align: center;
+}
+
+.sign_show p {
+	font-size: 14px;
+	line-height: 24px;
+	color: #bbb;
+}
+
+.user_setinfo {
+	width: 950px;
+	height: 384px;
+	margin: 5px;
+	background: #fff;
+	border-radius: 10px;
+	margin-top: 20px;
+	padding: 20px;
+}
+
+.user_brief {
+	height: 60px;
+	width: 800px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.input_title {
+	width: 100px;
+	text-align: left;
+}
+
+.input_con .modify_btn {
+	display: inline-block;
+	height: 24px;
+	padding: 0 10px 0 10px;
+	border: 1px solid #F39800;
+	line-height: 24px;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 10px;
+	cursor: pointer;
+	color: #F39800;
+	background-color: #ffffff;
+}
+
+.input_con .modify_btnError {
+	display: inline-block;
+	height: 24px;
+	padding: 0 10px 0 10px;
+	border: 1px solid #AC2925;
+	line-height: 24px;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 10px;
+	cursor: pointer;
+	color: #AC2925;
+	background-color: #ffffff;
+}
+
+.input_con .modify_btnInfo {
+	display: inline-block;
+	height: 24px;
+	padding: 0 10px 0 10px;
+	/*border: 1px solid;*/
+	line-height: 24px;
+	text-align: center;
+	font-size: 14px;
+	/*border-radius: 10px;*/
+	cursor: pointer;
+	color: #AAAAAA;
+	background-color: #ffffff;
+}
+
+.select_city {
+	width: 238px;
+	height: 24px;
+	border-radius: 10px;
+	padding-left: 10px;
+	color: #bbb;
+	/*在选择框的最右侧中间显示小箭头图片*/
+	background: url(../../img/personCenter/person_detail/san.png) no-repeat scroll 218px center transparent;
+	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+	padding-right: 14px;
+}
+
+.text {
+	font-family: 微软雅黑;
+	font-size: 16px;
+	width: 236px;
+	height: 22px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding-left: 10px;
+	color: #bbb;
+}
+
+.ch_sex {
+	font-size: 0;
+}
+
+.ch_sex li {
+	display: inline-block;
+	font-size: 16px;
+	padding: 0 5px 0 5px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	color: #222;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 25px;
+}
+
+.ch_sex .active {
+	background: #F39800;
+	color: #fff;
+	border-radius: 10px;
+	padding: 3px 5px;
+}
+
+li span {
+	width: 50px;
+	height: 24px;
+}
+
+.input_wrap tr {
+	height: 36px;
+}
+
+.keep_btn1 {
+	display: block;
+	height: 26px;
+	text-align: center;
+	line-height: 26px;
+	color: #fff;
+	border-radius: 10px;
+	background: #f90;
+	width: 80px;
+	margin: 0px;
+}
+
+.keep_btn {
+	display: block;
+	height: 26px;
+	text-align: center;
+	line-height: 26px;
+	color: #fff;
+	border-radius: 10px;
+	background: #F39800;
+	width: 60px;
+	margin: 5px auto;
+}
+
+.keep {
+	width: 900px;
+	margin: 5px auto 0;
+	border-top: 2px solid #ddd;
+}
+
+.file {
+	position: relative;
+	display: inline-block;
+	background: #FFFFFF;
+	border: 1px solid #F39800;
+	border-radius: 10px;
+	padding: 0px 12px;
+	overflow: hidden;
+	color: #F39800;
+	height: 24px;
+	line-height: 24px;
+	text-decoration: none;
+	text-indent: 0;
+	font-size: 15px;
+	margin-top: 67px;
+}
+
+.file input {
+	position: absolute;
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+}
+
+.file:hover {
+	background: #F39800;
+	border-color: #F39800;
+	color: #FFFFFF;
+	text-decoration: none;
+}

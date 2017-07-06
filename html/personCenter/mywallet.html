@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html ng-app="mywallet">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的钱包</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/mywallet.css" />
+		<link rel="stylesheet" href="../../css/tab_page.css" />
+		<link rel="stylesheet" href="../../css/popup.css" />
+	</head>
+
+	<body>
+		<div class="clear" ng-cloak>
+			<div ng-include="'./personCenter_head.html'"></div>
+			<div ng-include="'./sidebar.html'"></div>
+			<div class="wrap_1000 fr" ng-controller="myWalletC">
+				<div class="my_wallet">
+					<!--个人钱包信息-->
+					<div class="w_account clear">
+						<div class="a_info fl clear yy">
+							<div class="a_pic fl">
+								<img ng-src="{{myWalletInfo.headUrl}}" />
+							</div>
+							<div class="a_brief fl">
+								<p class="a_name">{{myWalletInfo.nickName}}</p>
+								<p class="a_intro">{{myWalletInfo.signature}}</p>
+							</div>
+
+						</div>
+						<div class="a_extra fl yy">
+							<dl class="extra_list clear">
+								<dt>账户余额</dt>
+								<dd class="fl">铜螺钉:<span>{{myWalletInfo.copperThumbTack}}</span></dd>
+								<dd class="sli_extra fl">银图钉:<span>{{myWalletInfo.silverThumbTack}}</span></dd>
+								
+							</dl>
+
+						</div>
+						<div class="withdraw fr yy" ng-show="withdrawMoney">
+							<dl class="extra_list">
+								<dt>提现:</dt>
+								<dd class="fl">金书钉:<span>{{myWalletInfo.goldThumbTack1}}</span></dd>
+								<!--<dd>提现(不含税):<span>￥{{myWalletInfo.goldThumbTack1}}</span>
+									<a class="with_btn" ng-click="monwithdraw()" href="#" title="您是注册作家，系统为您扣除百分之40服务费">提现</a>
+								</dd>-->
+								<dd>
+									<a class="with_btn" ng-click="monwithdraw()" href="#" title="您是注册作家，系统为您扣除百分之40服务费">申请提现</a>
+								</dd>
+								<div class="prompt">
+									<p> 提示。。</p>
+								</div>
+							</dl>
+						</div>
+						<!--提现窗口-->
+						<div class="mon_withdraw" ng-show="withdraw">
+							<div class="with_title  clear">
+								<ul class="popub_titlist fl">
+									<!--<li ng-class="{'active':drawBackType}">
+										<a href="#" ng-click="drawBackType=false">银行卡提现</a>
+									</li>-->
+									<li ng-class="{'active':drawBackType}">
+										<a href="#">支付宝提现</a>
+										<!--<a href="#" ng-click="drawBackType=true">支付宝提现</a>-->
+
+									</li>
+								</ul>
+								<a href="javascript:;" ng-click="cancelP()"><i class="iconfont fr cancel_btn">&#xe616;</i></a>
+							</div>
+							<!--银行卡提现-->
+							<!--<table border="0" cellspacing="0" cellpadding="0" ng-show="!drawBackType">
+								<form action="" method="post">
+									<tr>
+										<td class="first_column">开户人姓名:</td>
+										<td>崔顾平</td>
+									</tr>
+									<tr>
+										<td class="first_column">银行账号:</td>
+										<td><input class="text" type="text" id="" placeholder="请输入银行账号" /></td>
+										<td class="ex_col">例:622************</td>
+									</tr>
+
+									<tr>
+										<td class="first_column">开户银行:</td>
+										<td>
+											<select class="select_bank" name="">
+												<option value="">中国银行</option>
+											</select>
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td class="first_column">开户地:</td>
+										<td><input class="text" type="text" id="" placeholder="请输入开户地" /></td>
+										<td class="ex_col">例:浙江省杭州市萧山区</td>
+									</tr>
+									<tr>
+										<td class="first_column">开户行名称:</td>
+										<td><input class="text" type="text" id="" placeholder="请输入开户行名称" /></td>
+										<td class="ex_col">例:XX分行/支行/营业所</td>
+									</tr>
+									<tr class="upload_img">
+										<td class="first_column">上传照片:</td>
+										<td>
+											<a href="javascript:;" class="a-upload">
+												<input type="file" name="" id="" value="" /><i class="iconfont file_img">&#xe6cc;</i>
+											</a>
+											<p>上传银行卡照片(带银行卡账号) </p>
+											<p>2M以内</p>
+										</td>
+										<td></td>
+									</tr>
+									<tr class="recha_money">
+										<td class="first_column">输入提现金额:</td>
+										<td><input class="text" type="text" id="" value="" />
+											<input type="submit" id="" name="" value="提交申请" class="recha_btn" />
+										</td>
+										<td class="ex_col"></td>
+									</tr>
+								</form>
+							</table>-->
+							<!--支付宝提现-->
+							<table border="0" cellspacing="0" cellpadding="0" ng-show="drawBackType">
+								<form action="" method="post">
+									<tr>
+										<td class="first_column">支付宝账户:</td>
+										<td>{{accountNo}}</td>
+									</tr>
+									<tr>
+										<td class="first_column">填写支付宝用户名:</td>
+										<td><input class="text" type="text" id="" ng-model="accountName" placeholder="请输入支付宝用户名" /></td>
+									</tr>
+
+									<tr>
+										<td class="first_column">输入密码:</td>
+										<td><input class="text" type="password" id="" ng-model="password" placeholder="请输入网站登录密码" /></td>
+
+									</tr>
+									<tr class="recha_money">
+										<td class="first_column">输入提现金额:</td>
+										<td><input class="text" type="number" id="" ng-model="drawMoney" />
+											<input type="submit" id="" name="" value="提交申请" ng-click="drawBack('alipay')" class="recha_btn" />
+										</td>
+										<td class="ex_col"></td>
+									</tr>
+								</form>
+							</table>
+
+						</div>
+					</div>
+				</div>
+				<!--个人账户充值-->
+				<div class="a_recharge yy">
+
+
+					<p class="a_r_title">账户充值</p>
+					<dl class="re_way">
+						<dt>充值方式:</dt>
+						<dd class="alipay active"></dd>
+						<!--<dd class="wechatpay"></dd>
+						<p class="a_r_title">账户充值</p>
+						<dl class="re_way">
+							<dt>充值方式:</dt>
+							<dd class="alipay active"></dd>
+							<!--<dd class="wechatpay"></dd>
+
+						<dd class="linepay"></dd>
+						<dd class="paypal"></dd>-->
+					</dl>
+					<dl class="re_num" id="rechangeZone">
+						<dt>充值数量:</dt>
+						<!--<dd ng-class="{'re_senum':true, 'active':actived==flag}" ng-click="select(y,$index)" ng-bind="flag" ng-repeat="(x,y) in rechangeList">{{x}}</dd>-->
+						<dd class="re_senum" ng-click="select(500000)"><i class="iconfont">&#xe62b;</i>X500000银图钉</dd>
+						<dd class="re_senum" ng-click="select(300000)"><i class="iconfont">&#xe62b;</i>X300000银图钉</dd>
+						<dd  class="re_senum" ng-click="select(200000)"><i class="iconfont">&#xe62b;</i>X200000银图钉</dd>
+						<dd class="re_senum " ng-click="select(100000)"><i class="iconfont">&#xe62b;</i>X100000银图钉</dd>
+						<dd class="re_senum" ng-click="select(80000)"><i class="iconfont">&#xe62b;</i>X80000银图钉</dd>
+					</dl>
+					<dl class="re_num" style="margin-top: 4px;" id="rechangeZone">
+					<!--	<dt>充值数量:</dt>-->
+						<!--<dd ng-class="{'re_senum':true, 'active':actived==flag}" ng-click="select(y,$index)" ng-bind="flag" ng-repeat="(x,y) in rechangeList">{{x}}</dd>-->
+						<dd class="re_senum" style="margin-left: 80px;" ng-click="select(50000)"><i class="iconfont">&#xe62b;</i>X50000银图钉</dd>
+						<dd class="re_senum"  ng-click="select(30000)"><i class="iconfont">&#xe62b;</i>X30000银图钉</dd>
+						<dd class="re_senum active" ng-click="select(10000)"><i class="iconfont">&#xe62b;</i>X10000银图钉</dd>
+						<dd  class="re_senum" ng-click="select(5000)"><i class="iconfont">&#xe62b;</i>X5000银图钉</dd>
+						<dd  class="re_senum" ng-click="select(1000)"><i class="iconfont">&#xe62b;</i>X1000银图钉</dd>
+					</dl>
+						<dt></dt>
+						<!--<dd ng-class="{'re_senum':true, 'active':actived==flag}" ng-click="select(y,$index)" ng-bind="flag" ng-repeat="(x,y) in rechangeList">{{x}}</dd>-->
+					
+						<!--<dd class="custom"><i class="iconfont">&#xe62b;</i>自定义 <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  onchange="inputMinTen()"  class="text" type="number" id="minTenInput"  ng-init="customRechangeMoney=1" ng-model="customRechangeMoney" ng-change="select(-1)" /> 银图钉</dd>-->
+						<!--<dd class="">最低10个银图钉</dd>-->
+					
+					<!--<form action="http://www.manguo42.com/The42Novels/alipay/deposit.do" method="post">-->
+					<form  method="post" >
+						<input type="hidden" name="userId" value="{{uid}}" />
+						<p class="confirm_info" ng-init="rechangeMoney=10000">请确定:充值<span  ng-readonly=true>{{rechangeMoney/100}}</span>元,您将获得<span>{{rechangeMoney}}银图钉</span></p>
+						<input type="hidden" name="money" value="{{rechangeMoney/100}}" />
+						<input type="submit" class="re_btn" ng-click="rechangeF()" value="充值"></input>
+					</form>
+
+				</div>
+				<!--<iframe name="alipayframe" width="1000px" height="1000px"></iframe>-->
+
+				<!--使用记录-->
+				<div class="a_record yy">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<thead>
+							<tr class="t_tag">
+								<th colspan="3"> 使用记录</th>
+							</tr>
+							<tr class="t_title">
+								<th>
+									<span>日期</span>
+								</th>
+								<th> <span>使用</span></th>
+								<th> <span>内容</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="moneyUse in moneyUseHistory">
+								<td>{{moneyUse.createTime}}</td>
+								<td>{{moneyUse.types}}</td>
+								<td  ><p class="text_left" >{{moneyUse.memo}}</p></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div ng-show="isShowHistory"><tm-pagination conf="paginationConf"></tm-pagination></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/md5.js" ></script>
+	<script type="text/javascript" src="../../js/lib/tm.pagination.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/personCenter/my-wallet.js"></script>
+<script>
+	$("#rechangeZone dd").click(function(){
+		$("#rechangeZone dd").removeClass('active')
+		$(this).addClass('active')
+	})
+</script>
+
+</html>

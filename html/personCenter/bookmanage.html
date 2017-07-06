@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html ng-app="bookmanage">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>书籍管理</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/personCenter/bookmanage.css" />
+		<link rel="stylesheet" href="../../css/tab_page.css" />
+		<link rel="stylesheet" href="../../css/popup.css" />
+	</head>
+
+	<body>
+		
+		<div class="clear" ng-controller="bookManC" class="rootDiv" ng-cloak>
+			
+			<div ng-include="'./personCenter_head.html'"></div>
+			<div ng-include="'./sidebar.html'"></div>
+			<div class="fr wrap_1000">
+				<a id="topbookmanage"></a>
+				<p style="width:90%;text-align: center;margin-top: 90px;color: #bbb;" ng-show="holderNullShow">暂无书籍</p>
+				<div class="book_pub yy clear" ng-repeat="authorBook in authorBookList">
+					<div class="book_show fl">
+						<div class="book_info">
+							<a class="cover_wrap" href="#">
+								<img class="book_cover" ng-src="{{authorBook.imageUrl}}" ng-click="jump(authorBook)" />
+								<!--<div class="mask_cover">
+								<img class="writer_pic" src="../../img/2.jpg" />
+								<p class="writer_name">作者名路过</p>
+								<p>已购买章节：XX章</p>
+								<p>使用期限：XX天</p>
+							</div>-->
+							</a>
+						</div>
+					</div>
+					<div class="book_tags fr">
+						<p class="tag" style="float: left;" ng-repeat="type in authorBook.bookType">&nbsp;{{type.name}}&nbsp;</p>
+						<p class="book_name">{{authorBook.bookName}}</p>
+						<p class="date">{{authorBook.bookTime}}</p>
+						<p class="report_state">{{authorBook.isReportState}}</p>
+						<a href="#" class="edit" ng-click="edit(authorBook)"><img src="../../img/messageCenter/bianji.png" />编辑</a>
+
+						<a href="#" class="edit_tag">...
+							<div class="edit_info">
+								<ul>
+									<li ng-class="{'active':!authorBook.editShow}" ng-show="authorBook.editShow" ng-click="edit(authorBook)">编辑稿件</li>
+									<li ng-class="{'active':!authorBook.shareShow}" ng-show="authorBook.shareShow" ng-click="shareBook(authorBook)">分享稿件</li>
+									<li ng-class="{'active':!authorBook.deleteShow}" ng-show="authorBook.deleteShow" ng-click="deleteBook(authorBook)">删除稿件</li>
+									<!--<li ng-class="{'active':!authorBook.isSellUnit}" ng-show="authorBook.isSellUnit" ng-click="sellClick(authorBook)">出售打书钉</li>-->
+									<li ng-class="{'active':!authorBook.isSellUnit}" ng-show="false" ng-click="sellClick(authorBook)">出售打书钉</li>
+									
+								</ul>
+							</div>
+						</a>
+						<!--出售打书钉代码-->
+						<div class="sold_d" style="position:relative;z-index: 999;" ng-show="authorBook.sellShow">
+							<ul>
+								<form action="" method="post">
+									<li>
+										<label for="">出售股权百分比:</label>
+										<input class="text" type="number" ng-model="shellStockNum" ng-readonly="authorBook.isSell" />%
+									</li>
+									<li>
+										<label for="">出售人数上限:</label>
+										<input class="text" type="number" ng-model="shellUserNum" ng-readonly="true" />人
+									</li>
+									<li>
+										<label for="">售卖单价/%:</label>
+										<input class="text" type="number" ng-model="shellMoneyPer" />银书钉
+									</li>
+								</form>
+							</ul>
+							<div class="sold_btn confirm_btns clear">
+								<a class="confirm_btn fl" href="javascript:;" ng-click="fixStockInfo($index,authorBook,shellStockNum,shellUserNum,shellMoneyPer)" ng-if="setOkFix(authorBook)">{{authorBook.OkFix}}</a>
+								<a class="cancel_btn fr" href="javascript:;" ng-click="cancleStock(authorBook)">取消</a>
+							</div>
+						</div>
+						<span class="click_tag">点击:{{authorBook.checkNub}}</span>
+						<span class="collect_tag">收藏:{{authorBook.collectionNum}}</span>
+						<span class="copper_tag">铜螺钉:{{authorBook.copperMoney}}</span>
+						<span class="silver_tag">银图钉:{{authorBook.silverMoney}}</span>
+						<span class="jing_tag point" ng-click="changeToJin()">转化为金图钉</span>
+						<!--<span class="book_price_tag">
+						<p>{{authorBook.chapterPrice}}银图钉（单章）&nbsp;&nbsp;{{authorBook.chapterPrice*10}}铜螺钉（单章）</p>-->
+						<!--<p>{{authorBook.volumeYinPerPrice}}银图钉（单卷）{{authorBook.volumeTongPerPrice}}铜螺钉（单卷）</p>-->
+						</span>
+
+						<div class="dingSold clear">
+							<div class="fl">是否出售打书钉:
+								<a ng-class="{'active':authorBook.isSellUnit}" ng-click="agree(true,authorBook)">是</a>
+								<a ng-click="agree(false,authorBook)" ng-class="{'active':!authorBook.isSellUnit}">否</a>
+							</div>
+							<div class="fr">打书钉持有人
+
+								<div class="dingSolders" id="dingSolders">
+									<!--作者的头像-->
+									<img ng-src="{{authorBook.holderList[0].headUrl}}" />
+								</div>
+								<div class="otherSolders" id="otherSolders" style="display: none;">
+									<!--其他持股人-->
+									<img src="../../img/2.jpg" />
+									<img src="../../img/2.jpg" />
+									<img src="../../img/2.jpg" />
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="confirm_popub" ng-show="authorBook.isAgreeInfo">
+						<p class="shell_text">你确定同意出售打书钉？（一旦出售打书钉后将不可更改哦~）</p>
+						<div class="purch_btn confirm_btns clear">
+							<a class="confirm_btn fl" href="" ng-click="trueAgreeInfo(authorBook)">确认</a>
+							<a class="cancel_btn fr" href="" ng-click="authorBook.isAgreeInfo=false">取消</a>
+						</div>
+					</div>
+				</div>
+				<!--所有评论的分页-->
+				<div ng-show="isShowPage">
+					<tm-pagination conf="paginationConf"></tm-pagination>
+				</div>
+			</div>
+			<div class="confirm_popub" ng-show="deleteBookShow">
+				<p class="shell_text">你确定删除此稿件？（一旦删除将不可还原）</p>
+				<div class="purch_btn confirm_btns clear">
+					<a class="confirm_btn fl" href="" ng-click="trueDeleteBook()">确认</a>
+					<a class="cancel_btn fr" href="" ng-click="deleteBookShow=false">取消</a>
+				</div>
+			</div>
+		</div>
+		</div>
+
+	</body>
+	<script src="//at.alicdn.com/t/font_ar0exrur5cr0y66r.js"></script>
+	<script type="text/javascript" src="../../js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/tm.pagination.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/personCenter/book-manage.js"></script>
+	<script type="text/javascript">
+	</script>
+
+</html>
